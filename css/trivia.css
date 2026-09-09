@@ -38,6 +38,12 @@ main, main section {
   flex-direction: row;
 }
 
+#bloques1, #bloques2 {
+  display: flex;
+  flex-direction: column; /* apila hacia arriba */
+  align-items: center;            /* centra horizontalmente */
+}
+
 .bloque {
   width: 30px;
   height: 30px;
