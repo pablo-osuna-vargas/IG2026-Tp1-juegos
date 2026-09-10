@@ -1,48 +1,56 @@
 // Arrays base
-let preguntas = [
+const preguntas = [
   "¿Capital de Argentina?",
   "¿2 + 2?",
   "¿Color del cielo en un día despejado?",
   "¿Lenguaje que usamos en este proyecto?"
 ];
 
-let respuestas = [
+const respuestas = [
   "Buenos Aires",
   "4",
   "Azul",
   "Java"
 ];
 
-let colores = ["negro", "azul", "rojo", "verde", "amarillo", "blanco"]; // array de colores para actualizar clase al responder
-let colorProgreso = [
+const colores = ["negro", "azul", "rojo", "verde", "amarillo", "blanco"]; // array de colores para actualizar clase al responder
+const colorProgreso = [
   { jugador: 1, 
     progreso: 1},
   
   { jugador: 2, 
-    progreso: 1}
-]; // array de los dos objetos para actualizar la clase en los bloques
+    progreso: 1}]; // array de los dos objetos para actualizar la clase en los bloques
 
 // capturas html
-let btnIniciar = document.querySelector("#btnIniciar");
-let renderPregunta = document.querySelector("#pregunta");
-let inputRespuesta = document.querySelector("#respuesta");
-let btnResponder = document.querySelector("#btnResponder");
+const btnIniciar = document.querySelector("#btnIniciar");
+const renderPregunta = document.querySelector("#pregunta");
+const inputRespuesta = document.querySelector("#respuesta");
+const btnResponder = document.querySelector("#btnResponder");
+const btnReiniciar = document.querySelector("#btnReiniciar");
 
 let jugadorActual = 1; // inicializador de turnos
 let mensajes = ["CORRECTO ✅", "INCORRECTO ❌"];
 let indice;
 
+// botones
+btnIniciar.disabled = false;
+btnResponder.disabled = true;
+
 btnIniciar.addEventListener("click", () => {
-  iniciarBloques()
-  mostrarPregunta()
+  iniciarBloques(); 
+  mostrarPregunta();
+  btnIniciar.disabled = true;
+  btnResponder.disabled = false
 });
-
-// click en Responder captura "respuestaJugador" valule y lo pasa a procesarRespuesta() para comparar con índice
-btnResponder.addEventListener("click", () => { 
-  let respuestaJugador = inputRespuesta.value;
-  procesarRespuesta(respuestaJugador, indice); // variables que pasan su valor a procesarRespuesta()
+// captura valor de "respuestaJugador" y lo pasa a procesarRespuesta()
+btnResponder.addEventListener("click", () => {
+  let respuestaJugador = inputRespuesta.value; 
+  procesarRespuesta(respuestaJugador, indice);
 });
+btnReiniciar.addEventListener("click", () => location.reload());
 
+
+// bloque de FUNCIONES
 function iniciarBloques(){
   for(let i = 0; i < colorProgreso.length; i++){
     let jugador = colorProgreso[i].jugador;
@@ -66,19 +74,17 @@ function procesarRespuesta(respuestaJugador, indice) {
   mensajeMuestra.innerText = (respuestaJugador === respuestas[indice]) 
   ? `Jugador ${jugadorActual} CORRECTO ✅`
   : `Jugador ${jugadorActual} INCORRECTO ❌`;
-
   mensajeMuestra.style.display = "block"; // muestro mensaje luego de verificar pregunta
 
-  moverBloque(jugadorActual, respuestaCorrecta); // variable que pasa su valor a la funcion moverBloque()
+  moverBloque(jugadorActual, respuestaCorrecta); // variables que pasan su valor a la funcion moverBloque()
+  verificarObjetivo(jugadorActual, colores[colorProgreso[jugadorActual -1].progreso]); // chequeo de partida: victoria, derrota, return
   cambiarTurno();
-  renderPregunta.innerText = "";
-  inputRespuesta.value = "";
+    renderPregunta.innerText = "";
+    inputRespuesta.value = "";
   mostrarPregunta();  
 }
 
-
-// EN PROCESO
-// feedback visual aditar/sustraer bloque de color, la funcion recibe el dato TRUE o FALSE de procesarRespuesta() en su parametro
+// feedback visual, si respuestaCorrecta TRUE agrega un bloque, sino lo quita
 function moverBloque(jugadorActual, respuestaCorrecta){
   let contenedorBloque = document.querySelector(`#bloques${jugadorActual}`); // capturo div donde se creará el elemento nuevo
   let bloque = document.createElement("div");
@@ -94,20 +100,48 @@ function moverBloque(jugadorActual, respuestaCorrecta){
 
   // luego, acción visual
   if(respuestaCorrecta){
-    // agregar bloque
-    bloque.classList.add("bloque", colores[colorProgreso[jugadorActual -1].progreso]);
+    bloque.classList.add("bloque", colores[colorProgreso[jugadorActual -1].progreso]); // agregar bloque encima del color de progreso
     contenedorBloque.prepend(bloque);
-    } else {
-      // quitar bloque
-      contenedorBloque.firstChild.remove(bloque);
-    }
+    } else if(colorProgreso[jugadorActual -1].progreso === 0){
+        contenedorBloque.removeChild(contenedorBloque.firstChild); // si llegó a 0 borra el primer hijo y dibuja bloque negro
+        let bloqueNegro = document.createElement("div");
+        bloqueNegro.classList.add("bloque", "negro");
+        contenedorBloque.prepend(bloqueNegro);
+      } else {
+        if(contenedorBloque.firstChild){
+          contenedorBloque.removeChild(contenedorBloque.firstChild); // si falló pero no llegó a 0 quita primer bloque
+        }
+      }
 
-    console.log(colorProgreso);
-
- //---- FALTA QUE LOS BLOQUES SE UBIQUEN COMO CORRESPONDE DESDE LA BASE HACIA ARRIBA ----//
+  console.log(colorProgreso);
 }
 
-// si jugador1 es TRUE cambia el turno al oponente
+// si jugador1 TRUE cambia el turno al oponente
 function cambiarTurno() {
   jugadorActual = (jugadorActual === 1) ? 2 : 1;
+}
+
+// verifica estado de juego: gano, perdio, reinicio
+function verificarObjetivo(jugadorActual, color){
+  if(color === "blanco"){
+    let mensaje = document.querySelector("#mensajes");
+    mensaje.innerText = `Jugador ${jugadorActual} ganó!`
+    mensaje.classList.add("mensajeGrande", "mensajeGanador");
+    btnIniciar.disabled = true;
+    btnResponder.disabled = true;
+    return;
+  }
+
+  if(color === "negro"){
+    let mensaje = document.querySelector("#mensajes");
+    mensaje.innerText = `Jugador ${jugadorActual} perdió!`
+    mensaje.classList.add("mensajeGrande", "mensajePerdedor");
+    btnIniciar.disabled = true;
+    btnResponder.disabled = true;
+    return;
+  }
+
+  renderPregunta.innerText = "";
+  inputRespuesta.value = "";
+  mostrarPregunta();  
 }

@@ -1,47 +1,65 @@
 /* reset y visualización*/
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
-  border: 1px solid black;
-}
-
-body, header, main, .contenedor {
-  display: flex;
-  flex-direction: column;
-}
+* {box-sizing: border-box; 
+  /*border: solid 1px black;*/}
 
 body {
+  margin: 0;
+  padding: 0;
   font-family: sans-serif;
-  align-items: center;
-  margin: 1rem auto;
 }
 
-.contenedor {
-  margin: 1rem auto;
+#contenedor {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
-header {
-  align-items: center;
-  justify-content: center;/* centra verticalmente */
-  margin: 1rem;
+header, footer {
+  padding: 1rem;
+  text-align: center;
 }
 
-main, main section {
-  justify-content: flex-start;
-  margin: 1rem;
+main {
+  padding: 1rem;
+}
+
+nav ul {
+  list-style: none;
+}
+
+ul li {
+  display: inline-block;
 }
 
 .columnas {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: flex-start; 
+}
+
+.centrado, #bloques1, #bloques2 {
+  display: flex;
+  flex-direction: column; /* apila hacia arriba */
+  justify-content: flex-end;
+  align-items: center;    /* centra horizontalmente */
+
+  margin: 0.5rem 0;
 }
 
 #bloques1, #bloques2 {
-  display: flex;
-  flex-direction: column; /* apila hacia arriba */
-  align-items: center;            /* centra horizontalmente */
+    height: 200px;
+}
+
+#iniciarTrivia {
+  justify-content: center;
+
+  padding: 1rem;
+}
+
+button {
+  margin: 0.5rem;
+  padding: 0.2rem 0.5rem;
 }
 
 .bloque {
@@ -57,3 +75,21 @@ main, main section {
 .verde { background-color: green; }
 .amarillo { background-color: yellow; }
 .blanco { background-color: white; border: solid 1px black; }
+.negro { background-color: black; }
+
+
+.mensajeGrande {
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.mensajeGanador {
+  color: green;
+  background-color: #d4edda;
+}
+
+.mensajePerdedor {
+  color: red;
+  background-color: #f8d7da;
+}
