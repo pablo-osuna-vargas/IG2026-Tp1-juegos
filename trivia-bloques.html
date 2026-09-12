@@ -9,13 +9,13 @@
 <body>
   <div class="contenedor">
     <header>
-    	<h1>Trivia (2 jugadores)</h1>
+    	<h1>Trivia Preguntas y Respuestas</h1>
     	<nav>
 			<ul>
 				<li><a href="index.html">Inicio</a></li>
 				<li><a href="juego-1.html">Juego 1</a></li>
 				<li><a href="juego-2.html">Juego 2</a></li>
-				<li><a href="trivia-bloques.html">trivia-bloques</a></li>
+				<li><a href="trivia-bloques.html">Trivia</a></li>
 				<li><a href="puntajes.html">Puntajes</a></li>
 				<li><a href="info.html">Info general</a></li>
 			</ul>
@@ -23,18 +23,18 @@
     </header>
 
   <main>
-    <section class="centrado">
-      <div class="centrado" id="iniciarTrivia">
+    <section>
+      <div id="iniciarTrivia">
         <button type="button" id="btnIniciar">Iniciar Trivia</button>
-        <div id="pregunta"></div>
-        <input type="text" id="respuesta" placeholder="Tu respuesta aquí!"></input>
-        <button type="button" id="btnResponder">Responder</button>
+        <form>
+          <div id="pregunta"></div>
+          <input type="text" id="respuesta" placeholder="Tu respuesta aquí!"></input>
+          <button type="submit" id="btnResponder">Responder</button>
+        </form>
       </div>
-    </section>
-    
-    <section class="centrado">  
+      
       <div id="mensajes" style.display="none"></div>
-      <button id="btnReiniciar">Reiniciar</button>
+        <button id="btnReiniciar">Reiniciar</button>
     </section>
 
     <section class="columnas">
@@ -51,7 +51,7 @@
   </main>
 
   <footer>
-	<p>Para contactarse escribir a <a href="mailto:nosotros@nosotros.com">nosotros@nosotros.com</a></p>
+  	<p>Para contactarse escribir a <a href="mailto:nosotros@nosotros.com">nosotros@nosotros.com</a></p>
   </footer>
 
   <script src="js/trivia.js"></script>

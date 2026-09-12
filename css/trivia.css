@@ -14,13 +14,9 @@ body {
   margin: 0 auto;
 }
 
-header, footer {
+header, footer, main {
   padding: 1rem;
   text-align: center;
-}
-
-main {
-  padding: 1rem;
 }
 
 nav ul {
@@ -29,6 +25,12 @@ nav ul {
 
 ul li {
   display: inline-block;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .columnas {
@@ -44,17 +46,15 @@ ul li {
   justify-content: flex-end;
   align-items: center;    /* centra horizontalmente */
 
-  margin: 0.5rem 0;
+  margin: 0rem auto;
 }
 
 #bloques1, #bloques2 {
-    height: 200px;
+    height: 10rem;
 }
 
 #iniciarTrivia {
   justify-content: center;
-
-  padding: 1rem;
 }
 
 button {
@@ -63,10 +63,9 @@ button {
 }
 
 .bloque {
-  width: 30px;
-  height: 30px;
-  margin: 5px;
-  border: solid 1px black;
+  width: 30rem;
+  height: 15rem;
+  margin: 0.5rem;
   display: inline-block;
 }
 
@@ -85,11 +84,11 @@ button {
 }
 
 .mensajeGanador {
-  color: green;
-  background-color: #d4edda;
+  color: whitesmoke;
+  background-color: rgba(0, 200, 100, 0.6);
 }
 
 .mensajePerdedor {
-  color: red;
-  background-color: #f8d7da;
+  color: whitesmoke;
+  background-color: rgba(200, 0, 100, 0.6);
 }
