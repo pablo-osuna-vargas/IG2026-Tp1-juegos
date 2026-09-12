@@ -109,3 +109,17 @@ Mensajes narrativos refuerzan la metáfora de sumar colores hasta la luz y evita
 
 Estoy trabajando en el código haciendo un mix de lo que vimos en las prácticas
 
+
+
+11/9 corrección de funciones de flujo de juego:
+
+&#x09;-Inicio y preguntas: se renderiza la pregunta actual y se prepara el input del jugador.
+
+&#x09;-Respuesta y verificación: se compara la respuesta con la correcta (a minúsculas .toLowerCase), mostrar mensajes dinámicos de acierto/error.
+
+&#x09;-Objetivo y bloques: se actualiza tablero con moverBloque() y se chequea victoria/derrota con verificarObjetivo().
+
+&#x09;-Turno y finalización: se alterna jugador solo si responde Incorrectamente, se limpian campos, y al cumplirse condición de fin se muestra mensaje Ganador/Perdedor
+
+&#x09;-Preguntas: falta desarrollar lógica para no repetir preguntas. Y para que no muestre preguntas nuevas al finalizar la partida
+
