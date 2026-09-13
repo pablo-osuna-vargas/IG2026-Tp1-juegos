@@ -1,44 +1,22 @@
 // Arrays base
-const preguntas = [
-  "¿Capital de Argentina?",
-  "¿2 + 2?",
-  "¿Color del cielo en un día despejado?",
-  "¿País en el que vivimos?",
-  "¿Capital de Brasil?",
-  "¿Animal que dice 'miau'?",
-  "¿5 x 3?",
-  "¿Color de una banana madura?",
-  "¿Idioma que usamos?",
-  "¿Capital de España?",
-  "¿Planeta más cercano al Sol?",
-  "¿Día que sigue al lunes?",
-  "¿Instrumento musical con teclas blancas y negras?",
-  "¿Capital de Chile?",
-  "¿Número de lados de un triángulo?"];
-const respuestas = [
-  "Buenos Aires",
-  "4",
-  "Azul",
-  "Argentina",
-  "Brasilia",
-  "Gato",
-  "15",
-  "Amarillo",
-  "Castellano",
-  "Madrid",
-  "Mercurio",
-  "Martes",
-  "Piano",
-  "Santiago",
-  "3"];
-const colores = [
-  "negro", "azul", "rojo", 
-  "verde", "amarillo", "blanco"]; // array de colores para actualizar clase al responder
+const trivia = [
+  {pregunta: "¿Capital de Argentina?", respuesta: "Buenos Aires"},
+  {pregunta: "¿2 + 2?", respuesta: "4"},
+  {pregunta: "¿Color del cielo en un día despejado?", respuesta: "Azul"},
+  {pregunta: "¿País en el que vivimos?", respuesta: "Argentina"},
+  {pregunta: "¿Capital de Brasil?", respuesta: "Brasilia"},
+  {pregunta: "¿Animal que dice 'miau'?", respuesta: "Gato"},
+  {pregunta: "¿5 x 3?", respuesta: "15"},
+  {pregunta: "¿Color de una banana madura?", respuesta: "Amarillo"},
+  {pregunta: "¿Idioma que usamos?", respuesta: "Castellano"},
+  {pregunta: "¿Capital de España?", respuesta: "Madrid"},
+  {pregunta: "¿Planeta más cercano al Sol?", respuesta: "Mercurio"},
+  {pregunta: "¿Día que sigue al lunes?", respuesta: "Martes"},
+  {pregunta: "¿Instrumento musical con teclas blancas y negras?", respuesta: "Piano"},
+  {pregunta: "¿Capital de Chile?", respuesta: "Santiago de chile"},
+  {pregunta: "¿Número de lados de un triángulo?", respuesta: "3"}];
+const colores = ["negro", "azul", "rojo", "verde", "amarillo", "blanco"]; // array de colores para actualizar clase al responder
 const jugadores = [{ numero: 1, progreso: 1}, { numero: 2, progreso: 1}]; // inicia bloque azul en ambos jugadores
-
-let indice; // indice para el (.progreso) se actualiza en cada ronda de respuestas
-let jugadorActual = 1; // inicializador de turnos
-let mensajes = ["CORRECTO ✅", "INCORRECTO ❌"];
 
 // capturas HTML
 const btnIniciar = document.querySelector("#btnIniciar");
@@ -51,6 +29,9 @@ const inputRespuesta = document.querySelector("#respuesta");
 const btnResponder = document.querySelector("#btnResponder");
 const btnArriesgar = document.querySelector("#btnArriesgar");
 let mensajeAlerta = document.querySelector("#mensajes"); // capturo elemento para mostrar alertas varias
+
+let indice; // indice para el (.progreso) se actualiza en cada ronda de respuestas
+let jugadorActual = 1; // inicializador de turnos
 
 // botones estado inicial
 btnIniciar.disabled = false;
@@ -71,11 +52,10 @@ btnArriesgar.addEventListener("click", () => {procesarArriesgar(jugadorActual)})
 btnReiniciar.addEventListener("click", () => location.reload());
 
 // boton Responder --- captura el submit del form (responder)
-  formActivo.addEventListener("submit", function(responder) {
+formActivo.addEventListener("submit", function(responder) {
   responder.preventDefault(); // como es un submit evita la recarga de la página
   let respuestaJugador = inputRespuesta.value; 
   procesarRespuesta(respuestaJugador, indice);});
-
 
 
 // FUNCIONES
@@ -91,17 +71,18 @@ function iniciarTrivia(){
 }
 
 function mostrarPregunta() {
-  indice = Math.floor(Math.random() * preguntas.length); // muestra una pregunta aleatoria del array 
+  indice = Math.floor(Math.random() * trivia.length); // muestra una pregunta aleatoria del array 
   renderPregunta.style.display = "block";
-  renderPregunta.innerText = `Jugador ${jugadorActual}: ${preguntas[indice]}`; // muestra un string que indica quien toca responder y la pregunta al azar
+  renderPregunta.innerText = `Jugador ${jugadorActual}: ${trivia[indice].pregunta}`; // muestra un string que indica quien toca responder y la pregunta al azar
 }
 
 function procesarRespuesta(respuestaJugador, indice) {
-  let respuestaCorrecta = (respuestaJugador.toLowerCase() === respuestas[indice].toLowerCase()); // variable TRUE/FALSE para saber si suma o resta bloques. Compara en minusculas para evitar errores de escritura
+  let respuestaCorrecta = (respuestaJugador.toLowerCase() === trivia[indice].respuesta.toLowerCase()); // variable TRUE/FALSE para saber si suma o resta bloques. Compara en minusculas para evitar errores de escritura
 
   // op ternario: si respuestaCorrecta = true muestra mensaje CORRECTO, de lo contrario INCORRECTO
-  mensajeAlerta.innerText = respuestaCorrecta ? `${mensajes[0]}` : `${mensajes[1]}`;
+  mensajeAlerta.innerText = respuestaCorrecta ? `CORRECTO ✅` : `INCORRECTO ❌`;
   mensajeAlerta.style.display = "block"; // muestro mensaje luego de verificar pregunta
+  mensajeAlerta.classList.add("mensajeAlerta");
 
   // agrega o quita un blque segun respuesta. Verificación de fin de partida o nueva ronda
   moverBloque(jugadorActual, respuestaCorrecta); // variables que pasan su valor a la funcion moverBloque()
@@ -131,11 +112,18 @@ function procesarArriesgar(jugadorActual) {
       bloque.classList.add("bloque", colores[progActual + i + 1]);
       contenedorBloque.prepend(bloque);
     }
+
+    jugadores[jugadorActual -1].progreso = progRival; // sigo dentro del if pero actulizo (empato) el progreso de jugador con el opoenente
+    mensajeAlerta.innerText = `Jugador${jugadorActual} Bien hecho! lograste empatar a tu rival!`;
+    mensajeAlerta.classList.add("mensajeGrande"); 
+    mensajeAlerta.style.display = "block";
   } else {
     btnArriesgar.disabled = true; // si no esta en desventaja no habilita Arriesgar
   }
 
   btnArriesgar.disabled = true; // una vez cliqueado se vuelve a deshabilitar Arriesgar
+  mostrarPregunta();
+  inputRespuesta.value = "";
 }
 
 // feedback visual, si respuestaCorrecta TRUE agrega un bloque, sino lo quita
@@ -163,7 +151,7 @@ function moverBloque(jugadorActual, respuestaCorrecta){
         contenedorBloque.prepend(bloqueNegro);
       } else {
           if(contenedorBloque.firstChild){
-         contenedorBloque.removeChild(contenedorBloque.firstChild); // si falló pero no llegó a 0 quita primer bloque de arriba
+          contenedorBloque.removeChild(contenedorBloque.firstChild); // si falló pero no llegó a 0 quita primer bloque de arriba
         }
       }
 }
@@ -196,15 +184,24 @@ function verificarDesventaja() {
 
   if (progActual < progRival) {
     btnArriesgar.disabled = false; // habilito Arriesgar
+    mensajeAlerta.style.display = "block";
+    mensajeAlerta.classList.add("mensajeAlerta");
+    mensajeAlerta.innerText = `jugador${jugadorActual} estas en desventaja... Arriesga para empatar!`
   } else {
     btnArriesgar.disabled = true;  // deshabilito Arriesgar
   }
 }
-
 
 function deshabilitarBotones() {
   btnIniciar.disabled = true;
   btnResponder.disabled = true;
   btnArriesgar.disabled = true;
   inputRespuesta.disabled = true;
+}
+
+function crearBloque(jugadorActual){
+  let bloque = document.createElement("div");
+  let color = colores[jugadores[jugadorActual -1].progreso];
+  bloque.classList.add("bloque", color);
+  return bloque; // devuelve bloque para usar en otras funciones
 }

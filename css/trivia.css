@@ -1,4 +1,4 @@
-/* estilos trivi  a */
+/* estilos trivia */
 main {
   display: flex;
   flex-direction: row;
@@ -68,17 +68,12 @@ form {display: none;}
 .blanco { background-color: rgba(255, 255, 255, 0.8);}
 .negro { background-color: rgba(0, 0, 0, 0.9); height: 100%}
 
-
-.mensajeGrande {
+.mensajeAlerta {
+  display: none;
   font-size: 2rem;
   font-weight: bold;
-  padding: 0.3rem;
-}
+  position: fixed;
+  background-color: rgba(250, 220, 0, 0.9);
 
-.mensajeGanador {
-  background-color: rgba(0, 250, 100, 0.8);
-}
-
-.mensajePerdedor {
-  background-color: rgba(250, 0, 100, 0.8);
+  border: solid 1px black;
 }
