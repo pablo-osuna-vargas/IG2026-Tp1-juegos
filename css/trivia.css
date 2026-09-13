@@ -1,15 +1,11 @@
-/* estilos trivia */
+/* estilos trivi  a */
 main {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.juego {
-  width: 50%;
-}
-
-.tablero {
+.juego, .tablero {
   width: 50%;
 }
 
@@ -25,29 +21,39 @@ main {
   justify-content: space-between;
 }
 
-#pregunta, #mensaje {
+#instrucciones {
+  display: none;
+  position: fixed;
+  background-color: rgba(250, 220, 0, 0.9);
+
+  border: solid 1px black;
+}
+
+#instrucciones ul {list-style: none; padding: 0}
+#instrucciones ul li {display: list-item;}
+
+#pregunta, #mensajes {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0.5rem;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: whitesmoke;
 
-  font-size: 2rem;
+  border: solid 1px black;
 }
 
+form {display: none;}
+
 .jugador {
-  background-color: rgba(255, 255, 255, 0.1);
   width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0.2rem;
+
+  border: solid 1px rgba(0, 0, 0, 0.1);
 }
 
 #bloques1, #bloques2 {
-  height: 28rem;
-  margin: 0.2rem;
+  height: 25rem;
 }
 
 .bloque {
@@ -55,10 +61,10 @@ main {
   height: 5rem;
 }
 
-.azul { background-color: rgba(0, 0, 255, 0.7); height: 20%}
+.azul { background-color: rgba(0, 0, 255, 0.7); height: 18%}
 .rojo { background-color: rgba(255, 0, 0, 0.7);}
 .verde { background-color: rgba(0, 255, 55, 0.7);}
-.amarillo { background-color: rgba(255, 255, 0, 0.7); }
+.amarillo { background-color: rgba(255, 255, 0, 0.7);}
 .blanco { background-color: rgba(255, 255, 255, 0.8);}
 .negro { background-color: rgba(0, 0, 0, 0.9); height: 100%}
 
@@ -70,24 +76,9 @@ main {
 }
 
 .mensajeGanador {
-  color: whitesmoke;
   background-color: rgba(0, 250, 100, 0.8);
 }
 
 .mensajePerdedor {
-  color: whitesmoke;
   background-color: rgba(250, 0, 100, 0.8);
 }
-
-#instrucciones {
-  color: whitesmoke;
-  background-color: rgba(200, 0, 100, 0.6);
-  position: fixed;
-  bottom: 1rem;
-  left: 1rem;
-
-  display: none;
-}
-
-#instrucciones ul {list-style: none;}
-#instrucciones ul li {display: list-item;}
