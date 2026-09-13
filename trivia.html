@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="css/estilos.css">
+  <link rel="stylesheet" type="text/css" href="css/trivia.css">
+  <title>TP1 - Trivia</title>
+</head>
+
+<body>
+  <div class="contenedor">
+    <header class="headerFooter">
+    	<h1>TRIVIA</h1>
+    	<nav>
+			<ul>
+				<li><a href="index.html">Inicio</a></li>
+				<li><a href="juego-1.html">Juego 1</a></li>
+				<li><a href="juego-2.html">Juego 2</a></li>
+				<li><a href="trivia.html">Trivia</a></li>
+				<li><a href="puntajes.html">Puntajes</a></li>
+				<li><a href="info.html">Info general</a></li>
+			</ul>
+		</nav>
+    </header>
+
+  <main>
+    <div class="juego">
+    <p><em>“Avanza por el camino del conocimiento”</em></p>
+    <button type="button" id="btnIniciar">Iniciar trivia</button>
+
+    <section class="centrado">
+      <button type="button" id="btnInstrucciones">Instrucciones</button>
+      <button id="btnReiniciar">Reiniciar</button>
+    </section>
+
+    <section class="centrado">
+      <div id="instrucciones">
+        <h2>Reglas</h2>
+        <ul>
+          <li>Objetivo: acumular colores hasta alcanzar el Blanco</li>
+          <li>Responde correctamente para subir 1 color y responder nuevamente</li>
+          <li>Si respondes incorrectamente bajas 1 color y pierdes el turno</li>
+          <li>Si estas en desventaja "Arriesga" para alcanzar a tu oponente</li>
+          <li>Evita llegar al color Negro o perderás la partida</li>
+        </ul>
+        <button type="button" id="cerrarInstrucciones">Cerrar</button>
+      </div>
+
+      <form>          
+        <div id="pregunta" class="centrado"></div>
+        <button type="submit" id="btnResponder">Responder</button>
+        <input type="text" id="respuesta" placeholder="Tu respuesta aquí!"></input>
+        <button type="button" id="btnArriesgar">Arriesgar</button>
+        <div id="mensajes" style.display="none"></div>
+      </form>
+    </section>
+    </div>
+
+    <div class="tablero">
+    <section class="columnas">
+      <div class="jugador">
+        <h2>Jugador 1</h2>
+        <div id="bloques1"></div>
+      </div>
+
+      <div class="jugador">
+        <h2>Jugador 2</h2>
+        <div id="bloques2"></div>
+      </div>
+    </section>
+    </div>
+  </main>
+
+  <footer class="headerFooter">
+  	<p>Para contactarse escribir a <a href="mailto:nosotros@nosotros.com">nosotros@nosotros.com</a></p>
+  </footer>
+
+  <script src="js/trivia.js"></script>
+  
+</body>
+</html>

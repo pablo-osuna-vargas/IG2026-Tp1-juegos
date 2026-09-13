@@ -1,94 +1,93 @@
-/* reset y visualización*/
-* {box-sizing: border-box; 
-  /*border: solid 1px black;*/}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
-
-#contenedor {
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-header, footer, main {
-  padding: 1rem;
-  text-align: center;
-}
-
-nav ul {
-  list-style: none;
-}
-
-ul li {
-  display: inline-block;
-}
-
-form {
+/* estilos trivia */
+main {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  justify-content: center;
 }
+
+.juego {
+  width: 50%;
+}
+
+.tablero {
+  width: 50%;
+}
+
+.centrado {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0.3rem;}
 
 .columnas {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: flex-start; 
+  justify-content: space-between;
 }
 
-.centrado, #bloques1, #bloques2 {
+#pregunta, #mensaje {
   display: flex;
-  flex-direction: column; /* apila hacia arriba */
-  justify-content: flex-end;
-  align-items: center;    /* centra horizontalmente */
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: whitesmoke;
 
-  margin: 0rem auto;
+  font-size: 2rem;
+}
+
+.jugador {
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0.2rem;
 }
 
 #bloques1, #bloques2 {
-    height: 10rem;
-}
-
-#iniciarTrivia {
-  justify-content: center;
-}
-
-button {
-  margin: 0.5rem;
-  padding: 0.2rem 0.5rem;
+  height: 28rem;
+  margin: 0.2rem;
 }
 
 .bloque {
-  width: 30rem;
-  height: 15rem;
-  margin: 0.5rem;
-  display: inline-block;
+  width: 100%;
+  height: 5rem;
 }
 
-.azul { background-color: blue; }
-.rojo { background-color: red; }
-.verde { background-color: green; }
-.amarillo { background-color: yellow; }
-.blanco { background-color: white; border: solid 1px black; }
-.negro { background-color: black; }
+.azul { background-color: rgba(0, 0, 255, 0.7); height: 20%}
+.rojo { background-color: rgba(255, 0, 0, 0.7);}
+.verde { background-color: rgba(0, 255, 55, 0.7);}
+.amarillo { background-color: rgba(255, 255, 0, 0.7); }
+.blanco { background-color: rgba(255, 255, 255, 0.8);}
+.negro { background-color: rgba(0, 0, 0, 0.9); height: 100%}
 
 
 .mensajeGrande {
   font-size: 2rem;
   font-weight: bold;
-  padding: 10px;
+  padding: 0.3rem;
 }
 
 .mensajeGanador {
   color: whitesmoke;
-  background-color: rgba(0, 200, 100, 0.6);
+  background-color: rgba(0, 250, 100, 0.8);
 }
 
 .mensajePerdedor {
   color: whitesmoke;
-  background-color: rgba(200, 0, 100, 0.6);
+  background-color: rgba(250, 0, 100, 0.8);
 }
+
+#instrucciones {
+  color: whitesmoke;
+  background-color: rgba(200, 0, 100, 0.6);
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+
+  display: none;
+}
+
+#instrucciones ul {list-style: none;}
+#instrucciones ul li {display: list-item;}

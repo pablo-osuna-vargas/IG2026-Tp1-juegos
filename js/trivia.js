@@ -47,16 +47,28 @@ let indice; // indice para el colorProgreso que se actualiza en cada ronda de re
 // capturas HTML
 const btnIniciar = document.querySelector("#btnIniciar");
 const renderPregunta = document.querySelector("#pregunta");
+renderPregunta.style.display = "none";
 const inputRespuesta = document.querySelector("#respuesta");
 const btnResponder = document.querySelector("#btnResponder");
+const btnArriesgar = document.querySelector("#btnArriesgar");
 const btnReiniciar = document.querySelector("#btnReiniciar");
+const btnInstrucciones = document.querySelector("#btnInstrucciones");
+const cerrarInstrucciones = document.querySelector("#cerrarInstrucciones");
 
 let jugadorActual = 1; // inicializador de turnos
 let mensajes = ["CORRECTO ✅", "INCORRECTO ❌"];
 
+let instrucciones = document.querySelector("#instrucciones");
+instrucciones.style.display = "none";
+
+
+
+
+
 // botones estado inicial
 btnIniciar.disabled = false;
 btnResponder.disabled = true;
+btnArriesgar.disabled = true;
 inputRespuesta.disabled = true;
 
 btnIniciar.addEventListener("click", () => {
@@ -64,9 +76,14 @@ btnIniciar.addEventListener("click", () => {
   mostrarPregunta();
   btnIniciar.disabled = true;
   btnResponder.disabled = false;
+  btnArriesgar.disabled = false;
   inputRespuesta.disabled = false
 });
 
+btnInstrucciones.addEventListener("click", () => {instrucciones.style.display = "block"});
+cerrarInstrucciones.addEventListener("click", () => {instrucciones.style.display = "none"})
+
+// boton Responder
 let formRespuesta = document.querySelector("form"); // captura valor de "respuestaJugador" y lo pasa a procesarRespuesta()
   formRespuesta.addEventListener("submit", function(responder) {
   responder.preventDefault(); // como es un submit evita la recarga de la página
@@ -74,7 +91,12 @@ let formRespuesta = document.querySelector("form"); // captura valor de "respues
   procesarRespuesta(respuestaJugador, indice);
 });
 
+btnArriesgar.addEventListener("click", () => { /* fucntion desarrollada AQUÍ */ })
 btnReiniciar.addEventListener("click", () => location.reload());
+
+
+
+
 
 
 // FUNCIONES
@@ -91,6 +113,7 @@ function iniciarBloques(){
 
 function mostrarPregunta() {
   indice = Math.floor(Math.random() * preguntas.length); // muestra una pregunta aleatoria del array 
+  renderPregunta.style.display = "block";
   renderPregunta.innerText = `Jugador ${jugadorActual}: ${preguntas[indice]}`; // muestra un string que indica quien toca responder y la pregunta al azar
 }
 
@@ -111,7 +134,7 @@ function procesarRespuesta(respuestaJugador, indice) {
   // solo cambia de turno si el jugador actual responde Incorrectamente
   if(respuestaCorrecta){ 
     renderPregunta.innerText = ""; // vacío campos y valores para el turno siguiente
-    inputRespuesta.value = ""; // vacío campos y valores para el turno siguiente
+    inputRespuesta.value = "";
     mostrarPregunta();
   } else{
       cambiarTurno();
@@ -120,6 +143,8 @@ function procesarRespuesta(respuestaJugador, indice) {
       mostrarPregunta();
   }  
 }
+
+function procesarArriesgar() {}
 
 // feedback visual, si respuestaCorrecta TRUE agrega un bloque, sino lo quita
 function moverBloque(jugadorActual, respuestaCorrecta){
@@ -160,6 +185,7 @@ function verificarObjetivo(jugadorActual, color){
   
     btnIniciar.disabled = true; 
     btnResponder.disabled = true;
+    btnArriesgar.disabled = true;
     return;
   }
 
@@ -170,6 +196,7 @@ function verificarObjetivo(jugadorActual, color){
     
     btnIniciar.disabled = true;
     btnResponder.disabled = true;
+    btnArriesgar.disabled = true;
     return;
   } 
 }
