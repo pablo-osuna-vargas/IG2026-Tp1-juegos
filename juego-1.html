@@ -2,14 +2,13 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8">
-	<link href="css/estilos.css" rel="stylesheet">
+	<link href="css/piedra-papel.css" rel="stylesheet">
 	<title>TP1 - juego 1</title>
 </head>
-
 <body>
 	<div class="contenedor">
 		<header>
-			<h1>Juego 1</h1>
+			<h1>Piedra, papel o tijeras</h1>
 			<nav>
 				<ul>
 					<li><a href="index.html">Inicio</a></li>
@@ -23,9 +22,49 @@
 		</header>
 
 		<main>
-			<div>
-
-			</div>
+		 <div class="juego">
+				<div id="play">
+					<img src="img/logo-piedra-papel-tijera.png" alt="logo del juego">
+					<button type="button" id="btJugar">Jugar</button>
+				</div> 
+					
+				<div id="reglas">
+						<h2>Reglas</h2>	
+						<p><strong>🃏 Tus Cartas</strong></p>
+						<ul>	
+								<li>Al empezar, recibirás 3 cartas en la mano. Cada carta puede ser Piedra, Papel o Tijera</li>
+								<li>Piedra rompe Tijera 🪨 > ✂️</li>
+								<li>Tijera corta Papel ✂️ > 📄</li>
+								<li>Papel envuelve Piedra 📄 > 🪨</li>
+						</ul>
+						<p><strong>¿Cómo es el Turno?</strong></p>
+						<ul>
+							<li>El juego se juega en 5 rondas turno por turno:</li>
+							<li>Jugador A: Elige una carta de tu mano y haz clic en ella para jugarla en la mesa.</li>
+							<li>Jugador B: El oponente elegirá su carta.</li>
+							<li>Resultado: Se revelan las dos cartas jugadas.</li>
+						</ul>
+						<p><strong>🏆Puntos y Victoria</strong></p>
+						<ul>
+							<li><strong></strong></li>
+							<li>Si tu carta vence: Ganaste la ronda y sumas 1 punto.</li>
+							<li>Si tu carta pierde: Tu oponente gana la ronda y suma 1 punto.</li>
+							<li>Si hay empate: Nadie suma puntos en esa ronda.</li>
+						</ul>
+						<button type="button" id="btcSig">Siguiente</button>
+			    </div>
+				<div id="tablero">
+					
+					<p id="tiempo"></p>
+					<img src="img/maso.png" alt="imagen del maso del contricario">
+                    <div class="puntaje"><p id="puntajeA">0</p><p>vs</p><p id="puntajeB">0</p></div>  
+					<div id="cartas">
+					 <button type="button"><img src="img/piedra.png" alt="Carta-Piedra"></button>
+					 <button type="button"><img src="img/papel.png" alt="Carta-Papel"></button>
+					 <button type="button"><img src="img/tijera.png" alt="Carta-Tijera"></button>
+					</div>
+				</div>
+         </div>
 		</main>
 
 		<footer>
@@ -33,7 +72,7 @@
 		</footer>
 	</div>
 
-	<script src="js/juego-1.js"></script>
+	<script src="js/piedra-papel.js"></script>
 	
 </body>
 </html>

@@ -1,0 +1,105 @@
+/* estilos generales */
+* {box-sizing: border-box;}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#contenedor {
+  width: 100%;
+  max-width: 960px;
+
+  margin: 0 auto;
+}
+
+header, footer, main {
+  padding: 0.2rem;
+  text-align: center;
+}
+
+.headerFooter {background-color: rgba(0, 0, 0, 0.5); }
+
+nav ul {list-style: none;}
+
+ul li {
+  display: inline-block;
+
+  padding: 0.5rem;
+}
+
+a {text-decoration: none; background: rgba(250, 250, 250, 0.4); padding: 0.2rem}
+a:link {color: black;}
+a:visited {color: black;}
+a:hover {color: whitesmoke;}
+a:active {color: whitesmoke;}
+
+button {
+  margin: 0.5rem;
+  padding: 0.1rem 3rem;
+}
+
+/*/////////////////////////// Pantalla inicio //////////////////////////////// */
+
+#play {
+    height: 35rem;
+    background-color: rgb(255, 87, 87);
+    margin-left: 4rem;
+    margin-right: 4rem;
+    display: flex;
+    justify-content: center;
+align-items: center;
+flex-direction: column;
+
+}
+#play img {
+    width: 30%;
+    margin-bottom: 4rem;
+}
+
+/*/////////////////////////// Pantalla reglas //////////////////////////////// */
+
+#reglas{
+    background-color: rgb(255, 87, 87);
+    height: 35rem;
+    padding-top: 0.5rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/*/////////////////////////// Pantalla  //////////////////////////////// */
+
+#tablero{
+    background-color: aquamarine;
+     height: 35rem;
+    padding-top: 0.5rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+#tablero img {
+    width: 30%;
+}
+.puntaje{
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+}
+#cartas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 50%;
+    margin: 0 auto;
+}
+#tiempo {
+    margin-left: 63rem;
+}
+#cartas button img{
+    width: 100%;
+}
