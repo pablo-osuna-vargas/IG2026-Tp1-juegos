@@ -22,6 +22,7 @@ reglas.style.display = "none";
 tablero.style.display = "none";
 
 // puntaje
+const puntajeDos = document.querySelector("#puntajeDos");
 const puntaje = document.querySelector("#puntaje");
 const resultadoUno =document.querySelector("#orden");
 const resultadoDos =document.querySelector("#ordenDos");
@@ -62,27 +63,52 @@ function validador (jugador,carta) {
         resolverRonda(jugadorUno.length - 1);
     }
 }
-
-
-
+// Función que compara las dos cartas de esa ronda y muestra el resultado
+function resolverRonda(i) {
+	const cartaA = jugadorUno[i];
+	const cartaB = jugadorDos[i];
+	let resultado;
+ 
+	if (cartaA === cartaB) {
+		resultado = "Empate: los dos jugaron " + cartaA;
+	} else if (cartaA === "piedra" && cartaB === "tijera") {
+		ContadorJugadorUno++;
+		resultado = "Gano el Jugador Uno: piedra rompe tijera";
+	} else if (cartaA === "papel" && cartaB === "piedra") {
+		ContadorJugadorUno++;
+		resultado = "Gano el Jugador Uno: papel envuelve piedra";
+	} else if (cartaA === "tijera" && cartaB === "papel") {
+		ContadorJugadorUno++;
+		resultado = "Gano el Jugador Uno: tijera corta papel";
+	} else {
+		ContadorJugadorDos++;
+		resultado = "Gano el Jugador Dos: " + cartaB + " le gana a " + cartaA;
+	}
+ 
+	console.log(resultado);
+	resultadoUno.textContent = resultado;
+	resultadoDos.textContent = resultado;
+	puntaje.textContent = ContadorJugadorUno + " vs " + ContadorJugadorDos;
+    puntajeDos.textContent = ContadorJugadorUno + " vs " + ContadorJugadorDos;
+}
 // botones de cartas primer jugador 
 bntPapel.addEventListener("click",function(){
-    validador("Uno", "Papel")
+    validador("Uno", "papel")
 });
 bntRoca.addEventListener("click",function(){
-     validador("Uno", "Piedra")
+     validador("Uno", "piedra")
 });
 bntTijera.addEventListener("click",function(){
-    validador("Uno", "Tijera")
+    validador("Uno", "tijera")
 });
 
 // botones segundo jugador 
 bntPapelDos.addEventListener("click",function(){
-    validador("Dos", "Papel")
+    validador("Dos", "papel")
 });
 bntRocaDos.addEventListener("click",function(){
-     validador("Dos", "Piedra")
+     validador("Dos", "piedra")
 });
 bntTijeraDos.addEventListener("click",function(){
-    validador("Dos", "Tijera")
+    validador("Dos", "tijera")
 });
