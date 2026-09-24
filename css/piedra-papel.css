@@ -62,7 +62,8 @@ flex-direction: column;
 /*/////////////////////////// Pantalla reglas //////////////////////////////// */
 
 #reglas{
-    background-color: rgb(255, 87, 87);
+    color: white;
+    background-color: #018164;
     height: 35rem;
     padding-top: 0.5rem;
     margin-left: 4rem;
@@ -75,14 +76,26 @@ flex-direction: column;
 
 /*/////////////////////////// Pantalla  //////////////////////////////// */
 
-#tablero{
-    background-color: aquamarine;
+#tableroUno{
+    background-color: #018164;
      height: 35rem;
     padding-top: 0.5rem;
     margin-left: 4rem;
     margin-right: 4rem;
+    border: 0.3rem solid rgb(202, 18, 18);
 }
-#tablero img {
+#tableroUno img {
+    width: 30%;
+}
+#tableroDos{
+    background-color: #018164;
+     height: 35rem;
+    padding-top: 0.5rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+    border: 0.3rem solid rgb(233, 210, 6);
+}
+#tableroDos img {
     width: 30%;
 }
 .puntaje{

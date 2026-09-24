@@ -30,43 +30,51 @@
 					
 				<div id="reglas">
 						<h2>Reglas</h2>	
-						<p><strong>🃏 Tus Cartas</strong></p>
-						<ul>	
-								<li>Al empezar, recibirás 3 cartas en la mano. Cada carta puede ser Piedra, Papel o Tijera</li>
-								<li>Piedra rompe Tijera 🪨 > ✂️</li>
-								<li>Tijera corta Papel ✂️ > 📄</li>
-								<li>Papel envuelve Piedra 📄 > 🪨</li>
-						</ul>
+						<p><strong>🃏 Tus Cartas</strong></p>	
+								<p>Al empezar, recibirás 3 cartas en la mano. Cada carta puede ser Piedra, Papel o Tijera</p>
+								<ul>
+									<li>Piedra rompe Tijera 🪨 > ✂️</li>
+									<li>Tijera corta Papel ✂️ > 📄</li>
+									<li>Papel envuelve Piedra 📄 > 🪨</li>
+								</ul>
 						<p><strong>¿Cómo es el Turno?</strong></p>
-						<ul>
-							<li>El juego se juega en 5 rondas turno por turno:</li>
-							<li>Jugador A: Elige una carta de tu mano y haz clic en ella para jugarla en la mesa.</li>
-							<li>Jugador B: El oponente elegirá su carta.</li>
-							<li>Resultado: Se revelan las dos cartas jugadas.</li>
+							<p>El juego se juega en 5 rondas turno por turno:</p>
+						<ul>	
+							<li><strong>Jugador A:</strong> Elige una carta de tu mano y haz clic en ella para jugarla en la mesa.</li>
+							<li><strong>Jugador B:</strong> El oponente elegirá su carta.</li>
+							<li><strong>Resultado:</strong> Se revelan las dos cartas jugadas.</li>
 						</ul>
 						<p><strong>🏆Puntos y Victoria</strong></p>
-						<ul>
-							<li><strong></strong></li>
-							<li>Si tu carta vence: Ganaste la ronda y sumas 1 punto.</li>
-							<li>Si tu carta pierde: Tu oponente gana la ronda y suma 1 punto.</li>
-							<li>Si hay empate: Nadie suma puntos en esa ronda.</li>
-						</ul>
+							<p><strong>Si tu carta vence:</strong> Ganaste la ronda y sumas 1 punto.</p>
+							<p><strong>Si tu carta pierde:</strong> Tu oponente gana la ronda y suma 1 punto.</p>
+							<p><strong>Si hay empate:</strong> Nadie suma puntos en esa ronda.</p>
 						<button type="button" id="btcSig">Siguiente</button>
 			    </div>
-				<div id="tablero">
+				<div id="tableroUno">
 					
 					<p id="tiempo"></p>
 					<img src="img/maso.png" alt="imagen del maso del contricario">
-                    <div class="puntaje"><p id="puntajeA">0</p><p>vs</p><p id="puntajeB">0</p></div>  
+                    <p id="puntaje">vs</p> 
+					<p id="orden">te toca elejir</p>
 					<div id="cartas">
-					 <button type="button"><img src="img/piedra.png" alt="Carta-Piedra"></button>
-					 <button type="button"><img src="img/papel.png" alt="Carta-Papel"></button>
-					 <button type="button"><img src="img/tijera.png" alt="Carta-Tijera"></button>
+					 <button type="button" id="piedra"><img src="img/piedra.png" alt="Carta-Piedra"></button>
+					 <button type="button" id="papel"><img src="img/papel.png" alt="Carta-Papel"></button>
+					 <button type="button" id="tijera"><img src="img/tijera.png" alt="Carta-Tijera"></button>
 					</div>
+				</div>
+				<div id="tableroDos">
+					<p id="tiempo"></p>
+					<img src="img/maso-dos.png" alt="imagen del maso del contricario">
+                    <p id="puntaje">vs</p> 
+					<p id="ordenDos">te toca elejir</p>
+					<div id="cartas">
+					 <button type="button" id="piedraDos"><img src="img/piedra.png" alt="Carta-Piedra"></button>
+					 <button type="button" id="papelDos"><img src="img/papel.png" alt="Carta-Papel"></button>
+					 <button type="button" id="tijeraDos"><img src="img/tijera.png" alt="Carta-Tijera"></button>
+					</div>	
 				</div>
          </div>
 		</main>
-
 		<footer>
 				<p>Para contactarse escribir a <a href="mailto:nosotros@nosotros.com">nosotros@nosotros.com</a></p>
 		</footer>
