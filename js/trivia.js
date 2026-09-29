@@ -95,36 +95,58 @@ function procesarRespuesta(respuestaJugador, indice) {
   respuestaCorrecta ? mostrarPregunta() : cambiarTurno(); verificarDesventaja(); mostrarPregunta();
 }
 
-function procesarArriesgar(jugadorActual) {
-  let rival = (jugadorActual === 1) ? 2 : 1; // define QUIEN es el rival
 
+// Si el input está vacío no se puede arriesgar
+// Se verifica respuesta correcta
+// Si ambas condiciones se cumplen, se agregan los bloques faltantes para empatar
+// Si respuesta es incorrecta, se muestra mensaje y se cambia turno
+function procesarArriesgar(jugadorActual) {
+  let rival = (jugadorActual === 1) ? 2 : 1;
   let progActual = jugadores[jugadorActual -1].progreso;
   let progRival = jugadores[rival -1].progreso;
-  let diferencia = progRival - progActual; // cantidad de bloques que debe crear
+  let diferencia = progRival - progActual;
 
-  if(progActual < progRival) {
-    btnArriesgar.disabled = false; // si esta en desventaja habilita el botón Arriesgar
+  // Validar que respuesta no esta vacía
+  let respuestaJugador = inputRespuesta.value;
+  if (respuestaJugador === "") {
+    mensajeAlerta.innerText = `Jugador ${jugadorActual}, tu respuesta no puede estar vacía!`;
+    mensajeAlerta.classList.add("mensajeAlerta");
+    mensajeAlerta.style.display = "block";
+    return;
+  }
 
-    // para cada bloque agregado le pone el class correspondiente a su color segun progreso
-    for(let i = 0; i < diferencia; i++) {
+  // Validar respuesta correcta
+  let respuestaCorrecta = (respuestaJugador.toLowerCase() === trivia[indice].respuesta.toLowerCase());
+  if (!respuestaCorrecta) {
+    mensajeAlerta.innerText = `Jugador ${jugadorActual}, oh no! tu respuesta es incorrecta ❌`;
+    mensajeAlerta.classList.add("mensajeAlerta");
+    mensajeAlerta.style.display = "block";
+    cambiarTurno();
+    inputRespuesta.value = "";
+    return;
+  }
+
+  // Si está en desventaja y respuesta correcta empata
+  if (progActual < progRival) {
+    for (let i = 0; i < diferencia; i++) {
       let contenedorBloque = document.querySelector(`#bloques${jugadorActual}`);
       let bloque = document.createElement("div");
       bloque.classList.add("bloque", colores[progActual + i + 1]);
       contenedorBloque.prepend(bloque);
     }
 
-    jugadores[jugadorActual -1].progreso = progRival; // sigo dentro del if pero actulizo (empato) el progreso de jugador con el opoenente
-    mensajeAlerta.innerText = `Jugador${jugadorActual} Bien hecho! lograste empatar a tu rival!`;
+    jugadores[jugadorActual -1].progreso = progRival;
+    mensajeAlerta.innerText = `Jugador ${jugadorActual} Biennnn! lograste empatar✅`;
     mensajeAlerta.classList.add("mensajeGrande"); 
     mensajeAlerta.style.display = "block";
-  } else {
-    btnArriesgar.disabled = true; // si no esta en desventaja no habilita Arriesgar
   }
 
-  btnArriesgar.disabled = true; // una vez cliqueado se vuelve a deshabilitar Arriesgar
-  mostrarPregunta();
+  // Reset de estado
+  btnArriesgar.disabled = true;
   inputRespuesta.value = "";
+  mostrarPregunta();
 }
+
 
 // feedback visual, si respuestaCorrecta TRUE agrega un bloque, sino lo quita
 function moverBloque(jugadorActual, respuestaCorrecta){
@@ -186,7 +208,7 @@ function verificarDesventaja() {
     btnArriesgar.disabled = false; // habilito Arriesgar
     mensajeAlerta.style.display = "block";
     mensajeAlerta.classList.add("mensajeAlerta");
-    mensajeAlerta.innerText = `jugador${jugadorActual} estas en desventaja... Arriesga para empatar!`
+    mensajeAlerta.innerText = `jugador ${jugadorActual} estas en desventaja... Arriesga para empatar!`
   } else {
     btnArriesgar.disabled = true;  // deshabilito Arriesgar
   }
