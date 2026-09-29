@@ -131,5 +131,5 @@ Estoy trabajando en el código haciendo un mix de lo que vimos en las prácticas
 
 
 
-Por otro lado, empiezo a implementar local.storage() pidiendo por prompt nombre (alias) de cada jugador y eventualmente corregir y sintetizar el código de trivia para usar API. Se empezará a ver mas parecido a lo que vimos en clase
+local.storage() para Trivia pidiendo por prompt nombre (alias) de cada jugador generado y eventualmente corregir y sintetizar el código de trivia para usar API. Se empezará a ver mas parecido a lo que vimos en clase
 
