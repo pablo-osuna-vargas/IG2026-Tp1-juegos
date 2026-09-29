@@ -2,7 +2,7 @@
 
 Integrantes:
 Pablo Osuna Vargas
-Violeta González
+Ángel Cabral
 Joel Ledezma
 
 Sitio web de juegos interactivos (3)
@@ -122,4 +122,14 @@ Estoy trabajando en el código haciendo un mix de lo que vimos en las prácticas
 &#x09;-Turno y finalización: se alterna jugador solo si responde Incorrectamente, se limpian campos, y al cumplirse condición de fin se muestra mensaje Ganador/Perdedor
 
 &#x09;-Preguntas: falta desarrollar lógica para no repetir preguntas. Y para que no muestre preguntas nuevas al finalizar la partida
+
+
+
+29/9 corrección funciónArriesgar():
+
+&#x09;-cuando se clliqueaba sobre el botón arriesgar estando en desventaja automáticamente se empataban los bloques aun cuando la respuesta estaba vacía. Ahora se valida que no este vacía y que respuesta sea correcta antes de sumar bloques.
+
+
+
+Por otro lado, empiezo a implementar local.storage() pidiendo por prompt nombre (alias) de cada jugador y eventualmente corregir y sintetizar el código de trivia para usar API. Se empezará a ver mas parecido a lo que vimos en clase
 

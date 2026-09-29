@@ -1,3 +1,14 @@
+// Variables globales para alias
+let aliasJugador1 = prompt("Jugador 1 ingresa tu nombre o alias:");
+let aliasJugador2 = prompt("Jugador 2 ingresa tu nombre o alias:");
+
+// Puntajes de ronda
+let puntajeJugador1 = 0;
+let puntajeJugador2 = 0;
+
+let rankingPuntajes = JSON.parse(localStorage.getItem("rankingTrivia")) || []; // lee el localStorage antes de cada partida, si hay datos los "lee" sino lo incializa vacío
+
+
 // Arrays base
 const trivia = [
   {pregunta: "¿Capital de Argentina?", respuesta: "Buenos Aires"},
@@ -78,6 +89,12 @@ function mostrarPregunta() {
 
 function procesarRespuesta(respuestaJugador, indice) {
   let respuestaCorrecta = (respuestaJugador.toLowerCase() === trivia[indice].respuesta.toLowerCase()); // variable TRUE/FALSE para saber si suma o resta bloques. Compara en minusculas para evitar errores de escritura
+
+    if (respuestaCorrecta) {
+      (jugadorActual === 1) ? puntajeJugador1++ : puntajeJugador2++;
+    } else {
+      (jugadorActual === 1) ? puntajeJugador1-- : puntajeJugador2--;
+    }
 
   // op ternario: si respuestaCorrecta = true muestra mensaje CORRECTO, de lo contrario INCORRECTO
   mensajeAlerta.innerText = respuestaCorrecta ? `CORRECTO ✅` : `INCORRECTO ❌`;
@@ -183,6 +200,8 @@ function verificarObjetivo(jugadorActual, color){
   if(color === "blanco"){
     mensajeAlerta.innerText = `Jugador ${jugadorActual} ganó!`
     mensajeAlerta.classList.add("mensajeGrande", "mensajeGanador");
+    
+    guardarResultados();
     deshabilitarBotones();
     return;
   }
@@ -190,6 +209,12 @@ function verificarObjetivo(jugadorActual, color){
   if(color === "negro"){
     mensajeAlerta.innerText = `Jugador ${jugadorActual} perdió!`
     mensajeAlerta.classList.add("mensajeGrande", "mensajePerdedor");
+
+    // Guardar objeto con las keys nombre, puntaje y su valor en el array rankingPuntajes
+    rankingPuntajes.push({ alias: aliasJugador1, puntaje: puntajeJugador1 });
+    rankingPuntajes.push({ alias: aliasJugador2, puntaje: puntajeJugador2 });
+
+    guardarResultados();
     deshabilitarBotones();    
     return;
   } 
@@ -226,4 +251,39 @@ function crearBloque(jugadorActual){
   let color = colores[jugadores[jugadorActual -1].progreso];
   bloque.classList.add("bloque", color);
   return bloque; // devuelve bloque para usar en otras funciones
+}
+
+function guardarResultados() {
+  // Jugador 1
+  let existe1 = false; // variable bandera para saber si el jugador ya jugó previamente y así sumar todos sus puntos
+  for (let i = 0; i < rankingPuntajes.length; i++) {
+    if (rankingPuntajes[i].alias === aliasJugador1) {
+      rankingPuntajes[i].puntaje += puntajeJugador1; // acumula
+      existe1 = true;
+      break;
+    }
+  }
+  if (!existe1) {
+    rankingPuntajes.push({ alias: aliasJugador1, puntaje: puntajeJugador1 });
+  }
+
+  // Jugador 2
+  let existe2 = false;
+  for (let i = 0; i < rankingPuntajes.length; i++) {
+    if (rankingPuntajes[i].alias === aliasJugador2) {
+      rankingPuntajes[i].puntaje += puntajeJugador2; // acumula
+      existe2 = true;
+      break;
+    }
+  }
+  if (!existe2) {
+    rankingPuntajes.push({ alias: aliasJugador2, puntaje: puntajeJugador2 });
+  }
+
+  // Guardar en localStorage
+  localStorage.setItem("rankingTrivia", JSON.stringify(rankingPuntajes));
+
+  // Reset puntajes de ronda
+  puntajeJugador1 = 0;
+  puntajeJugador2 = 0;
 }
