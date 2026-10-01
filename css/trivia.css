@@ -1,4 +1,3 @@
-/* estilos trivia */
 main {
   display: flex;
   flex-direction: row;
@@ -13,7 +12,8 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin: 0.3rem;}
+  margin: 0.3rem;
+}
 
 .columnas {
   display: flex;
@@ -25,30 +25,39 @@ main {
   display: none;
   position: fixed;
   background-color: rgba(250, 220, 0, 0.9);
-
   border: solid 1px black;
 }
 
-#instrucciones ul {list-style: none; padding: 0}
-#instrucciones ul li {display: list-item;}
+.jugador-actual {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #d32f2f; /* rojo intenso */
+  text-transform: uppercase;
+}
+}
 
 #pregunta, #mensajes {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0.5rem;
-
+  margin: 0.5rem;
   border: solid 1px black;
 }
 
-form {display: none;}
+#opciones {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0.5rem;
+}
+
 
 .jugador {
   width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   border: solid 1px rgba(0, 0, 0, 0.1);
 }
 
@@ -56,24 +65,11 @@ form {display: none;}
   height: 25rem;
 }
 
-.bloque {
-  width: 100%;
-  height: 5rem;
-}
-
-.azul { background-color: rgba(0, 0, 255, 0.7); height: 18%}
-.rojo { background-color: rgba(255, 0, 0, 0.7);}
-.verde { background-color: rgba(0, 255, 55, 0.7);}
-.amarillo { background-color: rgba(255, 255, 0, 0.7);}
-.blanco { background-color: rgba(255, 255, 255, 0.8);}
-.negro { background-color: rgba(0, 0, 0, 0.9); height: 100%}
-
 .mensajeAlerta {
   display: none;
   font-size: 2rem;
   font-weight: bold;
   position: fixed;
   background-color: rgba(250, 220, 0, 0.9);
-
   border: solid 1px black;
 }
