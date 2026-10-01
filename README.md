@@ -133,3 +133,7 @@ Estoy trabajando en el código haciendo un mix de lo que vimos en las prácticas
 
 local.storage() para Trivia pidiendo por prompt nombre (alias) de cada jugador generado y eventualmente corregir y sintetizar el código de trivia para usar API. Se empezará a ver mas parecido a lo que vimos en clase
 
+
+
+1/10 implementación de API openTrivia para verdadero y falso. Tuve que quitar la lógica de bloques de color para poder comprender la lógica de API, luego la volveré a añadir para tener feedback visual de victoria/derrota y para definir también un límite de preguntas y respuestas
+
