@@ -45,7 +45,7 @@ button {
 
 #play {
     height: 35rem;
-    background-color: rgb(255, 87, 87);
+    background-color: #018164;
     margin-left: 4rem;
     margin-right: 4rem;
     display: flex;
@@ -74,45 +74,67 @@ flex-direction: column;
     flex-direction: column;
 }
 
-/*/////////////////////////// Pantalla  //////////////////////////////// */
+/*/////////////////////////// Pantalla tableros //////////////////////////////// */
 
 #tableroUno{
+    color: white;
     background-color: #018164;
      height: 35rem;
     padding-top: 0.5rem;
     margin-left: 4rem;
     margin-right: 4rem;
-    border: 0.3rem solid rgb(202, 18, 18);
+    border: 0.3rem solid #ff4d4d;
 }
 #tableroUno img {
     width: 30%;
 }
-#tableroDos{
+#tablero-dos{
+    color: white;
     background-color: #018164;
      height: 35rem;
     padding-top: 0.5rem;
     margin-left: 4rem;
     margin-right: 4rem;
-    border: 0.3rem solid rgb(233, 210, 6);
+    border: 0.3rem solid #ffd44d;
 }
-#tableroDos img {
+#tablero-dos img {
     width: 30%;
 }
 .puntaje{
     margin-top: 2rem;
     margin-bottom: 0.5rem;
 }
-#cartas{
+#cartas ,#cartas-dos{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
-    width: 50%;
+    width: 40rem;
     margin: 0 auto;
 }
+
 #tiempo {
     margin-left: 63rem;
 }
 #cartas button img{
     width: 100%;
+    
+}
+#cartas-dos button img{
+    width: 100%;
+}
+/*/////////////////////////// Pantalla de ganste //////////////////////////////// */
+#ganaste{
+    background-color: #018164;
+    color: white;
+     height: 35rem;
+    padding-top: 0.5rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+#ganaste img {
+    width: 45%;
+    margin-top: 2rem;
+}
+#inicio {
+    margin-left: 1rem;
 }

@@ -20,7 +20,6 @@
 				</ul>
 			</nav>
 		</header>
-
 		<main>
 		 <div class="juego">
 				<div id="play">
@@ -31,46 +30,48 @@
 				<div id="reglas">
 						<h2>Reglas</h2>	
 						<p><strong>🃏 Tus Cartas</strong></p>	
-								<p>Al empezar, recibirás 3 cartas en la mano. Cada carta puede ser Piedra, Papel o Tijera</p>
-								<ul>
-									<li>Piedra rompe Tijera 🪨 > ✂️</li>
-									<li>Tijera corta Papel ✂️ > 📄</li>
-									<li>Papel envuelve Piedra 📄 > 🪨</li>
-								</ul>
+							<p>Al comenzar, cada jugador recibe 3 cartas: Piedra, Papel o Tijera.</p>
+									<p><strong>Piedra rompe Tijera</strong> 🪨 > ✂️ <strong> Tijera corta Papel </strong>✂️ > 📄 <strong>Papel envuelve Piedra </strong>📄 > 🪨</p>
 						<p><strong>¿Cómo es el Turno?</strong></p>
-							<p>El juego se juega en 5 rondas turno por turno:</p>
+							<p>La partida es de 2 jugadores y consta de 3 rondas.</p>
 						<ul>	
-							<li><strong>Jugador A:</strong> Elige una carta de tu mano y haz clic en ella para jugarla en la mesa.</li>
-							<li><strong>Jugador B:</strong> El oponente elegirá su carta.</li>
+							<li><strong>Jugador A:</strong> Elige una carta de tu mano y haz clic en ella para jugarla</li>
+							<li><strong>Jugador B:</strong> Elige una carta y juega la suya.</li>
 							<li><strong>Resultado:</strong> Se revelan las dos cartas jugadas.</li>
 						</ul>
 						<p><strong>🏆Puntos y Victoria</strong></p>
-							<p><strong>Si tu carta vence:</strong> Ganaste la ronda y sumas 1 punto.</p>
-							<p><strong>Si tu carta pierde:</strong> Tu oponente gana la ronda y suma 1 punto.</p>
-							<p><strong>Si hay empate:</strong> Nadie suma puntos en esa ronda.</p>
+							<p>El jugador que gana una ronda suma 1 victoria.</p>
+							<p>Si las cartas son iguales, ninguno suma punto.</p>
+							<p>Al finalizar las 3 rondas, el jugador que haya ganado las 3 rondas obtiene <strong>10 puntos</strong>.</p>
 						<button type="button" id="btcSig">Siguiente</button>
 			    </div>
 				<div id="tableroUno">
-					<p id="tiempo"></p>
+					<p id="turno"></p>
 					<img src="img/maso.png" alt="imagen del maso del contricario">
                     <p id="puntaje">0 vs 0</p> 
-					<p id="orden">te toca elejir</p>
+					<p id="orden"></p>
 					<div id="cartas">
 					 <button type="button" id="piedra"><img src="img/piedra.png" alt="Carta-Piedra"></button>
 					 <button type="button" id="papel"><img src="img/papel.png" alt="Carta-Papel"></button>
 					 <button type="button" id="tijera"><img src="img/tijera.png" alt="Carta-Tijera"></button>
 					</div>
 				</div>
-				<div id="tableroDos">
-					<p id="tiempo"></p>
+				<div id="tablero-dos">
+					<p id="turno-dos"></p>
 					<img src="img/maso-dos.png" alt="imagen del maso del contricario">
-                    <p id="puntajeDos">0 vs 0</p> 
-					<p id="ordenDos">te toca elejir</p>
-					<div id="cartas">
+                    <p id="puntaje-dos">0 vs 0</p> 
+					<p id="orden-dos"></p>
+					<div id="cartas-dos">
 					 <button type="button" id="piedraDos"><img src="img/piedra.png" alt="Carta-Piedra"></button>
 					 <button type="button" id="papelDos"><img src="img/papel.png" alt="Carta-Papel"></button>
 					 <button type="button" id="tijeraDos"><img src="img/tijera.png" alt="Carta-Tijera"></button>
 					</div>	
+				</div>
+				<div id="ganaste">
+					<img src="img/ganaste.png" alt="cartel de ganaste">
+					<H2 id="ganador"></H2>
+					<p>Obtuviste 10 puntos para el podium</p>
+					<button type="button" id="inicio" >Inicio</button>
 				</div>
          </div>
 		</main>
