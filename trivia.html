@@ -24,42 +24,71 @@
     </header>
 
     <main>
-      <div id="instrucciones">
-        <h2>Reglas</h2>
-        <ul>
-          <li><strong>Objetivo</strong></li>
-          <li>Responde Verdadero/Falso</li>
-          <li>Acumula respuestas correctas</li>
-        </ul>
-        <button type="button" id="cerrarInstrucciones">Cerrar</button>
-      </div>
+      <div class="contenedorTrivia">
+        <div id="portada">
+          <img src="img/trivia-portada.jpg" alt="portada-trivia" width="80%">
+          <button type="button" id="btnInstrucciones1">Instrucciones</button>
+        </div>
 
-      <div class="juego">
-        <button type="button" id="btnIniciar">Iniciar trivia</button>
+        <div id="instrucciones1">
+          <h2>Reglas</h2>
+            <ul>
+              <li><strong>Objetivo</strong></li>
+              <li>Responde Verdadero/Falso</li>
+              <li>Acumula respuestas correctas para sumar colores</li>
+              <li>si llegas a Blanco ganas</li>
+              <li>si caes al Negro pierdes</li>
+              <li>+1 punto x respuesta correcta</li>
+              <li>-1 punto x respuesta incorrecta</li>
+            </ul>
+            <button type="button" id="btnJugar">Jugar</button>
+        </div>
 
-        <section class="centrado">
-          <button type="button" id="btnInstrucciones">Instrucciones</button>
-          <button id="btnReiniciar">Reiniciar</button>
-        </section>
-
-        <section>
-          <div id="pregunta" class="centrado"></div>
-          <div id="opciones"></div>
-          <div id="mensajes"></div>
-        </section>
-      </div>
-
-      <div class="tablero">
-        <section class="columnas">
-          <div class="jugador">
-            <h2>Jugador 1</h2>
-            <div id="bloques1"></div>
+        <div id="tableroGeneral">
+          <div id="instrucciones2">
+            <h2>Reglas</h2>
+            <ul>
+              <li><strong>Objetivo</strong></li>
+              <li>Responde Verdadero/Falso</li>
+              <li>Acumula respuestas correctas para sumar colores</li>
+              <li>si llegas a Blanco ganas</li>
+              <li>si caes al Negro pierdes</li>
+              <li>+1 punto x respuesta correcta</li>
+              <li>-1 punto x respuesta incorrecta</li>
+            </ul>
+            <button type="button" id="cerrarInstrucciones">Cerrar</button>
           </div>
-          <div class="jugador">
-            <h2>Jugador 2</h2>
-            <div id="bloques2"></div>
+
+          <div class="tablero1">
+            <div class="juego">
+              <button type="button" id="btnIniciarTrivia">Iniciar Trivia</button>
+
+              <section>
+                <button type="button" id="btnInstrucciones2">Instrucciones</button>
+                <button id="btnReiniciar">Reiniciar</button>
+              </section>
+
+              <section>
+                <div id="pregunta" class="centrado"></div>
+                <div id="opciones"></div>
+                <div id="mensajes"></div>
+              </section>
+            </div>
+
+            <div class="tablero2">
+              <section class="columnas">
+                <div class="jugador">
+                  <h2>Jugador 1</h2>
+                  <div id="bloques1"></div>
+                </div>
+                <div class="jugador">
+                  <h2>Jugador 2</h2>
+                  <div id="bloques2"></div>
+                </div>
+              </section>
+            </div>
           </div>
-        </section>
+        </div>  
       </div>
     </main>
 
@@ -67,7 +96,7 @@
       <p>Para contactarse escribir a <a href="mailto:nosotros@nosotros.com">nosotros@nosotros.com</a></p>
     </footer>
 
-    <script src="js/trivia-API.js"></script>
+    <script src="js/trivia.js"></script>
   </div>
 </body>
 </html>

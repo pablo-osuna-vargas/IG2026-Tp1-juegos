@@ -4,7 +4,20 @@ main {
   justify-content: center;
 }
 
-.juego, .tablero {
+#portada {
+  background-color: #018164;
+  display: flex;
+  flex-direction: column;
+}
+
+#portada img { padding:1rem }
+
+.tablero1 {
+  display: flex;
+  flex-direction: row;
+}
+
+.juego, .tablero2 {
   width: 50%;
 }
 
@@ -21,12 +34,16 @@ main {
   justify-content: space-between;
 }
 
-#instrucciones {
+#instrucciones1 { background-color: #018164}
+#instrucciones2 {
   display: none;
   position: fixed;
   background-color: rgba(250, 220, 0, 0.9);
   border: solid 1px black;
 }
+
+#instrucciones1 ul, #instrucciones2 ul {  margin: 0;  padding: 1rem;}
+#instrucciones1 ul li, #instrucciones2 ul li{  display: block;}
 
 .jugador-actual {
   font-weight: bold;
@@ -73,3 +90,17 @@ main {
   background-color: rgba(250, 220, 0, 0.9);
   border: solid 1px black;
 }
+
+.bloque {
+  width: 100%;
+  height: 4rem;
+  margin: 0;
+}
+
+.negro { background-color: black; }
+.azul { background-color: blue; }
+.rojo { background-color: red; }
+.verde { background-color: green; }
+.amarillo { background-color: yellow; }
+.blanco { background-color: white; border: 1px solid #000; }
+
