@@ -5,14 +5,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-
   background-color: rgba(0, 0, 0, 0.3);
 }
 
 #contenedor {
   width: 100%;
   max-width: 960px;
-
   margin: 0 auto;
 }
 
@@ -20,8 +18,6 @@ header, footer, main {
   padding: 0.2rem;
   text-align: center;
 }
-
-.headerFooter {background-color: rgba(0, 0, 0, 0.5); }
 
 nav ul {list-style: none;}
 
@@ -41,3 +37,89 @@ button {
   margin: 0.5rem;
   padding: 0.1rem 3rem;
 }
+
+
+
+/* ============== */
+/* ESTILOS TRIVIA */
+/* ============== */
+
+.trivia, .portada, .instrucciones, .juego, .interfaz, .tablero2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trivia, .portada, .instrucciones, .juego {
+  flex-direction: column;
+}
+
+.interfaz, .tablero2 {
+  flex-direction: row;
+}
+
+.tablero1 {display: block;}
+.tablero1, .tablero2 {  width:50%; }
+.tablero1 div { margin:1rem;  padding:1rem; }
+
+.pregunta, .mensaje {  width:100%;  height:3rem; }
+
+/* estilo para el span de pregunta */
+.jugadorActual {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: rgba(250, 0, 70, 1);
+  text-transform: uppercase;
+}
+
+.instrucciones ul { margin:0; padding: 0; }
+.ayuda {  position: absolute;  background-color: rgba(250, 220, 0, 0.9);}
+.ayuda ul {  margin:0;  padding:0 }
+.instrucciones ul li, .ayuda ul li {  display:block;}
+
+img {  margin:0;  padding:1rem; }
+
+#bloques1, #bloques2 {
+  width: 8rem;
+  height: 25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.bloque {
+  width: 90%;
+  height: 4rem;
+  margin: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.negro { background-color: black; }
+.azul { background-color: blue; }
+.rojo { background-color: red; }
+.verde { background-color: green; }
+.amarillo { background-color: yellow; }
+.blanco { background-color: white; }
+
+
+
+/* ======================= */
+/* ESTILOS PUNTAJES TRIVIA */
+/* ======================= */
+#rankingTrivia {
+  display: flex;    
+  justify-content: center;
+  align-items: center;
+}
+
+#rankingTrivia ol {
+  margin: 0;
+  padding: 0;
+}
+
+/* ================== */
+/* FIN ESTILOS TRIVIA */
+/* ================== */
