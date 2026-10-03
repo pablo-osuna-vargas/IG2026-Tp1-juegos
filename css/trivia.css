@@ -1,100 +1,58 @@
-main {
+/* ============== */
+/* ESTILOS TRIVIA */
+/* ============== */
+
+.trivia, .portada, .instrucciones, .juego, .interfaz, .tablero2 {
   display: flex;
-  flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
 
-#portada {
-  background-color: #018164;
-  display: flex;
+.trivia, .portada, .instrucciones, .juego {
   flex-direction: column;
 }
 
-#portada img { padding:1rem }
-
-.tablero1 {
-  display: flex;
+.interfaz, .tablero2 {
   flex-direction: row;
 }
 
-.juego, .tablero2 {
-  width: 50%;
-}
+.tablero1 {display: block;}
+.tablero1, .tablero2 {  width:50%; }
+.tablero1 div { margin:1rem;  padding:1rem; }
 
-.centrado {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 0.3rem;
-}
+.pregunta, .mensaje {  width:100%;  height:3rem; }
 
-.columnas {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-#instrucciones1 { background-color: #018164}
-#instrucciones2 {
-  display: none;
-  position: fixed;
-  background-color: rgba(250, 220, 0, 0.9);
-  border: solid 1px black;
-}
-
-#instrucciones1 ul, #instrucciones2 ul {  margin: 0;  padding: 1rem;}
-#instrucciones1 ul li, #instrucciones2 ul li{  display: block;}
-
-.jugador-actual {
+/* estilo para el span de pregunta */
+.jugadorActual {
   font-weight: bold;
   font-size: 1.4rem;
-  color: #d32f2f; /* rojo intenso */
+  color: rgba(250, 0, 70, 1);
   text-transform: uppercase;
 }
-}
 
-#pregunta, #mensajes {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0.5rem;
-  margin: 0.5rem;
-  border: solid 1px black;
-}
+.instrucciones ul { margin:0; padding: 0; }
+.ayuda {  position: absolute;  background-color: rgba(250, 220, 0, 0.9);}
+.ayuda ul {  margin:0;  padding:0 }
+.instrucciones ul li, .ayuda ul li {  display:block;}
 
-#opciones {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin: 0.5rem;
-}
-
-
-.jugador {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: solid 1px rgba(0, 0, 0, 0.1);
-}
+img {  margin:0;  padding:1rem; }
 
 #bloques1, #bloques2 {
+  width: 8rem;
   height: 25rem;
-}
-
-.mensajeAlerta {
-  display: none;
-  font-size: 2rem;
-  font-weight: bold;
-  position: fixed;
-  background-color: rgba(250, 220, 0, 0.9);
-  border: solid 1px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .bloque {
   width: 100%;
   height: 4rem;
   margin: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .negro { background-color: black; }
@@ -102,5 +60,8 @@ main {
 .rojo { background-color: red; }
 .verde { background-color: green; }
 .amarillo { background-color: yellow; }
-.blanco { background-color: white; border: 1px solid #000; }
+.blanco { background-color: white; }
 
+/* ============== */
+/* ESTILOS TRIVIA */
+/* ============== */
