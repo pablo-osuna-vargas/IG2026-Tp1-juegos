@@ -24,8 +24,9 @@ let resultadoFinal;
 
 let numeroProhibido;
 
-let tiempo = 90;
+let tiempo = 60;
 let intervaloTiempo;
+let esperaPC;
 
 let turno = "jugador";
 
@@ -77,10 +78,11 @@ function iniciarJuego() {
   elementoVidaPC.textContent = vidaPC;
   elementoPuntosPC.textContent = puntosPC;
 
-  tiempo = 90;
+  tiempo = 60;
   elementoTiempo.textContent = tiempo;
   clearInterval(intervaloTiempo);
   intervaloTiempo = setInterval(actualizarTiempo, 1000);
+  clearTimeout(esperaPC);
 
   numeroProhibido = Math.floor(Math.random() * 11) + 2;
   elementoNumeroProhibido.textContent = numeroProhibido;
@@ -94,6 +96,8 @@ function iniciarJuego() {
   dado2 = 0;
   sumaDados = 0;
   resultadoFinal = 0;
+  elementoImagenDado1.src = "img/dado1.png";
+  elementoImagenDado2.src = "img/dado1.png";
 
   juegoActivo = true;
   jugadorPlantado = false;
@@ -195,7 +199,7 @@ function sumarPuntos() {
       elementoMensajeDados.textContent =
         "No puedes superar los 30 puntos. Pierdes el turno.";
       cambiarTurno();
-      setTimeout(procesarTurno, 2000);
+      esperaPC = setTimeout(procesarTurno, 2000);
     }
   } else {
     if (pcPlantada == true) {
@@ -234,9 +238,10 @@ function comprobarVictoria() {
   }
 
   if (puntosPC == 30) {
-    finalizarJuego("Ganaste!");
+    finalizarJuego("La PC gano.");
     return true;
   }
+
   return false;
 }
 
@@ -248,7 +253,7 @@ function procesarTurno() {
 
   if (resolverNumeroProhibido()) {
     if (turno == "pc") {
-      setTimeout(procesarTurno, 2000);
+      esperaPC = setTimeout(procesarTurno, 2000);
     }
     return;
   }
@@ -258,7 +263,7 @@ function procesarTurno() {
   elementoResultadoFinal.textContent = resultadoFinal;
 
   if (turno == "pc") {
-    setTimeout(decidirAccionPC, 1000);
+    esperaPC = setTimeout(decidirAccionPC, 1000);
   }
 }
 
@@ -312,7 +317,7 @@ function finalizarTurno() {
   }
 
   if (turno == "pc") {
-    setTimeout(procesarTurno, 2000);
+    esperaPC = setTimeout(procesarTurno, 2000);
   }
 }
 
@@ -349,11 +354,7 @@ function actualizarTiempo() {
     elementoTiempo.textContent = tiempo;
 
     if (tiempo == 0) {
-      juegoActivo = false;
-      deshabilitarBotones();
-      clearInterval(intervaloTiempo);
-      elementoBotonIniciar.disabled = false;
-      alert("Se acabó el tiempo. Ambos jugadores pierden.");
+      finalizarJuego("Se acabó el tiempo. Ambos jugadores pierden.");
     }
   }
 }
@@ -364,6 +365,7 @@ function tirarDadosJugador() {
     juegoActivo == true &&
     dadosJugadorTirados == false
   ) {
+    dadosJugadorTirados = true;
     procesarTurno();
 
     if (turno == "jugador") {
@@ -421,9 +423,6 @@ function deshabilitarBotones() {
   elementoBotonPlantarse.disabled = true;
 }
 
-elementoBotonIniciar.disabled = false;
-deshabilitarBotones();
-
 function finalizarJuego(mensaje) {
   juegoActivo = false;
   deshabilitarBotones();
@@ -432,3 +431,6 @@ function finalizarJuego(mensaje) {
   elementoBotonIniciar.disabled = false;
   alert(mensaje);
 }
+
+elementoBotonIniciar.disabled = false;
+deshabilitarBotones();
