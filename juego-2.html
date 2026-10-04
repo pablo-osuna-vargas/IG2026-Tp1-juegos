@@ -1,39 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-	<meta charset="utf-8">
-	<link href="css/estilos.css" rel="stylesheet">
-	<title>TP1 - juego 2</title>
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <link href="css/estilos.css" rel="stylesheet" />
+    <title>TP1 - juego 2</title>
+  </head>
 
-<body>
-	<div class="contenedor">
-		<header>
-			<h1>juego 2</h1>
-			<nav>
-				<ul>
-					<li><a href="index.html">Inicio</a></li>
-					<li><a href="juego-1.html">Juego 1</a></li>
-					<li><a href="juego-2.html">Juego 2</a></li>
-					<li><a href="trivia.html">Trivia</a></li>
-					<li><a href="puntajes.html">Puntajes</a></li>
-					<li><a href="info.html">Info general</a></li>
-				</ul>
-			</nav>
-		</header>
+  <body>
+    <div class="contenedor">
+      <header>
+        <h1>juego 2</h1>
+        <nav>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="juego-1.html">Juego 1</a></li>
+            <li><a href="juego-2.html">Juego 2</a></li>
+            <li><a href="trivia.html">Trivia</a></li>
+            <li><a href="puntajes.html">Puntajes</a></li>
+            <li><a href="info.html">Info general</a></li>
+          </ul>
+        </nav>
+      </header>
 
-		<main>
-			<div>
+      <main>
+        <div id="tablero-dados">
+          <div id="barra-superior">
+            <div id="info-partida">
+              <p id="timer-dados">Tiempo <span id="tiempo">90</span></p>
+              <p id="prohibido-dados">
+                N° Prohibido <span id="numero-prohibido"></span>
+              </p>
+            </div>
 
-			</div>
-		</main>
+            <div id="info-jugador">
+              <h2>Jugador</h2>
+              <p>Vida <span id="vida-jugador">20</span></p>
+              <p>Puntos <span id="puntos-jugador">0</span></p>
+            </div>
 
-		<footer>
-				<p>Para contactarse escribir a <a href="mailto:nosotros@nosotros.com">nosotros@nosotros.com</a></p>
-		</footer>
-	</div>
+            <div id="info-pc">
+              <h2>PC</h2>
+              <p>Vida <span id="vida-pc">20</span></p>
+              <p>Puntos <span id="puntos-pc">0</span></p>
+            </div>
+          </div>
+          <button type="button" id="iniciar-partida">Iniciar Partida</button>
+          <div id="dados">
+            <div id="dado1">
+              <img id="img-dado1" src="img/dado1.png" alt="Dado 1" />
+            </div>
+            <div id="dado2">
+              <img id="img-dado2" src="img/dado1.png" alt="Dado 2" />
+            </div>
+            <button type="button" id="tirar-dados">Tirar dados</button>
+            <p>Suma: <span id="resultado-final"></span></p>
+          </div>
+          <p id="mensaje-dados"></p>
+          <div id="acciones-jugador">
+            <button type="button" id="sumar">Sumar</button>
+            <button type="button" id="atacar">Atacar</button>
+            <button type="button" id="plantarse">Plantarse</button>
+          </div>
+        </div>
+      </main>
 
-	<script src="js/juego-2.js"></script>
+      <footer>
+        <p>
+          Para contactarse escribir a
+          <a href="mailto:nosotros@nosotros.com">nosotros@nosotros.com</a>
+        </p>
+      </footer>
+    </div>
 
-</body>
+    <script src="js/dados.js"></script>
+  </body>
 </html>

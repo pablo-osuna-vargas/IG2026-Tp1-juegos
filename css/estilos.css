@@ -1,5 +1,7 @@
 /* estilos generales */
-* {box-sizing: border-box;}
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -14,55 +16,93 @@ body {
   margin: 0 auto;
 }
 
-header, footer, main {
+header,
+footer,
+main {
   padding: 0.2rem;
   text-align: center;
 }
 
-nav ul {list-style: none;}
+nav ul {
+  list-style: none;
+}
 
+img {
+  width: 5%;
+}
 ul li {
   display: inline-block;
 
   padding: 0.5rem;
 }
 
-a {text-decoration: none; background: rgba(250, 250, 250, 0.4); padding: 0.2rem}
-a:link {color: black;}
-a:visited {color: black;}
-a:hover {color: whitesmoke;}
-a:active {color: whitesmoke;}
+a {
+  text-decoration: none;
+  background: rgba(250, 250, 250, 0.4);
+  padding: 0.2rem;
+}
+a:link {
+  color: black;
+}
+a:visited {
+  color: black;
+}
+a:hover {
+  color: whitesmoke;
+}
+a:active {
+  color: whitesmoke;
+}
 
 button {
   margin: 0.5rem;
   padding: 0.1rem 3rem;
 }
 
-
-
 /* ============== */
 /* ESTILOS TRIVIA */
 /* ============== */
 
-.trivia, .portada, .instrucciones, .juego, .interfaz, .tablero2 {
+.trivia,
+.portada,
+.instrucciones,
+.juego,
+.interfaz,
+.tablero2 {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.trivia, .portada, .instrucciones, .juego {
+.trivia,
+.portada,
+.instrucciones,
+.juego {
   flex-direction: column;
 }
 
-.interfaz, .tablero2 {
+.interfaz,
+.tablero2 {
   flex-direction: row;
 }
 
-.tablero1 {display: block;}
-.tablero1, .tablero2 {  width:50%; }
-.tablero1 div { margin:1rem;  padding:1rem; }
+.tablero1 {
+  display: block;
+}
+.tablero1,
+.tablero2 {
+  width: 50%;
+}
+.tablero1 div {
+  margin: 1rem;
+  padding: 1rem;
+}
 
-.pregunta, .mensaje {  width:100%;  height:3rem; }
+.pregunta,
+.mensaje {
+  width: 100%;
+  height: 3rem;
+}
 
 /* estilo para el span de pregunta */
 .jugadorActual {
@@ -72,14 +112,30 @@ button {
   text-transform: uppercase;
 }
 
-.instrucciones ul { margin:0; padding: 0; }
-.ayuda {  position: absolute;  background-color: rgba(250, 220, 0, 0.9);}
-.ayuda ul {  margin:0;  padding:0 }
-.instrucciones ul li, .ayuda ul li {  display:block;}
+.instrucciones ul {
+  margin: 0;
+  padding: 0;
+}
+.ayuda {
+  position: absolute;
+  background-color: rgba(250, 220, 0, 0.9);
+}
+.ayuda ul {
+  margin: 0;
+  padding: 0;
+}
+.instrucciones ul li,
+.ayuda ul li {
+  display: block;
+}
 
-img {  margin:0;  padding:1rem; }
+img {
+  margin: 0;
+  padding: 1rem;
+}
 
-#bloques1, #bloques2 {
+#bloques1,
+#bloques2 {
   width: 8rem;
   height: 25rem;
   display: flex;
@@ -97,20 +153,30 @@ img {  margin:0;  padding:1rem; }
   justify-content: center;
 }
 
-.negro { background-color: black; }
-.azul { background-color: blue; }
-.rojo { background-color: red; }
-.verde { background-color: green; }
-.amarillo { background-color: yellow; }
-.blanco { background-color: white; }
-
-
+.negro {
+  background-color: black;
+}
+.azul {
+  background-color: blue;
+}
+.rojo {
+  background-color: red;
+}
+.verde {
+  background-color: green;
+}
+.amarillo {
+  background-color: yellow;
+}
+.blanco {
+  background-color: white;
+}
 
 /* ======================= */
 /* ESTILOS PUNTAJES TRIVIA */
 /* ======================= */
 #rankingTrivia {
-  display: flex;    
+  display: flex;
   justify-content: center;
   align-items: center;
 }
