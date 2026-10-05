@@ -52,14 +52,18 @@
               <p>Puntos <span id="puntos-pc">0</span></p>
             </div>
           </div>
-          <button type="button" id="iniciar-partida">Iniciar Partida</button>
-          <div id="dados">
-            <div id="dado1">
-              <img id="img-dado1" src="img/dado1.png" alt="Dado 1" />
-            </div>
-            <div id="dado2">
-              <img id="img-dado2" src="img/dado1.png" alt="Dado 2" />
-            </div>
+          <button type="button" id="iniciar-partida">Iniciar Partida</button> 
+          <button type="button" id="btn-reglas">Reglas</button>
+          
+              <div id="dados">
+                  <div id="dado1">
+                    <img id="img-dado1" src="img/dado1.png" alt="Dado 1" />
+                  </div>
+                  <div id="dado2">
+                    <img id="img-dado2" src="img/dado1.png" alt="Dado 2" />
+                  </div>   
+              </div>
+            <div>
             <button type="button" id="tirar-dados">Tirar dados</button>
             <p>Suma: <span id="resultado-final"></span></p>
           </div>
@@ -69,6 +73,45 @@
             <button type="button" id="atacar">Atacar</button>
             <button type="button" id="plantarse">Plantarse</button>
           </div>
+        </div>
+        <div id="relgas-dado">
+          <h2>🎲 REGLAS DEL JUEGO</h2>
+          <ul>
+            <li>
+              <p>Jugás contra la PC en una partida de <strong>60 segundos.</strong></p>
+            </li>
+            <li>
+              <p>Ambos comienzan con <strong>30 de vida y 0 puntos</strong>.</p>
+            </li>
+            <li>
+              <p>En cada turno se tiran <strong>2 dados</strong>.</p>
+            </li>
+            <li>
+              <p>Podés elegir entre <strong>ATACAR o SUMAR </strong>el resultado.</p>
+            </li>
+            <li>
+              <p> <strong>Atacar: </strong> resta el resultado a la vida del rival.</p>
+            </li>
+            <li>
+              <p> <strong>Sumar:</strong> agrega el resultado a tus puntos. No podés superar los 30 puntos.</p>
+            </li>
+            <li>
+              <p>Si sacás <strong>doble</strong>, obtenés  <strong>+2 de bonus</strong>.</p>
+            </li>
+            <li>
+              <p>Al comenzar se establece un <strong>número prohibido</strong>. Si sale ese número, perdés el turno.</p>
+            </li>
+            <li>
+              <p>Desde los <strong>20 puntos</strong> podés <strong>PLANTARTE</strong>. Conservás tus puntos, pero ya no podés sumar.</p>
+            </li>
+            <li>
+              <p>Ganás si llegás a <strong>30 puntos exactos</strong> o dejás al rival sin vida.</p>
+            </li>
+            <li>
+              <p>Si se acaba el tiempo, <strong>ambos pierden.</strong></p>
+            </li>
+          </ul>
+           <button type="button" id="btn-atras">Atras</button>
         </div>
       </main>
 

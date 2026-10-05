@@ -53,6 +53,14 @@ let elementoMensajeDados = document.getElementById("mensaje-dados");
 let elementoTurnoJugador = document.getElementById("info-jugador");
 let elementoTurnoPC = document.getElementById("info-pc");
 let elementoBotonIniciar = document.getElementById("iniciar-partida");
+const btnInicio = document.querySelector("btn-inicio");
+const btnAtras = document.querySelector("#btn-atras");
+const tablero = document.querySelector("#tablero-dados");
+const bntReglas = document.querySelector("#btn-reglas");
+const pantallaReglas = document.querySelector("#relgas-dado");
+
+pantallaReglas.style.display = "none";
+
 
 //CONEXIÓN ENTRE EL CONTENIDO DE LA VARIABLE Y EL CONTENIDO EN EL HTML
 elementoVidaJugador.textContent = vidaJugador;
@@ -66,6 +74,15 @@ elementoBotonAtacar.addEventListener("click", elegirAtacar);
 elementoBotonPlantarse.addEventListener("click", plantarse);
 elementoBotonTirarDados.addEventListener("click", tirarDadosJugador);
 elementoBotonIniciar.addEventListener("click", iniciarJuego);
+
+bntReglas.addEventListener("click", () => {
+	tablero.style.display = "none";
+	pantallaReglas.style.display = "block";
+});
+btnAtras.addEventListener("click", () => {
+	tablero.style.display = "block";
+	pantallaReglas.style.display = "none";
+});
 
 //FUNCIÓN PARA INICIAR PARTIDAS NUEVAS (Resetea contadores, timer, turno de jugadores, html y elije el número prohibido)
 function iniciarJuego() {
