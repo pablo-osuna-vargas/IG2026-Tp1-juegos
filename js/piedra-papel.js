@@ -85,16 +85,16 @@ function resolverRonda(i) {
 		resultado = "Empate: los dos jugaron " + cartaA;
 	} else if (cartaA === "piedra" && cartaB === "tijera") {
 		contadorJugadorUno++;
-		resultado = "Gano la ronda"+ pleyerUno +" : piedra rompe tijera";
+		resultado = "Gano la ronda "+ pleyerUno +" : piedra rompe tijera";
 	} else if (cartaA === "papel" && cartaB === "piedra") {
 		contadorJugadorUno++;
-		resultado = "Gano la ronda"+ pleyerUno +": papel envuelve piedra";
+		resultado = "Gano la ronda "+ pleyerUno +": papel envuelve piedra";
 	} else if (cartaA === "tijera" && cartaB === "papel") {
 		contadorJugadorUno++;
-		resultado = "Gano la ronda"+ pleyerUno +" : tijera corta papel";
+		resultado = "Gano la ronda "+ pleyerUno +" : tijera corta papel";
 	} else {
 		contadorJugadorDos++;
-		resultado = "Gano la ronda"+ pleyerDos + " : " + cartaB + " le gana a " + cartaA ;
+		resultado = "Gano la ronda "+ pleyerDos + " : " + cartaB + " le gana a " + cartaA ;
 	}
  
 	console.log(resultado);
@@ -104,12 +104,14 @@ function resolverRonda(i) {
     puntajeDos.innerText = contadorJugadorUno + " vs " + contadorJugadorDos;
 
       if (contadorJugadorUno === 3) {
+		sessionStorage.setItem(pleyerUno, 10);
 		ganador.innerText = pleyerUno +" Gano la partida" ;
 		pantallaGanaste.style.display = "block";
 		tablero.style.display = "none";
 		tableroDos.style.display = "none";
 
 	} else if (contadorJugadorDos === 3) {
+		sessionStorage.setItem(pleyerDos, 10);
 		ganador.innerText = pleyerDos +" Gano la partida"
 		pantallaGanaste.style.display = "block";
 	    tablero.style.display = "none";
@@ -140,7 +142,7 @@ bntTijeraDos.addEventListener("click",function(){
 });
 
 bntInicio.addEventListener("click",function(){
-   	play.style.display = "block";
+   	play.style.display = ""; // recomendacion de la ia para que tome lo del ccs que no lo tomaba 
 	tableroDos.style.display = "none";
 	reglas.style.display = "none";
 	tablero.style.display = "none";
