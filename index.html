@@ -8,59 +8,41 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet"/>
     <!--FUENTE TEXTO-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-      rel="stylesheet"
-    />
-    <title>INICIO - TITULO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
+    <title>TP1 - INICIO</title>
   </head>
 
   <body>
     <div id="contenedor">
-      <!--A header lo hice un link para que tenga alguna función, generalmente en sitios el logo se usa como boton para ir al inicio-->
       <header>
-        <a href="index.html"><h1>TITULO</h1></a>
+        <nav>
+          <ul>
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="cartas.html">CARTAS</a></li>
+            <li><a href="dados.html">DADOS</a></li>
+            <li><a href="trivia.html">TRIVIA</a></li>
+            <li><a href="puntajes.html">PUNTAJES</a></li>
+            <li><a href="nosotros.html">INFO</a></li>
+          </ul>
+        </nav>
       </header>
-
-      <!--Separé header de nav para que sea más fácil aplicar css por separado-->
-      <nav>
-        <ul>
-          <li><a href="index.html">INICIO</a></li>
-          <li><a href="juego-1.html">CARTAS</a></li>
-          <li><a href="juego-2.html">DADOS</a></li>
-          <li><a href="trivia.html">Trivia</a></li>
-          <li><a href="puntajes.html">Puntajes</a></li>
-          <li><a href="info.html">Nosotros</a></li>
-        </ul>
-      </nav>
 
       <main>
         <div class="main-contenido">
           <h2 id="bienvenida">BIENVENIDOS</h2>
 
           <section id="main-inicio">
-            <p id="bienv-frase">
-              Elegí un juego y poné a prueba tus habilidades
-            </p>
-            <section id="bienv-intro">
               <p id="gracias">
-                <strong>Gracias por ver nuestra colección de juegos!</strong>
+                <strong>Gracias por elegir nuestra colección de juegos!</strong>
               </p>
-              <p>
-                Creamos una selección de juegos simples y entretenidos para
-                disfrutar desde tu navegador. Explorá nuestra colección, elegí
+              <p>Creamos una selección de juegos simples y entretenidos para
+                disfrutar desde tu navegador. 
+              <p>Explorá nuestra colección, elegí
                 el juego que más te guste y poné a prueba tus habilidades.
-              </p>
-              <br />
-              <p>
-                Combinamos una interfaz sencilla e intuitiva con una estética
-                inspirada en géneros musicales, buscando que la experiencia sea
-                fácil de entender y divertida.
               </p>
             </section>
           </section>
@@ -68,24 +50,12 @@
           <hr />
 
           <section id="bienv-juegos">
-            <p>
-              Nuestra colección reúne diferentes propuestas con mecánicas y
-              desafíos variados en donde cada juego propone una forma diferente
-              de ponerse a prueba: algunos van a testear tu rapidez, otros tu
-              memoria, lógica o capacidad para tomar decisiones.
-            </p>
-            <p>¡Algunos incluso pondrán a prueba tu suerte!</p>
-            <br />
             <p class="bienv-corona">
-              ♛ Elegí un juego, aprendé sus reglas y tratá de conseguir el mejor
-              resultado ♛
+              ♛ Elegí un juego, aprendé sus reglas y tratá de conseguir el mejor resultado ♛
             </p>
             <section id="bienv-seccionjuegos">
               <a href="cartas.html" class="bienv-tarjetas">
-                <img
-                  src="img/logo-piedra-papel-tijera.png"
-                  alt="Icono Juego Cartas"
-                />
+                <img src="img/logo-piedra-papel-tijera.png" alt="Icono Juego Cartas"/>
                 <span>
                   <h3>CARTAS</h3>
                 </span>
@@ -98,28 +68,21 @@
                 </span>
               </a>
 
-              <a href="preguntas.html" class="bienv-tarjetas">
-                <img
-                  src="img/planeta-musica.png"
-                  alt="Icono Trivia Planeta Musica"
-                />
+              <a href="trivia.html" class="bienv-tarjetas">
+                <img src="img/planeta-musica.png" alt="Icono Trivia Planeta Musica"/>
                 <span>
                   <h3>TRIVIA</h3>
                 </span>
               </a>
             </section>
-            <button type="button" id="btn-juegorandom">JUEGO RANDOM</button>
           </section>
 
           <hr />
 
           <section id="bienv-accesos">
-            <h2>ACCESOS RAPIDOS</h2>
             <div class="btns-accesos">
               <a href="puntajes.html" id="btn-iniciopuntaje">PUNTAJE</a>
-              <a href="nosotros.html" id="btn-inicionosotros"
-                >CONOCER AL EQUIPO</a
-              >
+              <a href="nosotros.html" id="btn-inicionosotros">CONOCER AL EQUIPO</a>
             </div>
           </section>
         </div>
@@ -129,7 +92,7 @@
         <div id="footer-integrantes">
           <h3>INTEGRANTES:</h3>
           <a href="https://github.com/pablo-osuna-vargas">Pablo Osuna Vargas</a>
-          <!--COMPLETAR CON GITHUB DE JOEL <a href="">Joel Ledezma</a>-->
+          <a href="https://github.com/">Joel Ledezma</a>
         </div>
 
         <div id="footer-juegos">

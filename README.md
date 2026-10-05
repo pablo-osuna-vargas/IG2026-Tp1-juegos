@@ -1,143 +1,144 @@
-# Inf.-Gral---Tp1---juegos
+# Informática General
+
+# Cát.: Drelichman
+
+# Tp1 Juegos
+
+
+
+"GOLPE DE SUERTE"
+
+
 
 Integrantes:
 Pablo Osuna Vargas
-Ángel Cabral
 Joel Ledezma
 
-Sitio web de juegos interactivos (3)
 
-Al equipo:
-En principio van a encontrar la estructura de archivos (6 html, carpeta JS, CSS e IMG con sus archivos dentro)
-Aún no hay definiciones de estilos ni de scripts así que sólo es un planteo inicial para comenzar a diseñar
 
+Sitio web de juegos interactivos (3) de cartas, dados y trivia
 
 
-Proyecto Trivia: Juego de Preguntas y Respuestas
 
-Objetivo: Desarrollar un juego interactivo de trivia donde cada jugador responde preguntas y acumula puntaje.
+Juego de cartas: 
 
+versión del popular juego "Piedra, papel o tijera"
 
 
-Mapa de Estados del Juego
 
-1\. Inicio
+\-cada jugador elije una carta cliqueando sobre ella, una vez cliqueadas la carta de cada jugador se comparan y se muestra el resultado en pantalla
 
-Ambos jugadores comienzan en el bloque azul.
+\-se declara ganador al mejor de 3 rondas mostrando un mensaje de felicitaciones en un a nueva pantalla
 
-Se define quién juega primero.
+\-el ganador recibe 10 puntos que se acumulan en el ranking de Puntajes
 
-Puntaje inicial = 0.
 
 
+Juego de dados:
 
-2\. Turno de jugador
+misterio
 
-Responder: Correcto → sube 1 bloque. Incorrecto → baja 1 bloque.
 
-Arriesgar (solo si está en desventaja): Correcto → sube 2 bloques. Incorrecto → baja 1 bloque.
 
+Juego de Trivia:
 
+"Planeta Música"
 
-3\. Feedback visual
+juego de preguntas y respuestas Verdadero o Falso sobre música internacional en general para 2 jugadores
 
-Se muestra el bloque alcanzado.
 
-Bloque negro aparece solo si se cae hasta allí.
 
-Bloque blanco aparece solo si se llega a la cima.
+\-el objetivo del juego es completar los bloques de color del tablero de cada jugador respondiendo preguntas correctamente
 
-Mensajes textuales acompañan el color.
+\-quien llegue al "máximo de volumen" (color blanco) gana la partida. En cambio quien "baje al mínimo" (color Negro) perderá automáticamente
 
+\-si la respuesta es correcta suma 1 punto y suma un bloque de color en su tablero y continúa con la siguiente pregunta
 
+\-en caso de respuesta incorrecta pierde 1 punto, se le quita 1 color y cambia el turno al oponente
 
-4\. Cambio de turno
+\-el puntaje de cada jugador se verá reflejado en el ranking general de juegos
 
-Se deshabilita el botón del jugador contrario. Se habilita el botón del jugador activo.
 
-Se alternan los turnos.
 
+SISTEMA DE ARCHIVOS:
 
+\-una carpeta de proyecto con 6 archivos .HTML (presentación, juegos, ranking de puntajes e info general)
 
-5\. Condiciones de fin
+\-1 carpeta CSS para los estilos generales y de cada juego
 
-Victoria: el primero en llegar al bloque blanco.
+\-1 carpeta IMG para imágenes usadas en el sitio
 
-Derrota: el que cae al bloque negro.
+\-1 carpeta JS  con la lógica interactiva de cada juego y del ranking
 
-Se muestra cartel de GANADOR.
+\-README para progreso y consulta del proyecto
 
 
 
-6\. Reinicio
+TECNOLOGÍAS USADAS:
 
-Botón Reiniciar → vuelve al estado inicial (bloque azul, puntaje 0).
+VISUAL STUDIO, SUBLIME, GITHUB desktop y web, IA
 
-Mensajes narrativos de feedback
 
-Respuesta correcta (ejemplo): “¡Correcto! Estás en el camino del conocimiento.”
 
-Respuesta incorrecta: “Incorrecto… debes tener cuidado, te acercas a la oscuridad.”
+FUNCIONALIDADES:
 
-Arriesgar correcto: “¡Valiente decisión! Tu conocimiento te impulsa dos escalones hacia la luz.”
+\-presentación del juego, instrucciones e interfaz en pantallas sucesivas
 
-Arriesgar incorrecto: “El riesgo te hizo caer, retrocedes en tu camino.”
+\-mensajes dinámicos de feedback informativo sobre los estados de juego
 
+\-feedback visual de acuerdo a la interacción (mensajes, bloques de color, selección de cartas)
 
+\-mediante un pedido a una API se carga dinámicamente un array vacío con preguntas y respuestas Verdadero o Falso (trivia)
 
-Fin del juego
+\-se muestra en pantalla la pregunta seleccionada de forma aleatoria indicando cual de los jugadores debe contestar (trivia)
 
-Ganador (blanco): “Has alcanzado la luz, símbolo de sabiduría y victoria.”
+\-se generan las opciones correspondientes para que el jugador elija y se muestra en pantalla si la respuesta fue correcta o incorrecta (trivia)
 
-Perdedor (negro): “Has caído en la oscuridad, donde el color desaparece.”
+\-acumulación de puntajes en localStorage para visualizarlos en su propia página
 
 
 
-Puntos clave:
+API: 
 
-Estado inicial siempre en azul.
+OpenTrivia (endpoint - category 12 - Entertaninment: Music)
 
-Bloques extremos (negro y blanco) solo aparecen al alcanzarlos.
 
-Turnos alternados con botones deshabilitados fuera de turno.
 
-No hay empate simultáneo: el juego termina en el turno en que alguien alcanza blanco o negro.
+DECISIONES TÉCNICAS:
 
-Mensajes narrativos refuerzan la metáfora de sumar colores hasta la luz y evitar la oscuridad de no-color.
+\-funciones de inicio y setup de cada juego
 
+\-funciones de validación y cambio de estado del juego
 
+\-operadores ternarios para cambio de turnos
 
-Estoy trabajando en el código haciendo un mix de lo que vimos en las prácticas
+\-contadores para puntajes
 
+\-arrays vacíos de carga de datos
 
+\-estructuras repetitivas para verificar los nombres de jugadores. Si existen se actualiza si no existen se crean
 
-11/9 corrección de funciones de flujo de juego:
+\-funciones de verificación de final de partidas o rondas
 
-&#x09;-Inicio y preguntas: se renderiza la pregunta actual y se prepara el input del jugador.
+\-función async para hacer fetch a la API (try y catch para mostrar errores de conectividad y de recopilación de datos)
 
-&#x09;-Respuesta y verificación: se compara la respuesta con la correcta (a minúsculas .toLowerCase), mostrar mensajes dinámicos de acierto/error.
 
-&#x09;-Objetivo y bloques: se actualiza tablero con moverBloque() y se chequea victoria/derrota con verificarObjetivo().
 
-&#x09;-Turno y finalización: se alterna jugador solo si responde Incorrectamente, se limpian campos, y al cumplirse condición de fin se muestra mensaje Ganador/Perdedor
+DECLARACIÓN DE IA:
 
-&#x09;-Preguntas: falta desarrollar lógica para no repetir preguntas. Y para que no muestre preguntas nuevas al finalizar la partida
+IA utilizadas: Copilot y Claude
 
 
 
-29/9 corrección funciónArriesgar():
+\-mejora de modelos de pseudocódigo
 
-&#x09;-cuando se clliqueaba sobre el botón arriesgar estando en desventaja automáticamente se empataban los bloques aun cuando la respuesta estaba vacía. Ahora se valida que no este vacía y que respuesta sea correcta antes de sumar bloques.
+\-consulta y mejora de estilos, principalmente para layout 
 
+\-consulta y agrupamiento de funciones para mejor modularidad y reutilización de código
 
+\-profundización de la lógica interna de métodos (por ej. .sort o .spread y cómo compara y acomoda los valores de propiedades de objetos)
 
-local.storage() para Trivia pidiendo por prompt nombre (alias) de cada jugador generado y eventualmente corregir y sintetizar el código de trivia para usar API. Se empezará a ver mas parecido a lo que vimos en clase
+\-validador de errores
 
-
-
-1/10 implementación de API openTrivia para verdadero y falso. Tuve que quitar la lógica de bloques de color para poder comprender la lógica de API, luego la volveré a añadir para tener feedback visual de victoria/derrota y para definir también un límite de preguntas y respuestas
-
-
-
-3/10 lógica de feedback visual completa (bloques de color estilo vúmetro), lógica de localStorage completa, lógica de API completa, presentación de juego un poco mejorada (secuencial: primero portada, luego instrucciones, y ultimo interfaz de juego) + css básico de interfaz y de puntajes muy mejorables
+\-asistencia en la implementación de localStorage para guardar puntajes y mostrar resultados
 
