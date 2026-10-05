@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link href="css/piedra-papel.css" rel="stylesheet" />
+    <!-- FUENTE TÍTULOS IMPORTANTES-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <!--FUENTE TEXTO-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>TP1 - juego 1</title>
+  </head>
+  <body>
+    <div class="contenedor">
+      <header>
+        <h1>Piedra, papel o tijeras</h1>
+        <nav>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="juego-1.html">Juego 1</a></li>
+            <li><a href="juego-2.html">Juego 2</a></li>
+            <li><a href="trivia.html">Trivia</a></li>
+            <li><a href="puntajes.html">Puntajes</a></li>
+            <li><a href="info.html">Info general</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <div class="juego">
+          <div id="play">
+            <img src="img/logo-piedra-papel-tijera.png" alt="logo del juego" />
+            <button type="button" id="btJugar">Jugar</button>
+          </div>
+
+          <div id="reglas">
+            <h2>Reglas</h2>
+            <p><strong>🃏 Tus Cartas</strong></p>
+            <p>
+              Al comenzar, cada jugador recibe 3 cartas: Piedra, Papel o Tijera.
+            </p>
+            <p>
+              <strong>Piedra rompe Tijera</strong> 🪨 > ✂️
+              <strong> Tijera corta Papel </strong>✂️ > 📄
+              <strong>Papel envuelve Piedra </strong>📄 > 🪨
+            </p>
+            <p><strong>¿Cómo es el Turno?</strong></p>
+            <p>La partida es de 2 jugadores y consta de 3 rondas.</p>
+            <ul>
+              <li>
+                <strong>Jugador A:</strong> Elige una carta de tu mano y haz
+                clic en ella para jugarla
+              </li>
+              <li>
+                <strong>Jugador B:</strong> Elige una carta y juega la suya.
+              </li>
+              <li>
+                <strong>Resultado:</strong> Se revelan las dos cartas jugadas.
+              </li>
+            </ul>
+            <p><strong>🏆Puntos y Victoria</strong></p>
+            <p>El jugador que gana una ronda suma 1 victoria.</p>
+            <p>Si las cartas son iguales, ninguno suma punto.</p>
+            <p>
+              Al finalizar las 3 rondas, el jugador que haya ganado las 3 rondas
+              obtiene <strong>10 puntos</strong>.
+            </p>
+            <button type="button" id="btcSig">Siguiente</button>
+          </div>
+          <div id="tableroUno">
+            <p id="turno"></p>
+            <img src="img/maso.png" alt="imagen del maso del contricario" />
+            <p id="puntaje">0 vs 0</p>
+            <p id="orden"></p>
+            <div id="cartas">
+              <button type="button" id="piedra">
+                <img src="img/piedra.png" alt="Carta-Piedra" />
+              </button>
+              <button type="button" id="papel">
+                <img src="img/papel.png" alt="Carta-Papel" />
+              </button>
+              <button type="button" id="tijera">
+                <img src="img/tijera.png" alt="Carta-Tijera" />
+              </button>
+            </div>
+          </div>
+          <div id="tablero-dos">
+            <p id="turno-dos"></p>
+            <img src="img/maso-dos.png" alt="imagen del maso del contricario" />
+            <p id="puntaje-dos">0 vs 0</p>
+            <p id="orden-dos"></p>
+            <div id="cartas-dos">
+              <button type="button" id="piedraDos">
+                <img src="img/piedra.png" alt="Carta-Piedra" />
+              </button>
+              <button type="button" id="papelDos">
+                <img src="img/papel.png" alt="Carta-Papel" />
+              </button>
+              <button type="button" id="tijeraDos">
+                <img src="img/tijera.png" alt="Carta-Tijera" />
+              </button>
+            </div>
+          </div>
+          <div id="ganaste">
+            <img src="img/ganaste.png" alt="cartel de ganaste" />
+            <h2 id="ganador"></h2>
+            <p>Obtuviste 10 puntos para el podium</p>
+            <button type="button" id="inicio">Inicio</button>
+          </div>
+        </div>
+      </main>
+      <footer>
+        <p>
+          Para contactarse escribir a
+          <a href="mailto:nosotros@nosotros.com">nosotros@nosotros.com</a>
+        </p>
+      </footer>
+    </div>
+
+    <script src="js/piedra-papel.js"></script>
+  </body>
+</html>

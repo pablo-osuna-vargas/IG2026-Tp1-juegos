@@ -1,43 +1,407 @@
-/* estilos generales */
-* {box-sizing: border-box;}
+/* --------------------------------------------------------------------- || GENERAL || ---------- */
 
-body {
+* {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  box-sizing: border-box;
+}
 
-  background-color: rgba(0, 0, 0, 0.3);
+body {
+  font-family: "Lora", serif;
+  background-color: #0d0e11;
+  line-height: 1.8; /* Mejor legibilidad*/
 }
 
 #contenedor {
-  width: 100%;
-  max-width: 960px;
-
   margin: 0 auto;
+  width: 100%;
+  max-width: 1500px;
 }
 
-header, footer, main {
+/* --------------------------------------------------------------------- || HEADER || ---------- */
+
+header {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 3rem;
+}
+
+header a:link {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  text-decoration: none;
+  color: #a8753a;
+}
+header a:hover {
+  color: #a8753a;
+}
+header a:visited {
+  color: #a8753a;
+}
+header a:active {
+  color: #a8753a;
+}
+
+/* --------------------------------------------------------------------- || NAV || ---------- */
+
+nav {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  border-top: 1px solid #302218;
+  border-bottom: 1px solid #302218;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*Iba a ser redundante si duplicaba los estilos para ambos elementos asi que simplemente los junté*/
+nav a:link,
+footer a:link {
+  padding: 0.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #c49a62;
+}
+
+nav a:hover,
+footer a:hover {
+  color: #8b6540;
+}
+nav a:visited,
+footer a:visited {
+  color: #704a26;
+}
+
+nav a:active,
+footer a:active {
+  color: #a8753a;
+}
+
+/* --------------------------------------------------------------------- || MAIN || ---------- */
+main {
+  margin: 0 10rem;
+  color: #f2eee8;
+}
+
+.main-contenido {
+  display: flex;
+  flex-direction: column;
+}
+
+#bienvenida {
+  align-self: center;
+  color: #a8753a;
+  font-size: 3rem;
+}
+
+#bienv-frase {
+  font-size: 20px;
+}
+
+#bienv-intro {
+  margin: 1rem 5rem;
+  padding: 1rem;
+}
+
+.bienv-corona,
+#gracias {
+  text-align: center;
+  font-size: 15px;
+}
+
+#bienv-seccionjuegos {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#main-inicio,
+#bienv-juegos,
+#bienv-accesos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+}
+
+.bienv-tarjetas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem;
+  padding: 2rem !important;
+  text-decoration: none;
+  border: 1px solid #a8753a;
+  border-radius: 5px;
+  width: 12rem;
+  color: #c49a62;
+  transition: transform 0.3s;
+}
+
+.bienv-tarjetas:hover {
+  transform: scale(1.1);
+}
+
+#bienv-accesos {
+  display: flex;
+  flex-direction: column;
+}
+
+.btns-accesos {
+  display: flex;
+  flex-direction: row;
+  margin: 1rem;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+.bienv-tarjetas img {
+  height: 5rem;
+}
+
+#btn-juegorandom,
+#btn-iniciopuntaje,
+#btn-inicionosotros {
+  padding: 1rem;
+  background-color: #0d0e11;
+  color: #a8753a;
+  border: 1px solid #a8753a;
+  text-decoration: none;
+  transition:
+    transform 0.3s,
+    color 0.3s;
+}
+
+#btn-juegorandom:hover,
+#btn-iniciopuntaje:hover,
+#btn-inicionosotros:hover {
+  color: #8b6540;
+  border: 1px solid #8b6540;
+  transform: scale(1.1);
+}
+
+#main-tablero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+  width: 25%;
+  padding: 1rem;
+}
+
+#btns-bienv {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+hr {
+  width: 96%;
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #a8753a, transparent);
+  margin: 2rem 0;
+}
+
+/* --------------------------------------------------------------------- || FOOTER || ---------- */
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 2rem;
+  border-top: 1px solid #a8753a;
+}
+
+#footer-integrantes,
+#footer-juegos {
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+}
+
+footer h3 {
+  color: #f2eee8;
+}
+
+/*header,
+footer,
+main {
   padding: 0.2rem;
   text-align: center;
 }
 
-.headerFooter {background-color: rgba(0, 0, 0, 0.5); }
+nav ul {
+  list-style: none;
+}
 
-nav ul {list-style: none;}
-
+img {
+  width: 5%;
+}
 ul li {
   display: inline-block;
 
   padding: 0.5rem;
 }
 
-a {text-decoration: none; background: rgba(250, 250, 250, 0.4); padding: 0.2rem}
-a:link {color: black;}
-a:visited {color: black;}
-a:hover {color: whitesmoke;}
-a:active {color: whitesmoke;}
+a {
+  text-decoration: none;
+  background: rgba(250, 250, 250, 0.4);
+  padding: 0.2rem;
+}
+a:link {
+  color: black;
+}
+a:visited {
+  color: black;
+}
+a:hover {
+  color: whitesmoke;
+}
+a:active {
+  color: whitesmoke;
+}
 
 button {
   margin: 0.5rem;
   padding: 0.1rem 3rem;
 }
+
+/* ============== */
+/* ESTILOS TRIVIA */
+/* ============== */
+/*
+.trivia,
+.portada,
+.instrucciones,
+.juego,
+.interfaz,
+.tablero2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trivia,
+.portada,
+.instrucciones,
+.juego {
+  flex-direction: column;
+}
+
+.interfaz,
+.tablero2 {
+  flex-direction: row;
+}
+
+.tablero1 {
+  display: block;
+}
+.tablero1,
+.tablero2 {
+  width: 50%;
+}
+.tablero1 div {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.pregunta,
+.mensaje {
+  width: 100%;
+  height: 3rem;
+}
+/* estilo para el span de pregunta */
+/*
+.jugadorActual {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: rgba(250, 0, 70, 1);
+  text-transform: uppercase;
+}
+
+.instrucciones ul {
+  margin: 0;
+  padding: 0;
+}
+.ayuda {
+  position: absolute;
+  background-color: rgba(250, 220, 0, 0.9);
+}
+.ayuda ul {
+  margin: 0;
+  padding: 0;
+}
+.instrucciones ul li,
+.ayuda ul li {
+  display: block;
+}
+
+img {
+  margin: 0;
+  padding: 1rem;
+}
+
+#bloques1,
+#bloques2 {
+  width: 8rem;
+  height: 25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.bloque {
+  width: 90%;
+  height: 4rem;
+  margin: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.negro {
+  background-color: black;
+}
+.azul {
+  background-color: blue;
+}
+.rojo {
+  background-color: red;
+}
+.verde {
+  background-color: green;
+}
+.amarillo {
+  background-color: yellow;
+}
+.blanco {
+  background-color: white;
+}
+
+/* ======================= */
+/* ESTILOS PUNTAJES TRIVIA */
+/* ======================= */
+/*
+#rankingTrivia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#rankingTrivia ol {
+  margin: 0;
+  padding: 0;
+}
+
+/* ================== */
+/* FIN ESTILOS TRIVIA */
+/* ================== */
