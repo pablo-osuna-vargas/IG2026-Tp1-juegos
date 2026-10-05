@@ -36,7 +36,26 @@ versión del popular juego "Piedra, papel o tijera"
 
 Juego de dados:
 
-misterio
+\-Es un juego de Jugador vs. PC. Cada partida funciona de manera independiente y tiene un límite de 60 segundos.
+
+\-ambos jugadores comienzan con 30 de vida y 0 puntos.
+
+\-en cada turno se tiran dos dados de 1 a 6 y se suma su resultado. Si los dados son iguales, se obtiene un bonus de +2.
+
+\-el jugador puede elegir entre **Atacar**, para restar el resultado a la vida del oponente, o **Sumar**, para agregarlo a sus puntos.
+
+\-los puntos no pueden superar los 30. Si una suma supera los 30, los puntos no aumentan y se pierde el turno.
+
+\-al comenzar la partida se genera un número prohibido entre 2 y 12. Si el resultado de los dados coincide con ese número, se pierde el turno.
+
+\-a partir de los 20 puntos, el jugador puede **plantarse**. Al hacerlo, conserva sus puntos y ya no puede sumar, pero puede seguir atacando.
+
+\-la PC sigue las mismas reglas y decide sus acciones según sus puntos y el resultado de los dados.
+
+\-la partida termina cuando uno de los jugadores llega a 0 de vida, alcanza exactamente 30 puntos o se acaba el tiempo.
+
+\-si se acaba el tiempo, ambos jugadores pierden.
+
 
 
 
@@ -142,3 +161,16 @@ IA utilizadas: Copilot y Claude
 
 \-asistencia en la implementación de localStorage para guardar puntajes y mostrar resultados
 
+** Prueba de usabilidad – Piedra, papel o tijera – 29/09 **
+\-Condición inicial: puntajes en 0 y pantalla de inicio visible.
+\-Acción: el jugador presiona dos veces seguidas el botón de selección (piedra, papel o tijera) en un lapso muy corto.
+\-Resultado esperado: se juega una sola ronda y el puntaje del ganador aumenta una sola vez; la partida termina al llegar a 3 rondas ganadas.
+\-Resultado observado: el usuario no entendió las reglas y no pudo terminar la partida; el contador no finalizaba.
+Problemas detectados
+\-Falta de claridad en las reglas (qué gana a qué, cuántas rondas hay, cómo se gana la partida).
+\-Los clics repetidos disparaban más de una ronda y desordenaban el contador.
+\-La condición para determinar el ganador no lo estaba detectando.
+Solución 
+\-Reemplazar la condición del if por el numero limite directamente
+if (contadorJugadorUno === 3) y if (contadorJugadorDos === 3). 
+\- Reescribir las reglas para que se entiendan a primera vista.
