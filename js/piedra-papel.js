@@ -1,5 +1,6 @@
-const pleyerUno = prompt("¿Quién es el Jugador 1?");
-const pleyerDos = prompt("¿Quién es el Jugador 2?");
+let rankingPiedraPapel = JSON.parse(localStorage.getItem("rankingPiedraPapel")) || [];
+let pleyerUno;
+let pleyerDos;
 // Referencias a los botones que disparan la acción
 const bntJugar = document.querySelector("#btJugar");
 const bntSiguiente = document.querySelector("#btcSig");
@@ -45,13 +46,13 @@ bntJugar.addEventListener("click", () => {
 bntSiguiente.addEventListener("click", () => {
 	reglas.style.display = "none";
 	tablero.style.display = "block";
+	pleyerUno = prompt("Jugador 1 ingresa tu alias:")
+	pleyerDos = prompt("Jugador 2 ingresa tu alias:")
 });
 
 turnoDos.innerText = "Elije "+ pleyerDos + " una Carta";
 turnoUno.innerText = "Elije "+ pleyerUno + " una Carta";
 // Juego
-const opciones = ["piedra", "papel", "tijera"]; // cada una le gana a la anterior (con vuelta)
-const puntosParaGanar = 3;
 let jugadorUno = []; // historial de cartas del Jugador Uno
 let jugadorDos = []; // historial de cartas del Jugador Dos
 let contadorJugadorUno = 0;
@@ -104,19 +105,36 @@ function resolverRonda(i) {
     puntajeDos.innerText = contadorJugadorUno + " vs " + contadorJugadorDos;
 
       if (contadorJugadorUno === 3) {
-		sessionStorage.setItem(pleyerUno, 10);
+		guardarGanador(pleyerUno, 10);
+		guardarGanador(pleyerDos, 5);
 		ganador.innerText = pleyerUno +" Gano la partida" ;
 		pantallaGanaste.style.display = "block";
 		tablero.style.display = "none";
 		tableroDos.style.display = "none";
 
 	} else if (contadorJugadorDos === 3) {
-		sessionStorage.setItem(pleyerDos, 10);
+		guardarGanador(pleyerDos, 10);
+		guardarGanador(pleyerUno, 5);
 		ganador.innerText = pleyerDos +" Gano la partida"
 		pantallaGanaste.style.display = "block";
 	    tablero.style.display = "none";
 		tableroDos.style.display = "none";
 	}
+}
+function guardarGanador(alias, puntos) {
+	let existe = false; // bandera: ¿el alias ya estaba en el ranking?
+	for (let i = 0; i < rankingPiedraPapel.length; i++) {
+		if (rankingPiedraPapel[i].alias === alias) {
+			rankingPiedraPapel[i].puntaje += puntos; // acumulador
+			existe = true;
+			break;
+		}
+	}
+	if (!existe) {
+		rankingPiedraPapel.push({ alias: alias, puntaje: puntos }); 
+		console.log ("holus si funciono")
+	}
+	localStorage.setItem("rankingPiedraPapel", JSON.stringify(rankingPiedraPapel));
 }
 
 // botones de cartas primer jugador 

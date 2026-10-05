@@ -233,10 +233,15 @@ footer h3 {
 }
 
 
+/* =================================================================================================*/
+/* ===================================  ESTILOS CARTAS  ============================================*/
+/* =================================================================================================*/
+
 /*/////////////////////////// Pantalla inicio //////////////////////////////// */
 
 #play {
     height: 35rem;
+    width: 70rem;
     background-color: #018164;
     margin-left: 4rem;
     margin-right: 4rem;
@@ -247,8 +252,12 @@ flex-direction: column;
 
 }
 #play img {
-    width: 30%;
+    width: 35%;
     margin-bottom: 4rem;
+}
+#btJugar {
+  width: 10rem;
+  height: 2rem;
 }
 
 /*/////////////////////////// Pantalla reglas //////////////////////////////// */
@@ -257,65 +266,68 @@ flex-direction: column;
     color: white;
     background-color: #018164;
     height: 35rem;
-    padding-top: 0.5rem;
+    width: 70rem;
+    padding: 3rem;
     margin-left: 4rem;
     margin-right: 4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
-
-
-
-/* ============== */
-/* ESTILOS CARTAS */
-/* ============== */
-
+#reglas ul {
+  list-style: none;
+}
+#btcSig {
+  margin-top: 2rem;
+    width: 10rem;
+  height: 2rem;
+}
 /*/////////////////////////// Pantalla tableros //////////////////////////////// */
 
 #tableroUno{
     color: white;
+     text-align: center;
     background-color: #018164;
-     height: 35rem;
+    height: 35rem;
+    width: 70rem;
     padding-top: 0.5rem;
-    margin-left: 4rem;
-    margin-right: 4rem;
     border: 0.3rem solid #ff4d4d;
 }
 #tableroUno img {
+   display: flex;
+    justify-content: center;
+    align-items: center;
     width: 30%;
+    margin: 0 auto;
 }
 #tablero-dos{
     color: white;
+     text-align: center;
     background-color: #018164;
      height: 35rem;
+    width: 70rem;
     padding-top: 0.5rem;
     margin-left: 4rem;
     margin-right: 4rem;
     border: 0.3rem solid #ffd44d;
 }
 #tablero-dos img {
+   display: flex;
+    justify-content: center;
+    align-items: center;
+        margin: 0 auto;
     width: 30%;
 }
 .puntaje{
     margin-top: 2rem;
-    margin-bottom: 0.5rem;
 }
 #cartas ,#cartas-dos{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40rem;
+    width: 30rem;
     margin: 0 auto;
-}
-
-#tiempo {
-    margin-left: 63rem;
+    margin-top: 0.5rem;
 }
 #cartas button img{
     width: 100%;
-    
 }
 #cartas-dos button img{
     width: 100%;
@@ -323,18 +335,25 @@ flex-direction: column;
 /*/////////////////////////// Pantalla de ganste //////////////////////////////// */
 #ganaste{
     background-color: #018164;
+     text-align: center;
     color: white;
      height: 35rem;
-    padding-top: 0.5rem;
-    margin-left: 4rem;
-    margin-right: 4rem;
+    width: 70rem;
+
 }
 #ganaste img {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+      margin: 0 auto;
+      margin-top: 2rem;
     width: 45%;
-    margin-top: 2rem;
 }
 #inicio {
-    margin-left: 1rem;
+     text-align: center;
+    margin-top: 1rem;
+      width: 10rem;
+      height: 2rem;
 }
 
 
