@@ -20,7 +20,7 @@ Sitio web de juegos interactivos (3) de cartas, dados y trivia
 
 
 
-Juego de cartas: 
+Juego de cartas:
 
 versión del popular juego "Piedra, papel o tijera"
 
@@ -55,6 +55,7 @@ Juego de dados:
 \-la partida termina cuando uno de los jugadores llega a 0 de vida, alcanza exactamente 30 puntos o se acaba el tiempo.
 
 \-si se acaba el tiempo, ambos jugadores pierden.
+
 
 
 
@@ -117,7 +118,7 @@ FUNCIONALIDADES:
 
 
 
-API: 
+API:
 
 OpenTrivia (endpoint - category 12 - Entertaninment: Music)
 
@@ -151,7 +152,7 @@ IA utilizadas: Copilot y Claude
 
 \-mejora de modelos de pseudocódigo
 
-\-consulta y mejora de estilos, principalmente para layout 
+\-consulta y mejora de estilos, principalmente para layout
 
 \-consulta y agrupamiento de funciones para mejor modularidad y reutilización de código
 
@@ -161,16 +162,51 @@ IA utilizadas: Copilot y Claude
 
 \-asistencia en la implementación de localStorage para guardar puntajes y mostrar resultados
 
-** Prueba de usabilidad – Piedra, papel o tijera – 29/09 **
-\-Condición inicial: puntajes en 0 y pantalla de inicio visible.
-\-Acción: el jugador presiona dos veces seguidas el botón de selección (piedra, papel o tijera) en un lapso muy corto.
-\-Resultado esperado: se juega una sola ronda y el puntaje del ganador aumenta una sola vez; la partida termina al llegar a 3 rondas ganadas.
-\-Resultado observado: el usuario no entendió las reglas y no pudo terminar la partida; el contador no finalizaba.
+
+
+
+
+PRUEBAS DE USABILIDAD:
+
+
+
+\*\* Piedra, papel o tijera – 29/09 \*\*
+-Condición inicial: puntajes en 0 y pantalla de inicio visible.
+-Acción: el jugador presiona dos veces seguidas el botón de selección (piedra, papel o tijera) en un lapso muy corto.
+-Resultado esperado: se juega una sola ronda y el puntaje del ganador aumenta una sola vez; la partida termina al llegar a 3 rondas ganadas.
+-Resultado observado: el usuario no entendió las reglas y no pudo terminar la partida; el contador no finalizaba.
 Problemas detectados
-\-Falta de claridad en las reglas (qué gana a qué, cuántas rondas hay, cómo se gana la partida).
-\-Los clics repetidos disparaban más de una ronda y desordenaban el contador.
-\-La condición para determinar el ganador no lo estaba detectando.
-Solución 
-\-Reemplazar la condición del if por el numero limite directamente
-if (contadorJugadorUno === 3) y if (contadorJugadorDos === 3). 
-\- Reescribir las reglas para que se entiendan a primera vista.
+-Falta de claridad en las reglas (qué gana a qué, cuántas rondas hay, cómo se gana la partida).
+-Los clics repetidos disparaban más de una ronda y desordenaban el contador.
+-La condición para determinar el ganador no lo estaba detectando.
+
+
+
+Solución
+-Reemplazar la condición del if por el numero limite directamente
+if (contadorJugadorUno === 3) y if (contadorJugadorDos === 3).
+
+* Reescribir las reglas para que se entiendan a primera vista.
+
+
+
+\*\* Trivia - 29/9 \*\*
+
+A-prompt de nombres/alias de jugador permite dejar vacíos los campos y queda aliasJugador = null. Podría hacerse una nueva verificación si están los campos vacíos y pedir de nuevo (pendiente) o dejar "Jugador1" y "Jugador2" como default
+
+B-campos de input para respuesta: como eran completados por el usuario a veces había respuestas escritas verificadas como correctas y a veces con números el programa las tomaba incorrectas (ej.: lados de un triángulo? "tres" era correcta y "3" no lo era)
+
+C-si por un "missclick" el usuario dejaba el campo vacío perdía el turno. Podrían hacerse botones en lugar de inputs y su verificación
+
+D-estilos de trivia: centrar logo,  botones. Ajustar <ul> para mejor visibilidad en Ayuda (pendiente)
+
+
+
+La solución de A queda pendiente
+
+La solución a B y C fue directamente la implementación de la API final (OpenTrivia) con fetching de preguntas con respuestas correcta-incorrecta (verdadero-falso) y generar las opciones de botones correspondientes
+
+
+
+Un gran inconveniente fue intentar usar inicialmente la API "MusicBrainz" que si bien es específica para música rock internacional, los endpoints a los que pedíamos datos nos resultaron muy complejos de leer para capturar los valores precisos dentro de cada objeto devuelto para crear dinámicamente las preguntas de la Trivia. La mayoría de las veces nos arrojaban datos "genre" o "empty" al capturar valores de "name" o de "releases". Intentamos filtrar mas generalmente con "music" en general pero el resultado fue el contrario al esperado volviéndose demasiado extenso cada array dentro de los "results" (fechas de lanzamiento de álbum se mezclaban con fechas de grabaciones; nombres de álbumes se mezclaban con nombres de artistas y casos por el estilo). Idealmente nos hubiera gustado hacer uso de esta API y lograr una captura más precisa pero decidimos enfocarnos en resolver la funcionalidad del programa para cumplir con los requisitos del tp
+
