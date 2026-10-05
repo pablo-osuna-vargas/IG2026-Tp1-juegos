@@ -1,105 +1,147 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="css/estilos.css">
-  <!-- <link rel="stylesheet" href="css/trivia.css"> -->
-  <title>Trivia</title>
-</head>
-<body>
-  <div id="contenedor">
-    <header class="headerFooter">
-      <h1>TRIVIA</h1>
-      <nav>
-        <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="juego-1.html">Juego 1</a></li>
-          <li><a href="juego-2.html">Juego 2</a></li>
-          <li><a href="trivia.html">Trivia</a></li>
-          <li><a href="puntajes.html">Puntajes</a></li>
-          <li><a href="info.html">Info general</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <main>
-      <div class="trivia">
-        <div class="portada">
-          <img src="img/planeta-musica.png" alt="logo-trivia-grande">
-          <button type="button" id="btnEntrar">Entrar</button>
-        </div>
-
-        <div class="instrucciones">
-          <img src="img/planeta-musica.png" alt="logo-trivia-pequenio" width="15%">
-          <p>Planeta Música es una trivia de preguntas y respuestas Verdadero/Falso para 2 jugadores</p>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/estilos.css" />
+    <!-- FUENTE TÍTULOS IMPORTANTES-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <!--FUENTE TEXTO-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" href="css/trivia.css"> -->
+    <title>Trivia</title>
+  </head>
+  <body>
+    <div id="contenedor">
+      <header class="headerFooter">
+        <h1>TRIVIA</h1>
+        <nav>
           <ul>
-            <li><strong>Objetivo</strong></li>
-            <li>Llegar al máximo de volumen!</li>
-            <li>Responde Verdadero/Falso</li>
-            <li>Acumula respuestas correctas para subir el volumen! (bloques de colores)</li>
-            <li>si llegas al máximo ganas (bloque Blanco)</li>
-            <li>si bajas al mínimo pierdes (bloque Negro)</li>
-            <li>+1 punto x respuesta correcta</li>
-            <li>-1 punto x respuesta incorrecta</li>
-            <li>Podrán ver su ranking en la página de Puntajes</li>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="juego-1.html">Juego 1</a></li>
+            <li><a href="juego-2.html">Juego 2</a></li>
+            <li><a href="trivia.html">Trivia</a></li>
+            <li><a href="puntajes.html">Puntajes</a></li>
+            <li><a href="info.html">Info general</a></li>
           </ul>
-          <button type="button" id="btnJugar">Jugar</button>
-        </div>
+        </nav>
+      </header>
 
-        <div class="juego">
-          <div class="logo">
-            <img src="img/planeta-musica.png" alt="logo-trivia-pequenio" width="15%">
+      <main>
+        <div class="trivia">
+          <div class="portada">
+            <img src="img/planeta-musica.png" alt="logo-trivia-grande" />
+            <button type="button" id="btnEntrar">Entrar</button>
           </div>
 
-          <div class="ayuda">
-            <img src="img/planeta-musica.png" alt="logo-trivia-pequenio" width="15%">
-            <p>Planeta Música es una trivia de preguntas y respuestas Verdadero/Falso para 2 jugadores</p>
+          <div class="instrucciones">
+            <img
+              src="img/planeta-musica.png"
+              alt="logo-trivia-pequenio"
+              width="15%"
+            />
+            <p>
+              Planeta Música es una trivia de preguntas y respuestas
+              Verdadero/Falso para 2 jugadores
+            </p>
             <ul>
               <li><strong>Objetivo</strong></li>
               <li>Llegar al máximo de volumen!</li>
               <li>Responde Verdadero/Falso</li>
-              <li>Acumula respuestas correctas para subir el volumen! (bloques de colores)</li>
+              <li>
+                Acumula respuestas correctas para subir el volumen! (bloques de
+                colores)
+              </li>
               <li>si llegas al máximo ganas (bloque Blanco)</li>
               <li>si bajas al mínimo pierdes (bloque Negro)</li>
               <li>+1 punto x respuesta correcta</li>
               <li>-1 punto x respuesta incorrecta</li>
               <li>Podrán ver su ranking en la página de Puntajes</li>
             </ul>
-            <button type="button" id="cerrarAyuda">Cerrar</button>
+            <button type="button" id="btnJugar">Jugar</button>
           </div>
 
-          <div class="interfaz">
-            <section class="tablero1">
-              <div class="botones">
-                <button type="button" id="ayuda">Ayuda</button>
-                <button id="btnReiniciar">Reiniciar</button>
-              </div>
+          <div class="juego">
+            <div class="logo">
+              <img
+                src="img/planeta-musica.png"
+                alt="logo-trivia-pequenio"
+                width="15%"
+              />
+            </div>
 
-              <div class="pregunta"></div>
-              <div class="mensaje"></div>
-              <div class="opciones"></div>
-            </section>
+            <div class="ayuda">
+              <img
+                src="img/planeta-musica.png"
+                alt="logo-trivia-pequenio"
+                width="15%"
+              />
+              <p>
+                Planeta Música es una trivia de preguntas y respuestas
+                Verdadero/Falso para 2 jugadores
+              </p>
+              <ul>
+                <li><strong>Objetivo</strong></li>
+                <li>Llegar al máximo de volumen!</li>
+                <li>Responde Verdadero/Falso</li>
+                <li>
+                  Acumula respuestas correctas para subir el volumen! (bloques
+                  de colores)
+                </li>
+                <li>si llegas al máximo ganas (bloque Blanco)</li>
+                <li>si bajas al mínimo pierdes (bloque Negro)</li>
+                <li>+1 punto x respuesta correcta</li>
+                <li>-1 punto x respuesta incorrecta</li>
+                <li>Podrán ver su ranking en la página de Puntajes</li>
+              </ul>
+              <button type="button" id="cerrarAyuda">Cerrar</button>
+            </div>
 
-            <section class="tablero2">
-              <div class="jugador">
-                <h2 class="alias1"></h2>
-                <div id="bloques1"></div>
-              </div>
+            <div class="interfaz">
+              <section class="tablero1">
+                <div class="botones">
+                  <button type="button" id="ayuda">Ayuda</button>
+                  <button id="btnReiniciar">Reiniciar</button>
+                </div>
 
-              <div class="jugador">
-                <h2 class="alias2"></h2>
-                <div id="bloques2"></div>
-              </div>
-            </section>
+                <div class="pregunta"></div>
+                <div class="mensaje"></div>
+                <div class="opciones"></div>
+              </section>
+
+              <section class="tablero2">
+                <div class="jugador">
+                  <h2 class="alias1"></h2>
+                  <div id="bloques1"></div>
+                </div>
+
+                <div class="jugador">
+                  <h2 class="alias2"></h2>
+                  <div id="bloques2"></div>
+                </div>
+              </section>
+            </div>
           </div>
-      </div>
-    </main>
+        </div>
+      </main>
 
-    <footer class="headerFooter">
-      <p>Para contactarse escribir a <a href="mailto:nosotros@nosotros.com">nosotros@nosotros.com</a></p>
-    </footer>
+      <footer class="headerFooter">
+        <p>
+          Para contactarse escribir a
+          <a href="mailto:nosotros@nosotros.com">nosotros@nosotros.com</a>
+        </p>
+      </footer>
 
-    <script src="js/trivia.js"></script>
-  </div>
-</body>
+      <script src="js/trivia.js"></script>
+    </div>
+  </body>
 </html>

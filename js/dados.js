@@ -1,5 +1,4 @@
-//VARIABLES PARA INICIAR EL JUEGO
-
+//ARRAY PARA IMAGENES DE LOS DADOS
 let carasDados = [
   { valor: 1, imagen: "img/dado1.png" },
   { valor: 2, imagen: "img/dado2.png" },
@@ -9,6 +8,7 @@ let carasDados = [
   { valor: 6, imagen: "img/dado6.png" },
 ];
 
+//VARIABLES PARA INICIALIZAR EL JUEGO
 let vidaJugador = 30;
 let puntosJugador = 0;
 
@@ -26,7 +26,7 @@ let numeroProhibido;
 
 let tiempo = 60;
 let intervaloTiempo;
-let esperaPC;
+let esperaPC; //esto existe para que la pc no tenga su turno instantaneamente y se puedan ver las jugadas que hace
 
 let turno = "jugador";
 
@@ -54,18 +54,20 @@ let elementoTurnoJugador = document.getElementById("info-jugador");
 let elementoTurnoPC = document.getElementById("info-pc");
 let elementoBotonIniciar = document.getElementById("iniciar-partida");
 
+//CONEXIÓN ENTRE EL CONTENIDO DE LA VARIABLE Y EL CONTENIDO EN EL HTML
 elementoVidaJugador.textContent = vidaJugador;
 elementoPuntosJugador.textContent = puntosJugador;
 elementoVidaPC.textContent = vidaPC;
 elementoPuntosPC.textContent = puntosPC;
 
+//EVENTOS LINKEADOS A LAS FUNCIONES
 elementoBotonSumar.addEventListener("click", elegirSumar);
 elementoBotonAtacar.addEventListener("click", elegirAtacar);
 elementoBotonPlantarse.addEventListener("click", plantarse);
 elementoBotonTirarDados.addEventListener("click", tirarDadosJugador);
 elementoBotonIniciar.addEventListener("click", iniciarJuego);
 
-//FUNCIÓN PARA INICIAR PARTIDAS NUEVAS (Resetea contadores, timer, turno de jugadores y elije el número prohibido)
+//FUNCIÓN PARA INICIAR PARTIDAS NUEVAS (Resetea contadores, timer, turno de jugadores, html y elije el número prohibido)
 function iniciarJuego() {
   vidaJugador = 30;
   puntosJugador = 0;
@@ -112,7 +114,7 @@ function iniciarJuego() {
   elementoBotonIniciar.disabled = true;
 }
 
-//Elije un número al azar entre 1 y 6 para cada dado y luego suma esos dados
+//Elije un número al azar entre 1 y 6 para cada dado, suma esos dados y los muestra, si hay bonus se aplica
 function tirarDados() {
   dado1 = Math.floor(Math.random() * 6) + 1;
   dado2 = Math.floor(Math.random() * 6) + 1;
@@ -131,7 +133,7 @@ function tirarDados() {
   sumaDados = dado1 + dado2;
 }
 
-//Comprueba si la suma de los dados es igual al nro prohibido
+//Comprueba si la suma de los dados es igual al nro prohibido, no hace falta if porque directamente devuelve true
 function comprobarNumeroProhibido() {
   return sumaDados == numeroProhibido;
 }
@@ -146,21 +148,17 @@ function cambiarTurno() {
   actualizarTurno();
 }
 
-//Si comprobarNumeroProhibido es true (osea, si el jugador de turno saca el nro prohibido)
-//pasa el turno al otro jugador, si es false sigue la partida
+//Si el jugador de turno saca el nro prohibido pasa el turno al otro jugador, si es false sigue la partida
 function resolverNumeroProhibido() {
   if (comprobarNumeroProhibido()) {
     elementoMensajeDados.textContent = "¡Número prohibido! Pierdes el turno.";
-
     cambiarTurno();
-
     return true;
   }
-
   return false;
 }
 
-//Comprueba si dado1 tiene el mismo número que dado2. Esto sirve para aplicar el bonus si return true
+//Comprueba si dado1 tiene el mismo número que dado2. Esto sirve para aplicar el bonus si true
 function comprobarDoble() {
   return dado1 == dado2;
 }
@@ -168,7 +166,6 @@ function comprobarDoble() {
 //Si comprobarDoble es true se le suman 2 puntos al total de la suma de dados
 function aplicarBonus() {
   resultadoFinal = sumaDados;
-
   if (comprobarDoble()) {
     resultadoFinal = resultadoFinal + 2;
   }
@@ -186,8 +183,8 @@ function atacar() {
   finalizarTurno();
 }
 
-//Suma el resultado final de los dados al puntaje del jugador en curso,
-//si supera los 30 puntos ese jugador pierde el turno
+//Se chequea si jugador o pc estan plantados,
+// false se agregan los puntos correspondientes. Si la suma da más de 30 puntos se pierde el turno y pasa al otro jugador
 function sumarPuntos() {
   if (turno == "jugador") {
     if (puntosJugador + resultadoFinal <= 30) {
@@ -250,23 +247,20 @@ function procesarTurno() {
     return;
   }
   tirarDados();
-
   if (resolverNumeroProhibido()) {
     if (turno == "pc") {
       esperaPC = setTimeout(procesarTurno, 2000);
     }
     return;
   }
-
   aplicarBonus();
-
   elementoResultadoFinal.textContent = resultadoFinal;
-
   if (turno == "pc") {
     esperaPC = setTimeout(decidirAccionPC, 1000);
   }
 }
 
+//funcion para el funcionamiento de la pc ya que esta elige lo que hace al azar
 function elegirAccionAleatoria() {
   if (Math.random() < 0.5) {
     sumarPuntos();
@@ -275,6 +269,7 @@ function elegirAccionAleatoria() {
   }
 }
 
+//la pc elige al azar si ataca o suma, se puede plantar si tiene mas de 20 puntos
 function decidirAccionPC() {
   if (juegoActivo == false) {
     return;
@@ -303,19 +298,17 @@ function plantarsePC() {
   }
 }
 
+//se comprueba si alguien gano, si no paso se juega normal y se termina el turno
 function finalizarTurno() {
   if (comprobarVictoria()) {
     return;
   }
-
   cambiarTurno();
-
   if (turno == "jugador") {
     dadosJugadorTirados = false;
     actualizarBotonTirarDados();
     actualizarBotonesAccion();
   }
-
   if (turno == "pc") {
     esperaPC = setTimeout(procesarTurno, 2000);
   }
@@ -347,6 +340,7 @@ function plantarse() {
   }
 }
 
+//timer de la partida
 function actualizarTiempo() {
   if (tiempo > 0 && juegoActivo == true) {
     tiempo = tiempo - 1;
@@ -359,6 +353,7 @@ function actualizarTiempo() {
   }
 }
 
+//la mecanica de tirar y evitar que el jugador tire los dados sin que sea su turno
 function tirarDadosJugador() {
   if (
     turno == "jugador" &&
@@ -375,6 +370,7 @@ function tirarDadosJugador() {
   }
 }
 
+//habilita el boton plantarse al llegar o superar los 20 puntos
 function actualizarBotonPlantarse() {
   if (puntosJugador >= 20 && jugadorPlantado == false) {
     elementoBotonPlantarse.disabled = false;
@@ -383,6 +379,7 @@ function actualizarBotonPlantarse() {
   }
 }
 
+//marcador visual para que se vea de quien es el turno, no es necesario que quede rojo
 function actualizarTurno() {
   elementoTurnoJugador.style.backgroundColor = "";
   elementoTurnoPC.style.backgroundColor = "";
@@ -393,6 +390,7 @@ function actualizarTurno() {
   }
 }
 
+//deshabilita el boton para tirar dados
 function actualizarBotonTirarDados() {
   if (turno == "jugador" && dadosJugadorTirados == false) {
     elementoBotonTirarDados.disabled = false;
@@ -401,6 +399,7 @@ function actualizarBotonTirarDados() {
   }
 }
 
+//deshabilita botones segun se necesite, por ejemplo si el jugador esta plantado no se puede sumar
 function actualizarBotonesAccion() {
   if (turno == "jugador" && dadosJugadorTirados == true) {
     elementoBotonAtacar.disabled = false;
@@ -423,6 +422,7 @@ function deshabilitarBotones() {
   elementoBotonPlantarse.disabled = true;
 }
 
+//esto es para limpiar el codigo en comprobarVictoria(), si se cumple las condiciones del if pasa a esto
 function finalizarJuego(mensaje) {
   juegoActivo = false;
   deshabilitarBotones();
@@ -431,6 +431,6 @@ function finalizarJuego(mensaje) {
   elementoBotonIniciar.disabled = false;
   alert(mensaje);
 }
-
+//llamadas para que empiece el juego
 elementoBotonIniciar.disabled = false;
 deshabilitarBotones();
