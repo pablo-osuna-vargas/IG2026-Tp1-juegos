@@ -162,6 +162,8 @@ IA utilizadas: Copilot y Claude
 
 \-asistencia en la implementación de localStorage para guardar puntajes y mostrar resultados
 
+\-síntesis y resumen de la documentación de API utilizadas
+
 
 
 
