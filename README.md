@@ -166,7 +166,7 @@ IA utilizadas: Copilot y Claude
 
 
 
-PRUEBAS DE USABILIDAD: 
+PRUEBAS DE USABILIDAD:
 
 
 
@@ -181,20 +181,24 @@ Problemas detectados
 -La condición para determinar el ganador no lo estaba detectando.
 
 
+
 Solución
 -Reemplazar la condición del if por el numero limite directamente
 if (contadorJugadorUno === 3) y if (contadorJugadorDos === 3).
-- Reescribir las reglas para que se entiendan a primera vista.
+
+* Reescribir las reglas para que se entiendan a primera vista.
 
 
 
 \*\* Trivia - 29/9 \*\*
 
-A-prompt de nombres/alias de jugador permite dejar vacíos los campos y queda aliasJugador = null. Podría hacerse una nueva verificación si están los campos vacíos y pedir de nuevo (a corregir) o dejar "Jugador1" y "Jugador2" como default
+A-prompt de nombres/alias de jugador permite dejar vacíos los campos y queda aliasJugador = null. Podría hacerse una nueva verificación si están los campos vacíos y pedir de nuevo (pendiente) o dejar "Jugador1" y "Jugador2" como default
 
 B-campos de input para respuesta: como eran completados por el usuario a veces había respuestas escritas verificadas como correctas y a veces con números el programa las tomaba incorrectas (ej.: lados de un triángulo? "tres" era correcta y "3" no lo era)
 
 C-si por un "missclick" el usuario dejaba el campo vacío perdía el turno. Podrían hacerse botones en lugar de inputs y su verificación
+
+D-estilos de trivia: centrar logo,  botones. Ajustar <ul> para mejor visibilidad en Ayuda (pendiente)
 
 
 

@@ -419,7 +419,7 @@ flex-direction: column;
 }
 .ayuda {
   position: absolute;
-  background-color: rgba(250, 220, 0, 0.9);
+  background-color: rgba(220, 100, 0, 1.0);
 }
 .ayuda ul {
   margin: 0;
@@ -442,6 +442,7 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  border: solid whitesmoke; 1px;
 }
 
 .bloque {
@@ -476,13 +477,13 @@ img {
 /* ======================= */
 /* ESTILOS PUNTAJES TRIVIA */
 /* ======================= */
-#rankingTrivia {
+#rankingTrivia, #rankingPpt {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#rankingTrivia ol {
+#rankingTrivia ol, #rankingPpt ol {
   margin: 0;
   padding: 0;
 }
