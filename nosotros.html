@@ -1,62 +1,146 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="css/estilos.css" rel="stylesheet" />
+
     <!-- FUENTE TÍTULOS IMPORTANTES-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+
     <!--FUENTE TEXTO-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
-    <title>GOLPE DE SUERTE! - INFO</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>NOSOTROS - Ludoterna</title>
   </head>
 
   <body>
     <div id="contenedor">
       <header>
-        <h1>NOSOTROS</h1>
+        <h1>LUDOTERNA</h1>
         <nav>
           <ul>
             <li><a href="index.html">INICIO</a></li>
-            <li><a href="cartas.html">CARTAS</a></li>
-            <li><a href="dados.html">DADOS</a></li>
-            <li><a href="trivia.html">TRIVIA</a></li>
+            <li><a href="cartas.html">TRÍADA</a></li>
+            <li><a href="dados.html">CADENCIA</a></li>
+            <li><a href="preguntas.html">CRESCENDO</a></li>
             <li><a href="puntajes.html">PUNTAJES</a></li>
-            <li><a href="nosotros.html">INFO</a></li>
+            <li><a href="nosotros.html">NOSOTROS</a></li>
           </ul>
         </nav>
       </header>
 
       <main>
         <div>
+          <h3>Sobre el proyecto:</h3>
           <p>
-            Combinamos una interfaz sencilla e intuitiva con una estética minimalista 
-            buscando que la experiencia sea fácil de entender y divertida.
+            Combinamos una interfaz sencilla e intuitiva con una estética
+            minimalista buscando que la experiencia sea fácil de entender y
+            divertida.
           </p>
 
-          <br>
+          <hr />
 
+          <h3>Tecnologías usadas:</h3>
+          <ul>
+            <li>
+              <strong>HTML5:</strong> estructura y contenido de las páginas.
+            </li>
+            <li><strong>CSS3:</strong> estilos y presentación visual.</li>
+            <li>
+              <strong>JavaScript:</strong> lógica de los juegos, interacción con
+              el usuario, validaciones y manejo de puntajes.
+            </li>
+            <li>
+              <strong>JSON:</strong> formato utilizado para interpretar las
+              preguntas de la API y guardar los rankings.
+            </li>
+            <li>
+              <strong>GitHub:</strong> alojamiento y gestión del código del
+              proyecto.
+            </li>
+            <li>
+              <strong>VSCode y Sublime Text:</strong> editores utilizados
+              durante el desarrollo.
+            </li>
+            <li>
+              <strong>Open Trivia DB:</strong> fuente externa de preguntas para
+              la trivia.
+            </li>
+          </ul>
+
+          <hr />
+
+          <h3>Créditos y fuentes externas</h3>
           <p>
-            Nuestra colección reúne diferentes propuestas con mecánicas y
-            desafíos variados en donde cada juego propone una forma diferente
-            de ponerse a prueba: algunos van a testear tu rapidez, otros tu
-            memoria, lógica o capacidad para tomar decisiones.
+            Para el desarrollo del juego de trivia utilizamos la API de
+            <a href="https://opentdb.com/api_config.php"
+              >Open Trivia Database</a
+            >
+            , que proporciona preguntas y respuestas en formato JSON. En nuestro
+            proyecto consultamos la categoría <i>Entertainment: Music</i>.
           </p>
-          <p>¡Algunos incluso pondrán a prueba tu suerte!</p>
-
-          <br>
-
           <p>
-            Pablo Osuna Vargas-Músico compositor egresado del Conservatorio de Música de MOrón. Trabaja en el cruce de disciplinas y el arte interactivo. Cursa la carrera de Artes Multimediales en UNA 
+            (Los recursos externos, como imágenes, íconos y tipografías, deben
+            acreditarse según sus fuentes y licencias correspondientes.)
+            Agradecemos a los creadores y colaboradores de las herramientas y
+            recursos utilizados para hacer posible este proyecto.
           </p>
 
-          <br>
+          <hr />
+
+          <h3>Declaración de uso de inteligencia artificial</h3>
+          <p>
+            Durante el desarrollo de este proyecto utilizamos herramientas de
+            inteligencia artificial, como GitHub Copilot y Claude, como apoyo
+            para el aprendizaje y la resolución de problemas. Las utilizamos
+            para consultar posibles soluciones, elaborar pseudocódigo, mejorar
+            la organización y modularidad del JavaScript, comprender métodos y
+            funciones, revisar el manejo de errores y explorar alternativas para
+            implementar el almacenamiento de puntajes mediante LocalStorage.
+            También las empleamos como apoyo para resolver dudas sobre la
+            documentación de la API utilizada en la trivia. Las sugerencias
+            generadas por estas herramientas fueron utilizadas como material de
+            consulta y asistencia durante el proceso de desarrollo. El equipo se
+            encargó de revisar, adaptar y probar las soluciones incorporadas al
+            proyecto.
+          </p>
+
+          <hr />
+
+          <h3>El Equipo</h3>
+          <p>
+            <strong>Pablo Osuna Vargas</strong> <br />
+            Músico compositor egresado del Conservatorio de Música de Morón.
+            Trabaja en el cruce de disciplinas y el arte interactivo. <br />
+            Cursa la carrera de Artes Multimediales en UNA.
+          </p>
+
+          <br />
 
           <p>
-            Joel Ledezma-Diseñador gráfico multimedial egresado del IFTS en 2025. Serigrafista, interesado en artes multimediales y mapping
+            <strong>Joel Ledezma</strong> <br />
+            Diseñador gráfico multimedial egresado del IFTS en 2025.
+            Serigrafista, interesado en artes multimediales y mapping.
+          </p>
+
+          <br />
+
+          <p>
+            <strong>Ángel León Cabral</strong> <br />
+            Ilustrador Digital y Diseñador gráfico egresado de la Escuela Da
+            Vinci. Estudiando Concept Art y diseño de videojuegos en la Escuela
+            Da Vinci.
           </p>
         </div>
       </main>
@@ -66,13 +150,14 @@
           <h3>INTEGRANTES:</h3>
           <a href="https://github.com/pablo-osuna-vargas">Pablo Osuna Vargas</a>
           <a href="https://github.com/JoelLedz">Joel Ledezma</a>
+          <a href="https://github.com/AngelLeonSalvador">Ángel León Cabral</a>
         </div>
 
         <div id="footer-juegos">
           <h3>JUEGOS:</h3>
-          <a href="cartas.html">Cartas</a>
-          <a href="dados.html">Dados</a>
-          <a href="trivia.html">Trivia</a>
+          <a href="cartas.html">Tríada</a>
+          <a href="dados.html">Cadencia</a>
+          <a href="preguntas.html">Crescendo</a>
         </div>
       </footer>
     </div>

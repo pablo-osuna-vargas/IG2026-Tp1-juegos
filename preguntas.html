@@ -2,29 +2,39 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="css/estilos.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/estilos.css" rel="stylesheet" />
+
     <!-- FUENTE TÍTULOS IMPORTANTES-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+
     <!--FUENTE TEXTO-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
-    <title>GOLPE DE SUERTE! - TRIVIA</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>CRESCENDO - Ludoterna</title>
   </head>
   <body>
     <div id="contenedor">
-      <header class="headerFooter">
-        <h1>TRIVIA</h1>
+      <header>
+        <h1>LUDOTERNA</h1>
         <nav>
           <ul>
             <li><a href="index.html">INICIO</a></li>
-            <li><a href="cartas.html">CARTAS</a></li>
-            <li><a href="dados.html">DADOS</a></li>
-            <li><a href="trivia.html">TRIVIA</a></li>
+            <li><a href="cartas.html">TRÍADA</a></li>
+            <li><a href="dados.html">CADENCIA</a></li>
+            <li><a href="preguntas.html">CRESCENDO</a></li>
             <li><a href="puntajes.html">PUNTAJES</a></li>
-            <li><a href="nosotros.html">INFO</a></li>
+            <li><a href="nosotros.html">NOSOTROS</a></li>
           </ul>
         </nav>
       </header>
@@ -34,7 +44,7 @@
           <div class="portada">
             <img src="img/planeta-musica.png" alt="logo-trivia-grande" />
 
-            <hr>
+            <hr />
 
             <button type="button" id="btnEntrar">Entrar</button>
           </div>
@@ -50,11 +60,11 @@
               Verdadero/Falso para 2 jugadores
             </p>
 
-            <hr>
+            <hr />
 
             <ul>
               <li><strong>Objetivo</strong></li>
-              <br>
+              <br />
               <li>Llegar al máximo de volumen!</li>
               <li>Responde Verdadero/Falso</li>
               <li>
@@ -68,7 +78,7 @@
               <li>Podrán ver su ranking en la página de Puntajes</li>
             </ul>
 
-            <hr>
+            <hr />
 
             <button type="button" id="btnJugar">Jugar</button>
           </div>
@@ -92,22 +102,22 @@
                 Planeta Música es una trivia de preguntas y respuestas
                 Verdadero/Falso para 2 jugadores
               </p>
-              <br>
+              <br />
               <ul>
-              <li><strong>Objetivo</strong></li>
-              <br>
-              <li>Llegar al máximo de volumen!</li>
-              <li>Responde Verdadero/Falso</li>
-              <li>
-                Acumula respuestas correctas para subir el volumen! (bloques de
-                colores)
-              </li>
-              <li>si llegas al máximo ganas (bloque Blanco)</li>
-              <li>si bajas al mínimo pierdes (bloque Negro)</li>
-              <li>+1 punto x respuesta correcta</li>
-              <li>-1 punto x respuesta incorrecta</li>
-              <li>Podrán ver su ranking en la página de Puntajes</li>
-            </ul>
+                <li><strong>Objetivo</strong></li>
+                <br />
+                <li>Llegar al máximo de volumen!</li>
+                <li>Responde Verdadero/Falso</li>
+                <li>
+                  Acumula respuestas correctas para subir el volumen! (bloques
+                  de colores)
+                </li>
+                <li>si llegas al máximo ganas (bloque Blanco)</li>
+                <li>si bajas al mínimo pierdes (bloque Negro)</li>
+                <li>+1 punto x respuesta correcta</li>
+                <li>-1 punto x respuesta incorrecta</li>
+                <li>Podrán ver su ranking en la página de Puntajes</li>
+              </ul>
               <button type="button" id="cerrarAyuda">Cerrar</button>
             </div>
 
@@ -129,7 +139,7 @@
                   <p>Max</p>
                   <div id="bloques1"></div>
                   <p>min</p>
-                </div>   
+                </div>
 
                 <div class="jugador">
                   <h2 class="alias2"></h2>
@@ -148,17 +158,18 @@
           <h3>INTEGRANTES:</h3>
           <a href="https://github.com/pablo-osuna-vargas">Pablo Osuna Vargas</a>
           <a href="https://github.com/JoelLedz">Joel Ledezma</a>
+          <a href="https://github.com/AngelLeonSalvador">Ángel León Cabral</a>
         </div>
 
         <div id="footer-juegos">
           <h3>JUEGOS:</h3>
-          <a href="cartas.html">Cartas</a>
-          <a href="dados.html">Dados</a>
-          <a href="trivia.html">Trivia</a>
+          <a href="cartas.html">Tríada</a>
+          <a href="dados.html">Cadencia</a>
+          <a href="preguntas.html">Crescendo</a>
         </div>
       </footer>
 
-      <script src="js/trivia.js"></script>
+      <script src="js/preguntas.js"></script>
     </div>
   </body>
 </html>

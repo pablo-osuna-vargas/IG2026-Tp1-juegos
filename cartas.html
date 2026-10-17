@@ -1,34 +1,45 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="utf-8" />
-    <!-- <link href="css/piedra-papel.css" rel="stylesheet" /> -->
-    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/estilos.css" rel="stylesheet" />
+
     <!-- FUENTE TÍTULOS IMPORTANTES-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+
     <!--FUENTE TEXTO-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
-    <title>GOLPE DE SUERTE! - PIEDRA, PAPEL O TIJERA</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>TRÍADA - Ludoterna</title>
   </head>
+
   <body>
     <div class="contenedor">
       <header>
-        <h1>Piedra, papel o tijeras</h1>
+        <h1>LUDOTERNA</h1>
         <nav>
           <ul>
             <li><a href="index.html">INICIO</a></li>
-            <li><a href="cartas.html">CARTAS</a></li>
-            <li><a href="dados.html">DADOS</a></li>
-            <li><a href="trivia.html">TRIVIA</a></li>
+            <li><a href="cartas.html">TRÍADA</a></li>
+            <li><a href="dados.html">CADENCIA</a></li>
+            <li><a href="preguntas.html">CRESCENDO</a></li>
             <li><a href="puntajes.html">PUNTAJES</a></li>
-            <li><a href="nosotros.html">INFO</a></li>
+            <li><a href="nosotros.html">NOSOTROS</a></li>
           </ul>
         </nav>
       </header>
+
       <main>
         <div class="juego">
           <div id="play">
@@ -37,37 +48,37 @@
           </div>
 
           <div id="reglas">
-            <h2>Reglas</h2>
-            <p><strong>🃏 Tus Cartas</strong></p>
-            <p>
-              Al comenzar, cada jugador recibe 3 cartas: Piedra, Papel o Tijera.
-            </p>
-            <p>
+            <h2>Tríada</h2>
+            <h3>Objetivo:</h3>
+            <p>Ganar dos de las tres rondas para obtener la victoria.</p>
+            <h3>Cómo jugar:</h3>
+
+            <ol>
+              <li>Cada jugador elige una carta en su turno.</li>
+              <li>
+                Se comparan las cartas y se determina quién gana la ronda.
+              </li>
+              <li>
+                El primer jugador que consigue dos victorias gana la partida.
+              </li>
+              <li>
+                Si cada jugador gana una ronda, se juega una tercera para
+                definir al ganador.
+              </li>
+              <li>
+                Al finalizar la partida, se registran los puntos obtenidos en el
+                ranking.
+              </li>
+            </ol>
+
+            <!--Hacer gráfico con la dinámica de piedra papel o tijera
+            
+              <p>
               <strong>Piedra rompe Tijera</strong> 🪨 > ✂️
               <strong> Tijera corta Papel </strong>✂️ > 📄
               <strong>Papel envuelve Piedra </strong>📄 > 🪨
-            </p>
-            <p><strong>¿Cómo es el Turno?</strong></p>
-            <p>La partida es de 2 jugadores y consta de 3 rondas.</p>
-            <ul>
-              <li>
-                <strong>Jugador A:</strong> Elige una carta de tu mano y haz
-                clic en ella para jugarla
-              </li>
-              <li>
-                <strong>Jugador B:</strong> Elige una carta y juega la suya.
-              </li>
-              <li>
-                <strong>Resultado:</strong> Se revelan las dos cartas jugadas.
-              </li>
-            </ul>
-            <p><strong>🏆Puntos y Victoria</strong></p>
-            <p>El jugador que gana una ronda suma 1 victoria.</p>
-            <p>Si las cartas son iguales, ninguno suma punto.</p>
-            <p>
-              Al finalizar las 3 rondas, el jugador que haya ganado las 3 rondas
-              obtiene <strong>10 puntos</strong>.
-            </p>
+              </p>
+            -->
             <button type="button" id="btcSig">Siguiente</button>
           </div>
           <div id="tableroUno">
@@ -118,17 +129,18 @@
           <h3>INTEGRANTES:</h3>
           <a href="https://github.com/pablo-osuna-vargas">Pablo Osuna Vargas</a>
           <a href="https://github.com/JoelLedz">Joel Ledezma</a>
+          <a href="https://github.com/AngelLeonSalvador">Ángel León Cabral</a>
         </div>
 
         <div id="footer-juegos">
           <h3>JUEGOS:</h3>
-          <a href="cartas.html">Cartas</a>
-          <a href="dados.html">Dados</a>
-          <a href="trivia.html">Trivia</a>
+          <a href="cartas.html">Tríada</a>
+          <a href="dados.html">Cadencia</a>
+          <a href="preguntas.html">Crescendo</a>
         </div>
       </footer>
     </div>
 
-    <script src="js/piedra-papel.js"></script>
+    <script src="js/cartas.js"></script>
   </body>
 </html>

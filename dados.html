@@ -1,31 +1,41 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="css/estilos.css" rel="stylesheet" />
+
     <!-- FUENTE TÍTULOS IMPORTANTES-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+
     <!--FUENTE TEXTO-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet"/>
-    <title>GOLPE DE SUERTE! - DADOS</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>CADENCIA - Ludoterna</title>
   </head>
 
   <body>
     <div class="contenedor">
       <header>
-        <h1>DADOS</h1>
+        <h1>LUDOTERNA</h1>
         <nav>
           <ul>
             <li><a href="index.html">INICIO</a></li>
-            <li><a href="cartas.html">CARTAS</a></li>
-            <li><a href="dados.html">DADOS</a></li>
-            <li><a href="trivia.html">TRIVIA</a></li>
+            <li><a href="cartas.html">TRÍADA</a></li>
+            <li><a href="dados.html">CADENCIA</a></li>
+            <li><a href="preguntas.html">CRESCENDO</a></li>
             <li><a href="puntajes.html">PUNTAJES</a></li>
-            <li><a href="nosotros.html">INFO</a></li>
+            <li><a href="nosotros.html">NOSOTROS</a></li>
           </ul>
         </nav>
       </header>
@@ -41,29 +51,29 @@
             </div>
 
             <div id="info-jugador">
-              <h2>Jugador</h2>
+              <h2>Jugador 1</h2>
               <p>Vida <span id="vida-jugador">30</span></p>
               <p>Puntos <span id="puntos-jugador">0</span></p>
             </div>
 
             <div id="info-pc">
-              <h2>PC</h2>
+              <h2>Jugador 2</h2>
               <p>Vida <span id="vida-pc">30</span></p>
               <p>Puntos <span id="puntos-pc">0</span></p>
             </div>
           </div>
-          <button type="button" id="iniciar-partida">Iniciar Partida</button> 
+          <button type="button" id="iniciar-partida">Iniciar Partida</button>
           <button type="button" id="btn-reglas">Reglas</button>
-          
-              <div id="dados">
-                  <div id="dado1">
-                    <img id="img-dado1" src="img/dado1.png" alt="Dado 1" />
-                  </div>
-                  <div id="dado2">
-                    <img id="img-dado2" src="img/dado1.png" alt="Dado 2" />
-                  </div>   
-              </div>
-            <div>
+
+          <div id="dados">
+            <div id="dado1">
+              <img id="img-dado1" src="img/dado1.png" alt="Dado 1" />
+            </div>
+            <div id="dado2">
+              <img id="img-dado2" src="img/dado1.png" alt="Dado 2" />
+            </div>
+          </div>
+          <div>
             <button type="button" id="tirar-dados">Tirar dados</button>
             <p>Suma: <span id="resultado-final"></span></p>
           </div>
@@ -78,7 +88,10 @@
           <h2>🎲 REGLAS DEL JUEGO</h2>
           <ul>
             <li>
-              <p>Jugás contra la PC en una partida de <strong>60 segundos.</strong></p>
+              <p>
+                Jugás contra la PC en una partida de
+                <strong>60 segundos.</strong>
+              </p>
             </li>
             <li>
               <p>Ambos comienzan con <strong>30 de vida y 0 puntos</strong>.</p>
@@ -87,31 +100,55 @@
               <p>En cada turno se tiran <strong>2 dados</strong>.</p>
             </li>
             <li>
-              <p>Podés elegir entre <strong>ATACAR o SUMAR </strong>el resultado.</p>
+              <p>
+                Podés elegir entre <strong>ATACAR o SUMAR </strong>el resultado.
+              </p>
             </li>
             <li>
-              <p> <strong>Atacar: </strong> resta el resultado a la vida del rival.</p>
+              <p>
+                <strong>Atacar: </strong> resta el resultado a la vida del
+                rival.
+              </p>
             </li>
             <li>
-              <p> <strong>Sumar:</strong> agrega el resultado a tus puntos. No podés superar los 30 puntos.</p>
+              <p>
+                <strong>Sumar:</strong> agrega el resultado a tus puntos. No
+                podés superar los 30 puntos.
+              </p>
             </li>
             <li>
-              <p>Si sacás <strong>doble</strong>, obtenés  <strong>+2 de bonus</strong>.</p>
+              <p>
+                Si sacás <strong>doble</strong>, obtenés
+                <strong>+2 de bonus</strong>.
+              </p>
             </li>
             <li>
-              <p>Al comenzar se establece un <strong>número prohibido</strong>. Si sale ese número, perdés el turno.</p>
+              <p>
+                Al comenzar se establece un <strong>número prohibido</strong>.
+                Si sale ese número, perdés el turno. <br />
+                (El número prohibido es solamente la suma de los dados sin el
+                bonus)
+              </p>
             </li>
             <li>
-              <p>Desde los <strong>20 puntos</strong> podés <strong>PLANTARTE</strong>. Conservás tus puntos, pero ya no podés sumar.</p>
+              <p>
+                Desde los <strong>20 puntos</strong> podés
+                <strong>PLANTARTE</strong>. Conservás tus puntos, pero ya no
+                podés sumar.
+              </p>
             </li>
             <li>
-              <p>Ganás si llegás a <strong>30 puntos exactos</strong> o dejás al rival sin vida.</p>
+              <p>
+                Ganás si llegás a <strong>30 puntos exactos</strong> o dejás al
+                rival sin vida.
+              </p>
             </li>
             <li>
               <p>Si se acaba el tiempo, <strong>ambos pierden.</strong></p>
             </li>
           </ul>
-           <button type="button" id="btn-atras">Atras</button>
+
+          <button type="button" id="btn-atras">Atras</button>
         </div>
       </main>
 
@@ -120,13 +157,14 @@
           <h3>INTEGRANTES:</h3>
           <a href="https://github.com/pablo-osuna-vargas">Pablo Osuna Vargas</a>
           <a href="https://github.com/JoelLedz">Joel Ledezma</a>
+          <a href="https://github.com/AngelLeonSalvador">Ángel León Cabral</a>
         </div>
 
         <div id="footer-juegos">
           <h3>JUEGOS:</h3>
-          <a href="cartas.html">Cartas</a>
-          <a href="dados.html">Dados</a>
-          <a href="trivia.html">Trivia</a>
+          <a href="cartas.html">Tríada</a>
+          <a href="dados.html">Cadencia</a>
+          <a href="preguntas.html">Crescendo</a>
         </div>
       </footer>
     </div>
