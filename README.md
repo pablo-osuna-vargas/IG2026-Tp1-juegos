@@ -21,6 +21,15 @@ PROCESO:
 \-se declara ganador al mejor de 3 rondas mostrando un mensaje de felicitaciones en una nueva pantalla
 \-el ganador recibe 10 puntos que se acumulan en el ranking de Puntajes, el perdedor obtiene 5 puntos.
 
+CORRECCIONES:
+
+**PROBLEMA:** Los mensajes de turno no mostraban los alias de los jugadores, sino que mostraban `undefined`.
+**SOLUCIÓN:** Se movieron las dos líneas que actualizan los mensajes de turno dentro del evento del botón `btcSig`, después de los `prompt` que solicitan los alias de los jugadores. De esta manera, los mensajes muestran los nombres ingresados al comenzar la partida.
+**PROBLEMA:** Si un jugador no ingresaba un alias o cancelaba el `prompt`, el nombre podía mostrarse como `null` o quedar vacío.
+**SOLUCIÓN:** Se agregaron condiciones `if` para asignar un nombre predeterminado (`Jugador 1` o `Jugador 2`) cuando no se ingresa un alias. También se eliminan los espacios al principio y al final del nombre mediante `trim()`.
+**PROBLEMA:** Los dos jugadores podían ingresar el mismo alias, incluso usando diferentes combinaciones de mayúsculas y minúsculas.
+**SOLUCIÓN:** Se agregó una validación con `while` para volver a solicitar el alias del segundo jugador si coincide con el del primero. Se utiliza `toLowerCase()` para comparar los nombres sin distinguir entre mayúsculas y minúsculas. También se modificó la comparación en `guardarGanador()` para que los puntos se acumulen en la misma entrada del ranking cuando un alias se escribe con distintas combinaciones de mayúsculas y minúsculas.
+
 CADENCIA (Juego de dados):
 Se seleccionó el nombre "Cadencia" porque es un término musical que hace referencia a una sucesión o progresión de sonidos y acordes. Este concepto se relaciona con la dinámica del juego, en el que los turnos se suceden y cada jugador debe tomar decisiones estratégicas entre atacar, sumar puntos o plantarse. Además, el límite de 60 segundos aporta un ritmo constante a la partida, reforzando la relación entre el nombre elegido y la temática musical del sitio.
 
@@ -35,6 +44,14 @@ PROCESO:
 \-la PC sigue las mismas reglas y decide sus acciones según sus puntos y el resultado de los dados.
 \-la partida termina cuando uno de los jugadores llega a 0 de vida, alcanza exactamente 30 puntos o se acaba el tiempo.
 \-si se acaba el tiempo, ambos jugadores pierden.
+
+CORRECCIONES:
+PROBLEMA: La primera versión del juego estaba pensado para que una persona compitiera contra la computadora, lo que limitaba las formas de jugar y no coincidía con el modo de juego para 2 persona de los otros juegos en el sitio.
+Solución: Se reemplazó el modo de juego contra pc con un nuevo modo de juego para dos presonas. De esta manera, dos personas pueden enfrentarse entre sí y participar de la misma partida
+PROBLEMA: Era necesario identificar a cada jugador mediante su alias para distinguirlos durante la partida y registrar sus resultados correctamente.
+Solución: Se adaptó el sistema de aliases para que cada jugador pueda ser identificado de forma independiente. Esto permite relacionar los resultados con el jugador correspondiente y mantener la información organizada.
+PROBLEMA: Los puntajes de Cadencia debían mostrarse junto con los de los otros juegos, sin mezclarse con sus resultados.
+Solución: Se agregó un ranking propio para Cadencia en la página de puntajes. Los resultados se guardan en localStorage bajo la clave rankingDados, se ordenan de mayor a menor y se muestran con el alias y el puntaje de cada jugador.
 
 CRESCENDO (Juego de Preguntas):
 Juego de preguntas y respuestas Verdadero o Falso sobre música internacional en general para 2 jugadores
@@ -168,9 +185,6 @@ INFO:
 -Agregar más información y formatear correctamente.
 -Agregar imágenes y créditos si es necesario.
 
-JS:
--CARTAS: Corregir "undefined" en el mensaje "elige una carta".
--DADOS: falta el localStorage para usar en la pagina de Puntajes. Ver si se puede cambiar a dos jugadores humanos para que se conserve el mismo modo de jugar entre 2 personas.
 -TRIVIA: "Jugador 1" y "Jugador 2" deberían usar los datos del prompt ingresados al inicio de la trivia.
 -La lógica de localStorage (cartas, trivia y eventualmente dados) se repite x cada jugador. Habría que unificar y hacer una lógica que pueda cargar tanto si es uno, dos o mas jugadores.
 
