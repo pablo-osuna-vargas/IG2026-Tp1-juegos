@@ -1,5 +1,3 @@
-let rankingPiedraPapel =
-  JSON.parse(localStorage.getItem("rankingPiedraPapel")) || [];
 let pleyerUno;
 let pleyerDos;
 // Referencias a los botones que disparan la acción
@@ -142,39 +140,25 @@ function resolverRonda(i) {
 
   if (contadorJugadorUno === 2) {
     juegoTerminado = true;
-    guardarGanador(pleyerUno, 10);
-    guardarGanador(pleyerDos, 5);
+    guardarPuntajes("rankingPiedraPapel", [
+      { alias: pleyerUno, puntaje: 10 },
+      { alias: pleyerDos, puntaje: 5 },
+    ]);
     ganador.innerText = pleyerUno + " ganó la partida";
     pantallaGanaste.style.display = "block";
     tablero.style.display = "none";
     tableroDos.style.display = "none";
   } else if (contadorJugadorDos === 2) {
     juegoTerminado = true;
-    guardarGanador(pleyerDos, 10);
-    guardarGanador(pleyerUno, 5);
+    guardarPuntajes("rankingPiedraPapel", [
+      { alias: pleyerDos, puntaje: 10 },
+      { alias: pleyerUno, puntaje: 5 },
+    ]);
     ganador.innerText = pleyerDos + " ganó la partida";
     pantallaGanaste.style.display = "block";
     tablero.style.display = "none";
     tableroDos.style.display = "none";
   }
-}
-function guardarGanador(alias, puntos) {
-  let existe = false; // bandera: ¿el alias ya estaba en el ranking?
-  for (let i = 0; i < rankingPiedraPapel.length; i++) {
-    if (rankingPiedraPapel[i].alias.toLowerCase() === alias.toLowerCase()) {
-      rankingPiedraPapel[i].puntaje += puntos; // acumulador
-      existe = true;
-      break;
-    }
-  }
-  if (!existe) {
-    rankingPiedraPapel.push({ alias: alias, puntaje: puntos });
-    console.log("holus si funciono");
-  }
-  localStorage.setItem(
-    "rankingPiedraPapel",
-    JSON.stringify(rankingPiedraPapel),
-  );
 }
 
 // botones de cartas primer jugador

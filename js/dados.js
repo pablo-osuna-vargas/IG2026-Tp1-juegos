@@ -1,6 +1,3 @@
-// RANKING
-let rankingDados = JSON.parse(localStorage.getItem("rankingDados")) || [];
-
 // ARRAY PARA LAS IMAGENES DE LOS DADOS
 let carasDados = [
   { valor: 1, imagen: "img/dado1.png" },
@@ -533,29 +530,6 @@ function deshabilitarBotones() {
   elementoBotonPlantarse.disabled = true;
 }
 
-// GUARDAR LOS PUNTAJES EN LOCALSTORAGE
-function guardarPuntaje(alias, puntos) {
-  let existe = false;
-
-  for (let i = 0; i < rankingDados.length; i++) {
-    if (rankingDados[i].alias.toLowerCase() === alias.toLowerCase()) {
-      rankingDados[i].puntaje = rankingDados[i].puntaje + puntos;
-
-      existe = true;
-      break;
-    }
-  }
-
-  if (existe === false) {
-    rankingDados.push({
-      alias: alias,
-      puntaje: puntos,
-    });
-  }
-
-  localStorage.setItem("rankingDados", JSON.stringify(rankingDados));
-}
-
 // FINALIZAR LA PARTIDA Y GUARDAR LOS PUNTAJES
 function finalizarJuego(mensaje, ganador, perdedor) {
   juegoActivo = false;
@@ -566,8 +540,10 @@ function finalizarJuego(mensaje, ganador, perdedor) {
   elementoBotonIniciar.disabled = false;
 
   if (ganador && perdedor) {
-    guardarPuntaje(ganador, 10);
-    guardarPuntaje(perdedor, 5);
+    guardarPuntajes("rankingDados", [
+      { alias: ganador, puntaje: 10 },
+      { alias: perdedor, puntaje: 5 },
+    ]);
   }
 
   alert(mensaje);
