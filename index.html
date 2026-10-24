@@ -27,7 +27,7 @@
   <body>
     <div id="contenedor">
       <header>
-        <h1>LUDOTERNA</h1>
+        <a href="index.html">LUDOTERNA</a>
         <nav>
           <ul>
             <li><a href="index.html">INICIO</a></li>
@@ -41,10 +41,10 @@
       </header>
 
       <main>
-        <div class="main-contenido">
-          <h2 id="bienvenida">¡Bienvenidos a LUDOTERNA!</h2>
+        <div class="index-contenido">
+          <h2 id="index-bienvenida">¡Bienvenidos a LUDOTERNA!</h2>
 
-          <section id="main-inicio">
+          <section id="index-inicio">
             <p>
               Creamos una selección de juegos simples y entretenidos para
               disfrutar desde tu navegador, estos reúnen diferentes propuestas
@@ -54,7 +54,9 @@
               decisiones.
             </p>
 
-            <p>¡Algunos incluso pondrán a prueba tu suerte!</p>
+            <p id="index-suerte">
+              ¡Algunos incluso pondrán a prueba tu suerte!
+            </p>
 
             <p>
               Explorá nuestra colección, elegí el juego que más te guste y poné
@@ -64,12 +66,13 @@
 
           <hr />
 
-          <section id="bienv-juegos">
-            <h3 class="bienv-corona">
+          <section id="index-juegos">
+            <p>
               ♛ Elegí un juego, aprendé sus reglas y tratá de conseguir el mejor
               resultado ♛
-            </h3>
-            <section id="bienv-seccionjuegos">
+            </p>
+
+            <section id="seccion-juegos">
               <a href="cartas.html" class="bienv-tarjetas">
                 <img
                   src="img/logo-piedra-papel-tijera.png"
@@ -95,7 +98,7 @@
               </a>
             </section>
 
-            <p id="gracias">
+            <p>
               <strong
                 >Gracias por disfrutar de nuestra colección de juegos!</strong
               >
@@ -104,13 +107,11 @@
 
           <hr />
 
-          <section id="bienv-accesos">
+          <section id="index-accesos">
             <h3>Accesos Rápidos</h3>
             <div class="btns-accesos">
-              <a href="puntajes.html" id="btn-iniciopuntaje">PUNTAJE</a>
-              <a href="nosotros.html" id="btn-inicionosotros"
-                >CONOCER AL EQUIPO</a
-              >
+              <a href="puntajes.html" class="btns-index">TABLA DE RANKINGS</a>
+              <a href="nosotros.html" class="btns-index">CONOCER AL EQUIPO</a>
             </div>
           </section>
         </div>

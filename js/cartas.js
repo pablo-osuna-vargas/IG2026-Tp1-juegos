@@ -1,16 +1,17 @@
 let pleyerUno;
 let pleyerDos;
 // Referencias a los botones que disparan la acción
-const bntJugar = document.querySelector("#btJugar");
-const bntSiguiente = document.querySelector("#btcSig");
-const bntAtras = document.querySelector("#atras");
-const bntInicio = document.querySelector("#inicio");
+const btnJugar = document.querySelector("#btnJugar");
+const btnReglas = document.querySelector("#btnReglas");
+const bntAtras = document.querySelector("#btnAtras");
+const bntInicio = document.querySelector("#btnInicio");
+
 // Referencias a las secciones que se muestran/ocultan
-const play = document.querySelector("#play");
-const reglas = document.querySelector("#reglas");
+const play = document.querySelector(".portada");
+const reglas = document.querySelector(".reglas");
 const tablero = document.querySelector("#tableroUno");
-const tableroDos = document.querySelector("#tablero-dos");
-const pantallaGanaste = document.querySelector("#ganaste");
+const tableroDos = document.querySelector("#tableroDos");
+const pantallaGanaste = document.querySelector(".fin");
 
 // Referencias a las secciones cartas
 const bntPapel = document.querySelector("#papel");
@@ -35,15 +36,22 @@ const turnoDos = document.querySelector("#turno-dos");
 const ganador = document.querySelector("#ganador");
 
 // 1 Click en "Jugar" -> oculta la pantalla inicial y muestra las reglas
-bntJugar.addEventListener("click", () => {
+btnReglas.addEventListener("click", () => {
   play.style.display = "none";
   reglas.style.display = "block";
 });
 
-// 2 Click en "Siguiente" (dentro de las reglas) -> oculta las reglas y arranca el juego
-bntSiguiente.addEventListener("click", () => {
+bntAtras.addEventListener("click", () => {
   reglas.style.display = "none";
-  tablero.style.display = "block";
+  play.style.display = "";
+});
+
+// 2 Click en "Siguiente" (dentro de las reglas) -> oculta las reglas y arranca el juego
+btnJugar.addEventListener("click", () => {
+  play.style.display = "none";
+  reglas.style.display = "none";
+  tablero.style.display = "flex";
+  tableroDos.style.display = "none";
 
   pleyerUno = prompt("Jugador 1 ingresa tu alias:");
 
@@ -73,8 +81,8 @@ bntSiguiente.addEventListener("click", () => {
     }
   }
 
-  turnoDos.innerText = "Elije " + pleyerDos + " una Carta";
-  turnoUno.innerText = "Elije " + pleyerUno + " una Carta";
+  turnoDos.innerText = `${pleyerDos} elige una carta`;
+  turnoUno.innerText = `${pleyerUno} elige una carta`;
 });
 
 // Juego
@@ -96,14 +104,14 @@ function validador(jugador, carta) {
     console.log("Jugador Uno jugó " + carta);
     console.log(jugadorUno);
     tablero.style.display = "none";
-    tableroDos.style.display = "block";
+    tableroDos.style.display = "flex";
     turnoActual = "Dos";
   } else {
     jugadorDos.push(carta);
     console.log("Jugador Dos jugó " + carta);
     console.log(jugadorDos);
     tableroDos.style.display = "none";
-    tablero.style.display = "block";
+    tablero.style.display = "flex";
     turnoActual = "Uno";
     resolverRonda(jugadorUno.length - 1);
   }
@@ -145,7 +153,7 @@ function resolverRonda(i) {
       { alias: pleyerDos, puntaje: 5 },
     ]);
     ganador.innerText = pleyerUno + " ganó la partida";
-    pantallaGanaste.style.display = "block";
+    pantallaGanaste.style.display = "flex";
     tablero.style.display = "none";
     tableroDos.style.display = "none";
   } else if (contadorJugadorDos === 2) {
@@ -155,7 +163,7 @@ function resolverRonda(i) {
       { alias: pleyerUno, puntaje: 5 },
     ]);
     ganador.innerText = pleyerDos + " ganó la partida";
-    pantallaGanaste.style.display = "block";
+    pantallaGanaste.style.display = "flex";
     tablero.style.display = "none";
     tableroDos.style.display = "none";
   }
@@ -183,13 +191,13 @@ bntTijeraDos.addEventListener("click", function () {
   validador("Dos", "tijera");
 });
 
-bntInicio.addEventListener("click", function () {
-  play.style.display = ""; // recomendacion de la ia para que tome lo del ccs que no lo tomaba
+bntInicio.addEventListener("click", () => {
+  reinicio();
   tableroDos.style.display = "none";
   reglas.style.display = "none";
   tablero.style.display = "none";
   pantallaGanaste.style.display = "none";
-  reinicio();
+  play.style.display = "";
 });
 
 function reinicio() {

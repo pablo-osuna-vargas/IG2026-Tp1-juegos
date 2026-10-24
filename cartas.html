@@ -25,9 +25,9 @@
   </head>
 
   <body>
-    <div class="contenedor">
+    <div id="contenedor">
       <header>
-        <h1>LUDOTERNA</h1>
+        <a href="index.html">LUDOTERNA</a>
         <nav>
           <ul>
             <li><a href="index.html">INICIO</a></li>
@@ -41,18 +41,32 @@
       </header>
 
       <main>
-        <div class="juego">
-          <div id="play">
-            <img src="img/logo-piedra-papel-tijera.png" alt="logo del juego" />
-            <button type="button" id="btJugar">Jugar</button>
+        <div class="tablero">
+          <div class="portada">
+            <img
+              src="img/logo-piedra-papel-tijera.png"
+              alt="Portada Tríada"
+              class="logo-juego"
+            />
+            <div class="portada-btns">
+              <button type="button" id="btnJugar" class="btn-jugar">
+                Jugar
+              </button>
+              <button type="button" id="btnReglas" class="btn-jugar">
+                Reglas
+              </button>
+            </div>
           </div>
 
-          <div id="reglas">
-            <h2>Tríada</h2>
-            <h3>Objetivo:</h3>
-            <p>Ganar dos de las tres rondas para obtener la victoria.</p>
-            <h3>Cómo jugar:</h3>
+          <div class="reglas">
+            <h2>
+              El objetivo es ganar dos de las tres rondas para obtener la
+              victoria.
+            </h2>
 
+            <hr />
+
+            <h3>Cómo jugar:</h3>
             <ol>
               <li>Cada jugador elige una carta en su turno.</li>
               <li>
@@ -71,19 +85,12 @@
               </li>
             </ol>
 
-            <!--Hacer gráfico con la dinámica de piedra papel o tijera
-            
-              <p>
-              <strong>Piedra rompe Tijera</strong> 🪨 > ✂️
-              <strong> Tijera corta Papel </strong>✂️ > 📄
-              <strong>Papel envuelve Piedra </strong>📄 > 🪨
-              </p>
-            -->
-            <button type="button" id="btcSig">Siguiente</button>
+            <button type="button" id="btnAtras">Atrás</button>
           </div>
+
           <div id="tableroUno">
-            <p id="turno"></p>
-            <img src="img/maso.png" alt="imagen del maso del contricario" />
+            <h3 id="turno"></h3>
+            <img src="img/maso.png" alt="Mazo Contrincante (Rojo)" />
             <p id="puntaje">0 vs 0</p>
             <p id="orden"></p>
             <div id="cartas">
@@ -98,9 +105,10 @@
               </button>
             </div>
           </div>
-          <div id="tablero-dos">
-            <p id="turno-dos"></p>
-            <img src="img/maso-dos.png" alt="imagen del maso del contricario" />
+
+          <div id="tableroDos">
+            <h3 id="turno-dos"></h3>
+            <img src="img/maso-dos.png" alt="Mazo Contrincante (Azul)" />
             <p id="puntaje-dos">0 vs 0</p>
             <p id="orden-dos"></p>
             <div id="cartas-dos">
@@ -115,11 +123,12 @@
               </button>
             </div>
           </div>
-          <div id="ganaste">
-            <img src="img/ganaste.png" alt="cartel de ganaste" />
+
+          <div class="fin">
+            <img src="img/ganaste.png" alt="Cartel Felicidades" />
             <h2 id="ganador"></h2>
-            <p>Obtuviste 10 puntos para el Ranking</p>
-            <button type="button" id="inicio">Inicio</button>
+            <p>Obtuviste 10 puntos para el Ranking!</p>
+            <button type="button" id="btnInicio">Inicio</button>
           </div>
         </div>
       </main>
