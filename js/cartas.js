@@ -38,7 +38,7 @@ const ganador = document.querySelector("#ganador");
 // 1 Click en "Jugar" -> oculta la pantalla inicial y muestra las reglas
 btnReglas.addEventListener("click", () => {
   play.style.display = "none";
-  reglas.style.display = "block";
+  reglas.style.display = "flex";
 });
 
 bntAtras.addEventListener("click", () => {

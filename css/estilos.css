@@ -289,6 +289,23 @@ hr {
   border-radius: 10px;
 }
 
+.portada {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reglas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.reglas ul li {
+  margin-left: 2rem;
+}
+
 .logo-juego {
   width: 40%;
 }
@@ -327,6 +344,10 @@ hr {
   border-radius: 5px;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+.fin {
+  display: none;
 }
 
 /* --------------------------------------------------------------------- || TRÍADA || ---------- */
@@ -399,6 +420,13 @@ hr {
   font-weight: bold;
 }
 
+#orden,
+#orden-dos {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 .fin {
   display: flex;
   flex-direction: column;
@@ -407,6 +435,99 @@ hr {
 }
 .fin img {
   width: 50%;
+}
+
+/* --------------------------------------------------------------------- || CADENCIA || ---------- */
+
+#tablero-dados {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+#barra-superior {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  align-items: center;
+  font-size: 20px;
+}
+
+#barra-superior p {
+  margin: 1rem;
+}
+
+#barra-superior div {
+  margin: 1rem 0.5rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+#info-partida,
+#info-jugador,
+#info-dos {
+  display: flex;
+  align-items: center;
+}
+
+#dados {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
+}
+
+#dado1,
+#dado2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+#dados img {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+}
+
+#tirar-dados,
+#sumar,
+#atacar {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #0d0e11;
+  color: #a8753a;
+  border: 1px solid #a8753a;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+#tirar-dados:hover,
+#sumar:hover,
+#atacar:hover {
+  background-color: #a8753a;
+  color: #0d0e11;
+}
+
+#acciones-jugador {
+  display: flex;
+  gap: 2rem;
+}
+
+#suma-dados {
+  font-size: 25px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#tablero-dados {
+  display: none;
 }
 
 /* ============== */

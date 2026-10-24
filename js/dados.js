@@ -12,14 +12,11 @@ let carasDados = [
 let vidaJugador = 30;
 let puntosJugador = 0;
 
-let vidaPC = 30;
-let puntosPC = 0;
+let vidaDos = 30;
+let puntosDos = 0;
 
 let aliasJugadorUno;
 let aliasJugadorDos;
-
-let jugadorPlantado = false;
-let pcPlantada = false;
 
 // VARIABLES DE LOS DADOS
 let dado1 = 0;
@@ -41,8 +38,8 @@ let juegoActivo = false;
 let elementoVidaJugador = document.getElementById("vida-jugador");
 let elementoPuntosJugador = document.getElementById("puntos-jugador");
 
-let elementoVidaPC = document.getElementById("vida-pc");
-let elementoPuntosPC = document.getElementById("puntos-pc");
+let elementoVidaDos = document.getElementById("vida-dos");
+let elementoPuntosDos = document.getElementById("puntos-dos");
 
 let elementoImagenDado1 = document.getElementById("img-dado1");
 let elementoImagenDado2 = document.getElementById("img-dado2");
@@ -54,47 +51,50 @@ let elementoTiempo = document.getElementById("tiempo");
 
 let elementoBotonSumar = document.getElementById("sumar");
 let elementoBotonAtacar = document.getElementById("atacar");
-let elementoBotonPlantarse = document.getElementById("plantarse");
 let elementoBotonTirarDados = document.getElementById("tirar-dados");
-let elementoBotonIniciar = document.getElementById("iniciar-partida");
+let elementoBotonIniciar = document.getElementById("btnJugar");
 
 let elementoTurnoJugador = document.getElementById("info-jugador");
-let elementoTurnoPC = document.getElementById("info-pc");
+let elementoTurnoDos = document.getElementById("info-dos");
 
-const btnAtras = document.querySelector("#btn-atras");
+const btnAtras = document.querySelector("#btnAtras");
 const tablero = document.querySelector("#tablero-dados");
-const bntReglas = document.querySelector("#btn-reglas");
-const pantallaReglas = document.querySelector("#relgas-dado");
+const btnReglas = document.querySelector("#btnReglas");
+const pantallaReglas = document.querySelector(".reglas");
+const pantallaPortada = document.querySelector(".portada");
+const pantallaFin = document.querySelector(".fin");
+const elementoGanador = document.getElementById("ganador");
+const elementoGanadorDados = document.getElementById("ganador-dados");
+const elementoMensajeRanking = pantallaFin.querySelector("p");
+const elementoBotonInicio = document.getElementById("btnInicio");
 
 // TITULOS DE LOS JUGADORES
 const tituloJugadorUno = elementoTurnoJugador.querySelector("h2");
-const tituloJugadorDos = elementoTurnoPC.querySelector("h2");
+const tituloJugadorDos = elementoTurnoDos.querySelector("h2");
 
 // INICIALIZACION DE LA INTERFAZ
-pantallaReglas.style.display = "none";
-
 elementoVidaJugador.textContent = vidaJugador;
 elementoPuntosJugador.textContent = puntosJugador;
-
-elementoVidaPC.textContent = vidaPC;
-elementoPuntosPC.textContent = puntosPC;
+elementoVidaDos.textContent = vidaDos;
+elementoPuntosDos.textContent = puntosDos;
 
 deshabilitarBotones();
 
 // EVENTOS
 elementoBotonSumar.addEventListener("click", elegirSumar);
 elementoBotonAtacar.addEventListener("click", elegirAtacar);
-elementoBotonPlantarse.addEventListener("click", plantarse);
 elementoBotonTirarDados.addEventListener("click", tirarDadosJugador);
 elementoBotonIniciar.addEventListener("click", iniciarJuego);
+elementoBotonInicio.addEventListener("click", volverInicio);
 
-bntReglas.addEventListener("click", function () {
-  tablero.style.display = "none";
-  pantallaReglas.style.display = "block";
+//BOTONES
+btnReglas.addEventListener("click", () => {
+  pantallaPortada.style.display = "none";
+  pantallaReglas.style.display = "flex";
 });
 
 btnAtras.addEventListener("click", function () {
-  tablero.style.display = "block";
+  pantallaPortada.style.display = "flex";
   pantallaReglas.style.display = "none";
 });
 
@@ -142,11 +142,8 @@ function iniciarJuego() {
   vidaJugador = 30;
   puntosJugador = 0;
 
-  vidaPC = 30;
-  puntosPC = 0;
-
-  jugadorPlantado = false;
-  pcPlantada = false;
+  vidaDos = 30;
+  puntosDos = 0;
 
   dado1 = 0;
   dado2 = 0;
@@ -165,8 +162,8 @@ function iniciarJuego() {
   elementoVidaJugador.textContent = vidaJugador;
   elementoPuntosJugador.textContent = puntosJugador;
 
-  elementoVidaPC.textContent = vidaPC;
-  elementoPuntosPC.textContent = puntosPC;
+  elementoVidaDos.textContent = vidaDos;
+  elementoPuntosDos.textContent = puntosDos;
 
   elementoTiempo.textContent = tiempo;
 
@@ -176,6 +173,12 @@ function iniciarJuego() {
 
   elementoImagenDado1.src = "img/dado1.png";
   elementoImagenDado2.src = "img/dado1.png";
+
+  // MOSTRAR EL TABLERO Y OCULTAR LAS OTRAS PANTALLAS
+  pantallaPortada.style.display = "none";
+  pantallaReglas.style.display = "none";
+  tablero.style.display = "flex";
+  pantallaFin.style.display = "none";
 
   // ELEGIR EL NUMERO PROHIBIDO ENTRE 2 Y 12
   numeroProhibido = Math.floor(Math.random() * 11) + 2;
@@ -190,7 +193,6 @@ function iniciarJuego() {
   actualizarTurno();
   actualizarBotonTirarDados();
   actualizarBotonesAccion();
-  actualizarBotonPlantarse();
 }
 
 // TIRAR LOS DOS DADOS
@@ -230,7 +232,6 @@ function cambiarTurno() {
   actualizarTurno();
   actualizarBotonTirarDados();
   actualizarBotonesAccion();
-  actualizarBotonPlantarse();
 }
 
 // SI SALE EL NUMERO PROHIBIDO, SE PIERDE EL TURNO
@@ -241,7 +242,6 @@ function resolverNumeroProhibido() {
     cambiarTurno();
     return true;
   }
-
   return false;
 }
 
@@ -264,18 +264,13 @@ function procesarTurno() {
   if (juegoActivo === false) {
     return;
   }
-
   tirarDados();
-
   if (resolverNumeroProhibido()) {
     return;
   }
-
   aplicarBonus();
-
   elementoResultadoFinal.textContent = resultadoFinal;
   actualizarBotonesAccion();
-  actualizarBotonPlantarse();
 }
 
 // ATACAR AL OPONENTE
@@ -285,58 +280,50 @@ function atacar() {
   }
 
   if (turno === "jugador") {
-    vidaPC = vidaPC - resultadoFinal;
-    elementoVidaPC.textContent = vidaPC;
-
+    vidaDos = vidaDos - resultadoFinal;
+    elementoVidaDos.textContent = vidaDos;
     elementoMensajeDados.textContent =
       aliasJugadorUno + " atacó a " + aliasJugadorDos + ".";
   } else {
     vidaJugador = vidaJugador - resultadoFinal;
     elementoVidaJugador.textContent = vidaJugador;
-
     elementoMensajeDados.textContent =
       aliasJugadorDos + " atacó a " + aliasJugadorUno + ".";
   }
-
   finalizarTurno();
 }
 
 // SUMAR LOS PUNTOS O PERDER EL TURNO SI SE SUPERA 30
+
 function sumarPuntos() {
   if (juegoActivo === false || dadosJugadorTirados === false) {
     return;
   }
-
   if (turno === "jugador") {
-    if (jugadorPlantado === false && puntosJugador + resultadoFinal <= 30) {
+    if (puntosJugador + resultadoFinal <= 30) {
       puntosJugador = puntosJugador + resultadoFinal;
       elementoPuntosJugador.textContent = puntosJugador;
-
       elementoMensajeDados.textContent =
         aliasJugadorUno + " sumó " + resultadoFinal + " puntos.";
     } else {
       elementoMensajeDados.textContent =
-        "No puedes sumar: superarías los 30 puntos o ya te plantaste.";
-
+        "No puedes sumar: superarías los 30 puntos.";
       cambiarTurno();
       return;
     }
   } else {
-    if (pcPlantada === false && puntosPC + resultadoFinal <= 30) {
-      puntosPC = puntosPC + resultadoFinal;
-      elementoPuntosPC.textContent = puntosPC;
-
+    if (puntosDos + resultadoFinal <= 30) {
+      puntosDos = puntosDos + resultadoFinal;
+      elementoPuntosDos.textContent = puntosDos;
       elementoMensajeDados.textContent =
         aliasJugadorDos + " sumó " + resultadoFinal + " puntos.";
     } else {
       elementoMensajeDados.textContent =
-        "No puedes sumar: superarías los 30 puntos o ya te plantaste.";
-
+        "No puedes sumar: superarías los 30 puntos.";
       cambiarTurno();
       return;
     }
   }
-
   finalizarTurno();
 }
 
@@ -348,17 +335,14 @@ function comprobarVictoria() {
       aliasJugadorDos,
       aliasJugadorUno,
     );
-
     return true;
   }
-
-  if (vidaPC <= 0) {
+  if (vidaDos <= 0) {
     finalizarJuego(
       aliasJugadorUno + " ganó la partida.",
       aliasJugadorUno,
       aliasJugadorDos,
     );
-
     return true;
   }
 
@@ -368,20 +352,17 @@ function comprobarVictoria() {
       aliasJugadorUno,
       aliasJugadorDos,
     );
-
     return true;
   }
 
-  if (puntosPC === 30) {
+  if (puntosDos === 30) {
     finalizarJuego(
       aliasJugadorDos + " ganó la partida.",
       aliasJugadorDos,
       aliasJugadorUno,
     );
-
     return true;
   }
-
   return false;
 }
 
@@ -390,7 +371,6 @@ function finalizarTurno() {
   if (comprobarVictoria()) {
     return;
   }
-
   cambiarTurno();
 }
 
@@ -408,34 +388,11 @@ function elegirAtacar() {
   }
 }
 
-// PLANTARSE A PARTIR DE 20 PUNTOS
-function plantarse() {
-  if (juegoActivo === false) {
-    return;
-  }
-
-  if (turno === "jugador" && puntosJugador >= 20 && jugadorPlantado === false) {
-    jugadorPlantado = true;
-
-    elementoMensajeDados.textContent =
-      aliasJugadorUno + " se plantó. Ya no puede sumar puntos.";
-  } else if (turno === "jugadorDos" && puntosPC >= 20 && pcPlantada === false) {
-    pcPlantada = true;
-
-    elementoMensajeDados.textContent =
-      aliasJugadorDos + " se plantó. Ya no puede sumar puntos.";
-  }
-
-  actualizarBotonesAccion();
-  actualizarBotonPlantarse();
-}
-
 // TEMPORIZADOR DE LA PARTIDA
 function actualizarTiempo() {
   if (tiempo > 0 && juegoActivo === true) {
     tiempo = tiempo - 1;
     elementoTiempo.textContent = tiempo;
-
     if (tiempo === 0) {
       finalizarJuego("Se acabó el tiempo. Ambos jugadores pierden.");
     }
@@ -447,50 +404,25 @@ function tirarDadosJugador() {
   if (turno !== "jugador" && turno !== "jugadorDos") {
     return;
   }
-
   if (juegoActivo === true && dadosJugadorTirados === false) {
     dadosJugadorTirados = true;
-
     procesarTurno();
-
     // Si salió el número prohibido, el turno ya cambió.
     // En caso contrario, se habilitan las acciones.
     actualizarBotonTirarDados();
     actualizarBotonesAccion();
-    actualizarBotonPlantarse();
-  }
-}
-
-// HABILITAR EL BOTON PLANTARSE
-function actualizarBotonPlantarse() {
-  if (
-    juegoActivo === true &&
-    turno === "jugador" &&
-    puntosJugador >= 20 &&
-    jugadorPlantado === false
-  ) {
-    elementoBotonPlantarse.disabled = false;
-  } else if (
-    juegoActivo === true &&
-    turno === "jugadorDos" &&
-    puntosPC >= 20 &&
-    pcPlantada === false
-  ) {
-    elementoBotonPlantarse.disabled = false;
-  } else {
-    elementoBotonPlantarse.disabled = true;
   }
 }
 
 // MOSTRAR VISUALMENTE DE QUIEN ES EL TURNO
 function actualizarTurno() {
   elementoTurnoJugador.style.backgroundColor = "";
-  elementoTurnoPC.style.backgroundColor = "";
+  elementoTurnoDos.style.backgroundColor = "";
 
   if (turno === "jugador") {
-    elementoTurnoJugador.style.backgroundColor = "red";
+    elementoTurnoJugador.style.backgroundColor = "#5d8fc4";
   } else {
-    elementoTurnoPC.style.backgroundColor = "red";
+    elementoTurnoDos.style.backgroundColor = "#c45d61";
   }
 }
 
@@ -504,18 +436,11 @@ function actualizarBotonTirarDados() {
 }
 
 // HABILITAR O DESHABILITAR LOS BOTONES DE ACCION
+
 function actualizarBotonesAccion() {
   if (juegoActivo === true && dadosJugadorTirados === true) {
     elementoBotonAtacar.disabled = false;
-
-    if (
-      (turno === "jugador" && jugadorPlantado === false) ||
-      (turno === "jugadorDos" && pcPlantada === false)
-    ) {
-      elementoBotonSumar.disabled = false;
-    } else {
-      elementoBotonSumar.disabled = true;
-    }
+    elementoBotonSumar.disabled = false;
   } else {
     elementoBotonAtacar.disabled = true;
     elementoBotonSumar.disabled = true;
@@ -527,7 +452,6 @@ function deshabilitarBotones() {
   elementoBotonTirarDados.disabled = true;
   elementoBotonSumar.disabled = true;
   elementoBotonAtacar.disabled = true;
-  elementoBotonPlantarse.disabled = true;
 }
 
 // FINALIZAR LA PARTIDA Y GUARDAR LOS PUNTAJES
@@ -544,11 +468,82 @@ function finalizarJuego(mensaje, ganador, perdedor) {
       { alias: ganador, puntaje: 10 },
       { alias: perdedor, puntaje: 5 },
     ]);
+
+    elementoGanador.textContent = mensaje;
+    elementoGanadorDados.textContent = ganador;
+    elementoMensajeRanking.textContent =
+      ganador + " ganó 10 puntos para el ranking.";
+  } else {
+    elementoGanador.textContent = mensaje;
+    elementoGanadorDados.textContent = "";
+    elementoMensajeRanking.textContent =
+      "Se acabó el tiempo: ambos jugadores pierden.";
   }
 
-  alert(mensaje);
+  tablero.style.display = "none";
+  pantallaPortada.style.display = "none";
+  pantallaReglas.style.display = "none";
+  pantallaFin.style.display = "flex";
+}
+
+function volverInicio() {
+  clearInterval(intervaloTiempo);
+  juegoActivo = false;
+
+  pantallaFin.style.display = "none";
+  pantallaReglas.style.display = "none";
+  tablero.style.display = "none";
+  pantallaPortada.style.display = "flex";
+
+  // Reiniciar los valores de la partida
+  vidaJugador = 30;
+  puntosJugador = 0;
+  vidaDos = 30;
+  puntosDos = 0;
+
+  dado1 = 0;
+  dado2 = 0;
+  sumaDados = 0;
+  resultadoFinal = 0;
+  numeroProhibido = 0;
+
+  tiempo = 60;
+  turno = "jugador";
+  dadosJugadorTirados = false;
+
+  // Restaurar los textos
+  elementoVidaJugador.textContent = vidaJugador;
+  elementoPuntosJugador.textContent = puntosJugador;
+  elementoVidaDos.textContent = vidaDos;
+  elementoPuntosDos.textContent = puntosDos;
+  elementoTiempo.textContent = tiempo;
+
+  elementoNumeroProhibido.textContent = "";
+  elementoResultadoFinal.textContent = "";
+  elementoMensajeDados.textContent = "";
+
+  elementoImagenDado1.src = "img/dado1.png";
+  elementoImagenDado2.src = "img/dado1.png";
+
+  tituloJugadorUno.textContent = "Jugador 1";
+  tituloJugadorDos.textContent = "Jugador 2";
+
+  elementoTurnoJugador.style.backgroundColor = "";
+  elementoTurnoDos.style.backgroundColor = "";
+
+  elementoGanador.textContent = "";
+  elementoGanadorDados.textContent = "";
+  elementoMensajeRanking.textContent = "";
+
+  elementoBotonIniciar.disabled = false;
+  deshabilitarBotones();
 }
 
 // ESTADO INICIAL
+pantallaReglas.style.display = "none";
+tablero.style.display = "none";
+pantallaFin.style.display = "none";
+pantallaPortada.style.display = "flex";
+
 elementoBotonIniciar.disabled = false;
 deshabilitarBotones();
