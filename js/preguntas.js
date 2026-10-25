@@ -12,19 +12,23 @@ let puntajeJugador1 = 0;
 let puntajeJugador2 = 0;
 let indice = 0; // índice de pregunta actual
 let finalTrivia = false; // variable bandera para definir fin de juego
+let procesandoRespuesta = false;
+let idPartida = 0;
 
-// Capturas
-const btnEntrar = document.querySelector("#btnEntrar");
+/* Capturas de botones */
 const btnJugar = document.querySelector("#btnJugar");
+const btnReglas = document.querySelector("#btnReglas");
+const btnAtras = document.querySelector("#btnAtras");
 const btnReiniciar = document.querySelector("#btnReiniciar");
-const btnAyuda = document.querySelector("#ayuda");
-const cerrarAyuda = document.querySelector("#cerrarAyuda");
+const btnInicio = document.querySelector("#btnInicio");
 
+/* Capturas de pantallas */
 const portada = document.querySelector(".portada");
-const instrucciones = document.querySelector(".instrucciones");
+const reglas = document.querySelector(".reglas");
 const juego = document.querySelector(".juego");
-const ayuda = document.querySelector(".ayuda");
+const pantallaFin = document.querySelector(".fin");
 
+/* Elementos de la trivia */
 const pregunta = document.querySelector(".pregunta");
 const opciones = document.querySelector(".opciones");
 const mensaje = document.querySelector(".mensaje");
@@ -34,22 +38,26 @@ const alias2 = document.querySelector(".alias2");
 const bloques1 = document.querySelector("#bloques1");
 const bloques2 = document.querySelector("#bloques2");
 
-// Estado inicial de secciones
-portada.style.display = "block"; // se ve primero
-instrucciones.style.display = "none"; // oculto
-juego.style.display = "none"; // oculto
-ayuda.style.display = "none"; // oculto
+/* Elementos de la pantalla final */
+const ganador = document.querySelector("#ganador");
+const mensajeFin = document.querySelector("#mensaje-fin");
 
-// Estado inicial de botones
-btnReiniciar.disabled = true; // deshabilitado hasta que termine la partida
-btnEntrar.disabled = false; // activo
-btnJugar.disabled = false; // activo
-btnAyuda.disabled = false; // activo
-cerrarAyuda.disabled = false; // activo
+/* Estado inicial de las pantallas */
+portada.style.display = "flex";
+reglas.style.display = "none";
+juego.style.display = "none";
+pantallaFin.style.display = "none";
+
+/* Estado inicial de los botones */
+btnReiniciar.disabled = true;
+btnJugar.disabled = false;
+btnReglas.disabled = false;
+btnAtras.disabled = false;
+btnInicio.disabled = false;
 
 // funciones UTILITARIAS
 function mostrar(elemento) {
-  elemento.style.display = "block";
+  elemento.style.display = "flex";
 }
 function ocultar(elemento) {
   elemento.style.display = "none";
@@ -67,8 +75,12 @@ function obtenerAlias(numeroJugador) {
 // FUNCIONES DE JUEGO //
 // ================== //
 async function iniciarJuego() {
+  // Identificar la nueva partida
+  const partidaActual = ++idPartida;
+  procesandoRespuesta = false;
+
   // reset general
-  btnReiniciar.disabled = true;
+  btnReiniciar.disabled = false;
   opciones.innerHTML = "";
   mensaje.innerText = "";
   bloques1.innerHTML = "";
@@ -92,6 +104,7 @@ async function iniciarJuego() {
 
   if (trivia.length === 0) {
     await cargarPreguntasAPI();
+    if (partidaActual !== idPartida) return;
   }
   if (trivia.length === 0) {
     return;
@@ -101,7 +114,7 @@ async function iniciarJuego() {
 
 function mostrarPregunta() {
   indice = Math.floor(Math.random() * trivia.length);
-  pregunta.innerHTML = `<span class="jugadorActual">${obtenerAlias(jugadorActual)}</span>: ${trivia[indice].pregunta}`;
+  pregunta.innerHTML = `<h3><span class="jugadorActual">${obtenerAlias(jugadorActual)}</span>:</h3> <br /> ${trivia[indice].pregunta}`;
 
   opciones.innerHTML = "";
   ["Verdadero", "Falso"].forEach((opcion) => {
@@ -113,11 +126,18 @@ function mostrarPregunta() {
 }
 
 function procesarRespuesta(eleccion) {
-  if (finalTrivia) return; // cortar si el juego ya terminó
+  if (finalTrivia || procesandoRespuesta) return;
 
-  let correcta = trivia[indice].respuesta;
+  procesandoRespuesta = true;
+  const partidaActual = idPartida;
 
-  // recorro el array jugadores para saber cual es del turno actual para poder actualizar su progreso/puntaje
+  // Evitar varias respuestas durante la pausa.
+  opciones.querySelectorAll("button").forEach((boton) => {
+    boton.disabled = true;
+  });
+
+  const correcta = trivia[indice].respuesta;
+
   let jugador;
   jugadores.forEach((j) => {
     if (j.numero === jugadorActual) {
@@ -127,19 +147,30 @@ function procesarRespuesta(eleccion) {
 
   if (eleccion === correcta) {
     jugador.progreso++;
-    mensaje.innerText = "✅ Correcto";
+    mensaje.innerText = "✅ Correcto!";
     jugadorActual === 1 ? puntajeJugador1++ : puntajeJugador2++;
 
     if (jugador.progreso >= colores.length - 1) {
-      mensaje.innerText = obtenerAlias(jugadorActual) + " ganó la trivia!";
       dibujarBloque(jugadorActual, "blanco");
-      terminarJuego();
+
+      setTimeout(function () {
+        if (partidaActual !== idPartida) return;
+
+        terminarJuego(jugadorActual);
+      }, 2000);
+
       return;
-    } else {
-      mensaje.innerText += " Continúa...";
-      dibujarBloque(jugadorActual, colores[jugador.progreso]);
-      mostrarPregunta();
     }
+
+    dibujarBloque(jugadorActual, colores[jugador.progreso]);
+
+    setTimeout(function () {
+      if (partidaActual !== idPartida) return;
+
+      mensaje.innerText = "";
+      procesandoRespuesta = false;
+      mostrarPregunta();
+    }, 2000);
   } else {
     jugador.progreso--;
     pregunta.innerText = "";
@@ -147,19 +178,36 @@ function procesarRespuesta(eleccion) {
     jugadorActual === 1 ? puntajeJugador1-- : puntajeJugador2--;
 
     if (jugador.progreso <= 0) {
-      mensaje.innerText = obtenerAlias(jugadorActual) + " perdió la trivia!";
-      // vaciar contenedor y dibujar bloque negro
-      let contenedor = document.querySelector(`#bloques${jugadorActual}`);
+      const contenedor = document.querySelector(`#bloques${jugadorActual}`);
+
       contenedor.innerHTML = "";
       dibujarBloque(jugadorActual, "negro");
-      terminarJuego();
+
+      const numeroGanador = jugadorActual === 1 ? 2 : 1;
+
+      mensaje.innerText =
+        "❌ Incorrecto. " + obtenerAlias(jugadorActual) + " perdió la partida.";
+
+      setTimeout(function () {
+        if (partidaActual !== idPartida) return;
+
+        terminarJuego(numeroGanador);
+      }, 3000);
+
       return;
-    } else {
-      mensaje.innerText += " Cambio de turno...";
-      quitarBloque(jugadorActual);
-      cambiarTurno();
-      mostrarPregunta();
     }
+
+    mensaje.innerText = "❌ Incorrecto. Cambio de turno...";
+    quitarBloque(jugadorActual);
+
+    setTimeout(function () {
+      if (partidaActual !== idPartida) return;
+
+      cambiarTurno();
+      mensaje.innerText = "";
+      procesandoRespuesta = false;
+      mostrarPregunta();
+    }, 2000);
   }
 }
 
@@ -181,13 +229,23 @@ function cambiarTurno() {
   jugadorActual = jugadorActual === 1 ? 2 : 1;
 }
 
-function terminarJuego() {
+function terminarJuego(numeroGanador) {
+  finalTrivia = true;
   opciones
     .querySelectorAll("button")
     .forEach((boton) => (boton.disabled = true));
-  btnReiniciar.disabled = false;
+  btnReiniciar.disabled = true;
+  const aliasGanador = obtenerAlias(numeroGanador);
+  const puntajeGanador =
+    numeroGanador === 1 ? puntajeJugador1 : puntajeJugador2;
+  ganador.textContent = "¡" + aliasGanador + " ganó la trivia!";
+  mensajeFin.textContent =
+    "Obtuvo " + puntajeGanador + " puntos para el ranking.";
   guardarResultados();
-  finalTrivia = true;
+  ocultar(portada);
+  ocultar(reglas);
+  ocultar(juego);
+  mostrar(pantallaFin);
 }
 
 // =================================================================================== //
@@ -223,15 +281,22 @@ function guardarResultados() {
   puntajeJugador2 = 0;
 }
 
-// ======= //
-// EVENTOS //
-// ======= //
-btnEntrar.addEventListener("click", () => {
+/* ================== */
+/* EVENTOS DE NAVEGACIÓN */
+/* ================== */
+
+btnReglas.addEventListener("click", () => {
   ocultar(portada);
-  mostrar(instrucciones);
+  mostrar(reglas);
 });
-btnJugar.addEventListener("click", () => {
-  aliasJugador1 = prompt("Jugador 1 ingresa tu alias:");
+
+btnAtras.addEventListener("click", () => {
+  ocultar(reglas);
+  mostrar(portada);
+});
+
+btnJugar.addEventListener("click", async () => {
+  aliasJugador1 = prompt("Jugador 1, ingresá tu alias:");
 
   if (aliasJugador1 === null || aliasJugador1.trim() === "") {
     aliasJugador1 = "Jugador 1";
@@ -239,13 +304,20 @@ btnJugar.addEventListener("click", () => {
     aliasJugador1 = aliasJugador1.trim();
   }
 
-  aliasJugador2 = prompt("Jugador 2 ingresa tu alias:");
+  aliasJugador2 = prompt("Jugador 2, ingresá tu alias:");
 
   if (aliasJugador2 === null || aliasJugador2.trim() === "") {
     aliasJugador2 = "Jugador 2";
+
+    while (aliasJugador1.toLowerCase() === aliasJugador2.toLowerCase()) {
+      aliasJugador2 = "Jugador 2 (" + numeroAliasAlternativo + ")";
+      numeroAliasAlternativo++;
+    }
   } else {
     aliasJugador2 = aliasJugador2.trim();
   }
+
+  let numeroAliasAlternativo = 1;
 
   while (aliasJugador1.toLowerCase() === aliasJugador2.toLowerCase()) {
     alert("Los jugadores no pueden tener el mismo alias.");
@@ -253,7 +325,8 @@ btnJugar.addEventListener("click", () => {
     aliasJugador2 = prompt("Jugador 2, ingresá un alias diferente:");
 
     if (aliasJugador2 === null || aliasJugador2.trim() === "") {
-      aliasJugador2 = "Jugador 2";
+      aliasJugador2 = "Jugador 2 (" + numeroAliasAlternativo + ")";
+      numeroAliasAlternativo++;
     } else {
       aliasJugador2 = aliasJugador2.trim();
     }
@@ -262,17 +335,19 @@ btnJugar.addEventListener("click", () => {
   alias1.innerText = aliasJugador1;
   alias2.innerText = aliasJugador2;
 
-  ocultar(instrucciones);
+  ocultar(portada);
+  ocultar(reglas);
+  ocultar(pantallaFin);
   mostrar(juego);
 
-  iniciarJuego();
-  btnReiniciar.disabled = true; // sigue deshabilitado durante la partida
+  await iniciarJuego();
 });
 
-btnReiniciar.addEventListener("click", () => iniciarJuego());
-btnAyuda.addEventListener("click", () =>
-  mostrar(document.querySelector(".ayuda")),
-);
-cerrarAyuda.addEventListener("click", () =>
-  ocultar(document.querySelector(".ayuda")),
-);
+btnReiniciar.addEventListener("click", iniciarJuego);
+
+btnInicio.addEventListener("click", () => {
+  ocultar(pantallaFin);
+  ocultar(juego);
+  ocultar(reglas);
+  mostrar(portada);
+});

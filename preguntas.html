@@ -23,6 +23,7 @@
 
     <title>CRESCENDO - Ludoterna</title>
   </head>
+
   <body>
     <div id="contenedor">
       <header>
@@ -40,91 +41,52 @@
       </header>
 
       <main>
-        <div class="trivia">
+        <div class="tablero">
           <div class="portada">
-            <img src="img/planeta-musica.png" alt="logo-trivia-grande" />
-
-            <hr />
-
-            <button type="button" id="btnEntrar">Entrar</button>
-          </div>
-
-          <div class="instrucciones">
             <img
               src="img/planeta-musica.png"
-              alt="logo-trivia-pequenio"
-              width="15%"
+              alt="Portada Crescendo"
+              class="logo-juego"
             />
-            <p>
-              Planeta Música es una trivia de preguntas y respuestas
-              Verdadero/Falso para 2 jugadores
-            </p>
+            <div class="portada-btns">
+              <button type="button" id="btnJugar" class="btn-jugar">
+                Jugar
+              </button>
+              <button type="button" id="btnReglas" class="btn-jugar">
+                Reglas
+              </button>
+            </div>
+          </div>
+
+          <div class="reglas">
+            <h2>
+              El objetivo es llegar al máximo de volumen acertando las preguntas
+              de verdadero/falso.
+            </h2>
 
             <hr />
 
-            <ul>
-              <li><strong>Objetivo</strong></li>
-              <br />
-              <li>Llegar al máximo de volumen!</li>
-              <li>Responde Verdadero/Falso</li>
+            <h3>Cómo jugar:</h3>
+            <ol>
               <li>
-                Acumula respuestas correctas para subir el volumen! (bloques de
+                Acumula respuestas correctas para subir el volumen! (Bloques de
                 colores)
               </li>
-              <li>si llegas al máximo ganas (bloque Blanco)</li>
-              <li>si bajas al mínimo pierdes (bloque Negro)</li>
-              <li>+1 punto x respuesta correcta</li>
-              <li>-1 punto x respuesta incorrecta</li>
-              <li>Podrán ver su ranking en la página de Puntajes</li>
-            </ul>
+              <li>Si llegas al máximo ganas (Bloque Blanco)</li>
+              <li>Si bajas al mínimo pierdes (Bloque Negro)</li>
+              <li>Sumas 1 punto en el ranking por cada respuesta correcta.</li>
+              <li>
+                Pierdes 1 punto en el ranking por cada respuesta incorrecta.
+              </li>
+            </ol>
 
-            <hr />
-
-            <button type="button" id="btnJugar">Jugar</button>
+            <button type="button" id="btnAtras">Atrás</button>
           </div>
 
           <div class="juego">
-            <div class="logo">
-              <img
-                src="img/planeta-musica.png"
-                alt="logo-trivia-pequenio"
-                width="15%"
-              />
-            </div>
-
-            <div class="ayuda">
-              <img
-                src="img/planeta-musica.png"
-                alt="logo-trivia-pequenio"
-                width="15%"
-              />
-              <p>
-                Planeta Música es una trivia de preguntas y respuestas
-                Verdadero/Falso para 2 jugadores
-              </p>
-              <br />
-              <ul>
-                <li><strong>Objetivo</strong></li>
-                <br />
-                <li>Llegar al máximo de volumen!</li>
-                <li>Responde Verdadero/Falso</li>
-                <li>
-                  Acumula respuestas correctas para subir el volumen! (bloques
-                  de colores)
-                </li>
-                <li>si llegas al máximo ganas (bloque Blanco)</li>
-                <li>si bajas al mínimo pierdes (bloque Negro)</li>
-                <li>+1 punto x respuesta correcta</li>
-                <li>-1 punto x respuesta incorrecta</li>
-                <li>Podrán ver su ranking en la página de Puntajes</li>
-              </ul>
-              <button type="button" id="cerrarAyuda">Cerrar</button>
-            </div>
-
             <div class="interfaz">
               <section class="tablero1">
                 <div class="botones">
-                  <button type="button" id="ayuda">Ayuda</button>
                   <button id="btnReiniciar">Reiniciar</button>
                 </div>
 
@@ -149,6 +111,13 @@
                 </div>
               </section>
             </div>
+          </div>
+
+          <div class="fin">
+            <img src="img/ganaste.png" alt="Resultado de la partida" />
+            <h2 id="ganador"></h2>
+            <p id="mensaje-fin"></p>
+            <button type="button" id="btnInicio">Inicio</button>
           </div>
         </div>
       </main>

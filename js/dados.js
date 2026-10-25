@@ -28,11 +28,14 @@ let resultadoFinal = 0;
 let numeroProhibido = 0;
 
 // VARIABLES DEL TIEMPO Y DEL TURNO
-let tiempo = 60;
+let tiempo = 120;
 let intervaloTiempo;
 
 let turno = "jugador";
 let juegoActivo = false;
+
+let procesandoAccion = false;
+let idPartida = 0;
 
 // CAPTURA DE ELEMENTOS DEL HTML
 let elementoVidaJugador = document.getElementById("vida-jugador");
@@ -100,6 +103,9 @@ btnAtras.addEventListener("click", function () {
 
 // INICIAR UNA PARTIDA NUEVA
 function iniciarJuego() {
+  idPartida++;
+  procesandoAccion = false;
+
   // SOLICITUD DE ALIASES
   aliasJugadorUno = prompt("Jugador 1 ingresa tu alias:");
 
@@ -151,7 +157,7 @@ function iniciarJuego() {
   resultadoFinal = 0;
   dadosJugadorTirados = false;
 
-  tiempo = 60;
+  tiempo = 120;
   turno = "jugador";
   juegoActivo = true;
 
@@ -260,17 +266,48 @@ function aplicarBonus() {
 }
 
 // PROCESAR EL LANZAMIENTO DE LOS DADOS
+
 function procesarTurno() {
-  if (juegoActivo === false) {
+  if (juegoActivo === false || procesandoAccion === true) {
     return;
   }
+
+  procesandoAccion = true;
+
+  // Tirar los dados y mostrar el resultado.
   tirarDados();
-  if (resolverNumeroProhibido()) {
+  elementoResultadoFinal.textContent = "";
+  const partidaActual = idPartida;
+
+  // Comprobar si salió el número prohibido.
+  if (comprobarNumeroProhibido()) {
+    elementoMensajeDados.textContent = "¡Número prohibido! Pierdes el turno.";
+
+    setTimeout(function () {
+      if (partidaActual !== idPartida || juegoActivo === false) {
+        return;
+      }
+
+      procesandoAccion = false;
+      cambiarTurno();
+    }, 1000);
+
     return;
   }
+
+  // Calcular el resultado, incluido el bonus por dobles.
   aplicarBonus();
   elementoResultadoFinal.textContent = resultadoFinal;
-  actualizarBotonesAccion();
+
+  // Esperar antes de permitir elegir una acción.
+  setTimeout(function () {
+    if (partidaActual !== idPartida || juegoActivo === false) {
+      return;
+    }
+
+    procesandoAccion = false;
+    actualizarBotonesAccion();
+  }, 1000);
 }
 
 // ATACAR AL OPONENTE
@@ -438,7 +475,11 @@ function actualizarBotonTirarDados() {
 // HABILITAR O DESHABILITAR LOS BOTONES DE ACCION
 
 function actualizarBotonesAccion() {
-  if (juegoActivo === true && dadosJugadorTirados === true) {
+  if (
+    juegoActivo === true &&
+    dadosJugadorTirados === true &&
+    procesandoAccion === false
+  ) {
     elementoBotonAtacar.disabled = false;
     elementoBotonSumar.disabled = false;
   } else {
@@ -487,6 +528,9 @@ function finalizarJuego(mensaje, ganador, perdedor) {
 }
 
 function volverInicio() {
+  idPartida++;
+  procesandoAccion = false;
+
   clearInterval(intervaloTiempo);
   juegoActivo = false;
 
@@ -507,7 +551,7 @@ function volverInicio() {
   resultadoFinal = 0;
   numeroProhibido = 0;
 
-  tiempo = 60;
+  tiempo = 120;
   turno = "jugador";
   dadosJugadorTirados = false;
 

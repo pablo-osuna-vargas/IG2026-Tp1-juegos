@@ -22,7 +22,7 @@ Versión del popular juego "Piedra, papel o tijera".
 
 #### PROCESO:
 
-1. Cada jugador elije una carta cliqueando sobre ella, una vez cliqueadas la carta de cada jugador se comparan y se muestra el resultado en pantalla.
+1. Cada jugador elige una carta cliqueando sobre ella, una vez cliqueadas la carta de cada jugador se comparan y se muestra el resultado en pantalla.
 2. Se declara ganador al mejor de 3 rondas mostrando un mensaje de felicitaciones en una nueva pantalla.
 3. El ganador recibe 10 puntos que se acumulan en el ranking de Puntajes, el perdedor obtiene 5 puntos.
 
@@ -37,7 +37,7 @@ Versión del popular juego "Piedra, papel o tijera".
 
 ### CADENCIA (Juego de dados):
 
-> Se eligió el nombre **"Cadencia"** porque es un término musical que hace referencia a una sucesión o progresión de sonidos y acordes. Este concepto se relaciona con la dinámica del juego, en el que los turnos se suceden y cada jugador debe tomar decisiones estratégicas entre atacar, sumar puntos o plantarse. Además, el límite de 60 segundos aporta un ritmo constante a la partida, reforzando la relación entre el nombre elegido y la temática musical del sitio.
+> Se eligió el nombre **"Cadencia"** porque es un término musical que hace referencia a una sucesión o progresión de sonidos y acordes. Este concepto se relaciona con la dinámica del juego, en el que los turnos se suceden y cada jugador debe tomar decisiones estratégicas entre atacar o sumar puntos. Además, el límite de 60 segundos aporta un ritmo constante a la partida, reforzando la relación entre el nombre elegido y la temática musical del sitio.
 
 #### PROCESO:
 
@@ -48,7 +48,7 @@ Versión del popular juego "Piedra, papel o tijera".
 
 #### CORRECCIONES:
 
-- **PROBLEMA:** La primera versión del juego estaba pensado para que una persona compitiera contra la computadora y no coincidía con el modo de juego para 2 persona de los otros juegos en el sitio.
+- **PROBLEMA:** La primera versión del juego estaba pensada para que una persona compitiera contra la computadora y no coincidía con el modo de juego para 2 personas de los otros juegos en el sitio.
   - **Solución:** Se reemplazó el modo de juego contra pc con un nuevo modo de juego para dos presonas. De esta manera, dos personas pueden enfrentarse entre sí y participar de la misma partida.
 - **PROBLEMA:** Era necesario identificar a cada jugador mediante su alias para distinguirlos durante la partida y registrar sus resultados correctamente.
   - **Solución:** Se adaptó el sistema de aliases para que cada jugador pueda ser identificado de forma independiente.
@@ -125,7 +125,6 @@ Juego de preguntas y respuestas Verdadero o Falso sobre música internacional en
 
 - Lanzamiento de dos dados por turno y elección entre atacar al oponente o sumar puntos.
 - Bonificación por obtener dados iguales y pérdida del turno al obtener el número prohibido.
-- Opción de plantarse a partir de los 20 puntos.
 - Límite de tiempo de 60 segundos y condiciones de victoria según los puntos acumulados o la vida del oponente.
 
 **Crescendo**
@@ -179,27 +178,28 @@ Se utilizaron GitHub Copilot, Claude y ChatGPT como herramientas de asistencia d
 - Los clics repetidos disparaban más de una ronda y desordenaban el contador.
 - La condición para determinar el ganador no lo estaba detectando.
 
-##### Soluciones:
+#### Correcciones realizadas:
 
-- Reescribir las reglas para que se entiendan a primera vista.
-- Reemplazar la condición del if por el numero límite.
-  > if (contadorJugadorUno === 3) y if (contadorJugadorDos === 3).
+-Se reescribieron las reglas para explicar las opciones, las rondas y las condiciones de victoria.
+-Se corrigió la condición de finalización de la partida.
+-Se estableció que gana quien consigue dos rondas, dentro de una partida al mejor de tres.
+-Se ajustó la lógica de selección y resolución de las rondas.
 
 #### Crescendo
 
 ##### Problemas detectados:
 
-- Prompt de nombres/alias de jugador permite dejar vacíos los campos y queda aliasJugador = null. Podría hacerse una nueva verificación si están los campos vacíos y pedir de nuevo (pendiente) o dejar "Jugador1" y "Jugador2" como default
+- Prompt de nombres/alias de jugador permite dejar vacíos los campos y queda aliasJugador = null. Podría hacerse una nueva verificación si están los campos vacíos y pedir de nuevo (pendiente) o dejar "Jugador 1" y "Jugador 2" como default
 - Campos de input para respuesta: como eran completados por el usuario a veces había respuestas escritas verificadas como correctas y a veces con números el programa las tomaba incorrectas (ej.: lados de un triángulo? "tres" era correcta y "3" no lo era)
 - Si por un "missclick" el usuario dejaba el campo vacío perdía el turno. Podrían hacerse botones en lugar de inputs y su verificación
 - Estilos de trivia: centrar logo, botones. Ajustar "ul" para mejor visibilidad en Ayuda (pendiente)
 
 ##### Soluciones:
 
-- Se implementó un sistema de alias predeterminados (Jugador1 y Jugador2) para evitar valores nulos cuando los campos de nombre se dejan vacíos. (21/10)
+- Se implementó un sistema de alias predeterminados (Jugador 1 y Jugador 2) para evitar valores nulos cuando los campos de nombre se dejan vacíos. (21/10)
 - Se implementó la API final (OpenTrivia) con fetching de preguntas con respuestas correcta-incorrecta (verdadero-falso) y generar las opciones de botones correspondientes.
 
-> Un gran inconveniente fue intentar usar inicialmente la API "MusicBrainz" que si bien es específica para música rock internacional, los endpoints a los que pedíamos datos nos resultaron muy complejos de leer para capturar los valores precisos dentro de cada objeto devuelto para crear dinámicamente las preguntas de la Trivia. La mayoría de las veces nos arrojaban datos "genre" o "empty" al capturar valores de "name" o de "releases". Intentamos filtrar mas generalmente con "music" en general pero el resultado fue el contrario al esperado volviéndose demasiado extenso cada array dentro de los "results" (fechas de lanzamiento de álbum se mezclaban con fechas de grabaciones; nombres de álbumes se mezclaban con nombres de artistas y casos por el estilo). Idealmente nos hubiera gustado hacer uso de esta API y lograr una captura más precisa pero decidimos enfocarnos en resolver la funcionalidad del programa para cumplir con los requisitos del tp.
+> Un gran inconveniente fue intentar usar inicialmente la API "MusicBrainz" que si bien es específica para música rock internacional, los endpoints a los que pedíamos datos nos resultaron muy complejos de leer para capturar los valores precisos dentro de cada objeto devuelto para crear dinámicamente las preguntas de la Trivia. La mayoría de las veces nos arrojaban datos "genre" o "empty" al capturar valores de "name" o de "releases". Intentamos filtrar de manera general con "music" pero el resultado fue el contrario al esperado volviéndose demasiado extenso cada array dentro de los "results" (fechas de lanzamiento de álbum se mezclaban con fechas de grabaciones; nombres de álbumes se mezclaban con nombres de artistas y casos por el estilo). Idealmente nos hubiera gustado hacer uso de esta API y lograr una captura más precisa pero decidimos enfocarnos en resolver la funcionalidad del programa para cumplir con los requisitos del tp.
 
 ### (IMPLEMENTACIÓN) Unificación del guardado de puntajes:
 
@@ -216,11 +216,11 @@ Se utilizaron GitHub Copilot, Claude y ChatGPT como herramientas de asistencia d
 
 ##### CSS y LAYOUT:
 
-- [ ] Unificación de los estilos y estética general del sitio.
-- [ ] Usar el mismo formato para los 3 juegos (Portada, Instrucciones, Reglas y Tablero)
-- [ ] Destacar cartas elegidas y ocultar las otras en Tríada. Mejor distinción de turnos.
-- [ ] Hacer un tablero en Cadencia.
-- [ ] Corregir visibilidad de los mensajes de correcto e incorrecto en Crescendo, hacer cambio de turno y mensajes de ganar o perder (Organizarlos y hacer un sistema para que se vea uno a la vez, con delay)
+- [x] Unificación de los estilos y estética general del sitio.
+- [x] Usar el mismo formato para los 3 juegos (Portada, Instrucciones, Reglas y Tablero)
+- [x] Destacar cartas elegidas y ocultar las otras en Tríada. Mejor distinción de turnos.
+- [x] Hacer un tablero en Cadencia.
+- [x] Corregir visibilidad de los mensajes de correcto e incorrecto en Crescendo, hacer cambio de turno y mensajes de ganar o perder (Organizarlos y hacer un sistema para que se vea uno a la vez, con delay)
 
 ##### INFO:
 
@@ -232,12 +232,12 @@ Se utilizaron GitHub Copilot, Claude y ChatGPT como herramientas de asistencia d
 - [x] TRÍADA: Corregir "undefined" en el mensaje "elige una carta".
 - [x] CADENCIA: falta el localStorage para usar en la pagina de Puntajes. Cambiar a dos jugadores humanos para que se conserve el mismo modo de jugar entre 2 personas.
 - [x] CRESCENDO: "Jugador 1" y "Jugador 2" deberían usar los datos del prompt ingresados al inicio de la trivia.
-- [x] La lógica de localStorage (cartas, trivia y eventualmente dados) se repite x cada jugador. Habría que unificar y hacer una lógica que pueda cargar tanto si es uno, dos o mas jugadores.
+- [x] La lógica de localStorage (cartas, trivia y eventualmente dados) se repite x cada jugador. Habría que unificar y hacer una lógica que pueda cargar tanto si es uno, dos o más jugadores.
 
 ##### README:
 
-- [x] Editar y distinguir títulos, subtítulos, párrafos para que sea mas legible
+- [x] Editar y distinguir títulos, subtítulos, párrafos para que sea más legible
 - [x] Integrar todos los "pendientes" y "bugs" que hayan quedado al momento de la entrega
-- [x] Comentar brevemente las mejoras mas significativas
+- [x] Comentar brevemente las mejoras más significativas
 - [x] Corregir tecnologias usadas
 - [x] Corregir Declaración IA.

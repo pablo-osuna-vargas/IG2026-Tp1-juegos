@@ -48,6 +48,7 @@ bntAtras.addEventListener("click", () => {
 
 // 2 Click en "Siguiente" (dentro de las reglas) -> oculta las reglas y arranca el juego
 btnJugar.addEventListener("click", () => {
+  idPartida++;
   play.style.display = "none";
   reglas.style.display = "none";
   tablero.style.display = "flex";
@@ -69,6 +70,8 @@ btnJugar.addEventListener("click", () => {
     pleyerDos = pleyerDos.trim();
   }
 
+  let numeroAliasAlternativo = 1;
+
   while (pleyerUno.toLowerCase() === pleyerDos.toLowerCase()) {
     alert("Los jugadores no pueden tener el mismo alias.");
 
@@ -76,6 +79,11 @@ btnJugar.addEventListener("click", () => {
 
     if (pleyerDos === null || pleyerDos.trim() === "") {
       pleyerDos = "Jugador 2";
+
+      while (pleyerUno.toLowerCase() === pleyerDos.toLowerCase()) {
+        pleyerDos = "Jugador 2 (" + numeroAliasAlternativo + ")";
+        numeroAliasAlternativo++;
+      }
     } else {
       pleyerDos = pleyerDos.trim();
     }
@@ -92,33 +100,55 @@ let contadorJugadorUno = 0;
 let contadorJugadorDos = 0;
 let juegoTerminado = false;
 let turnoActual = "Uno";
+let procesandoRonda = false;
+let idPartida = 0;
 
-function validador(jugador, carta) {
-  // Evita jugar si la partida terminó o no es el turno del jugador
-  if (juegoTerminado || jugador !== turnoActual) {
+function validador(jugador, carta, boton) {
+  // No permite jugar durante una pausa, después del final
+  // o cuando no le corresponde el turno a ese jugador.
+  if (juegoTerminado || procesandoRonda || jugador !== turnoActual) {
     return;
   }
 
+  procesandoRonda = true;
+
+  // Marcamos la carta que eligió el jugador.
+  boton.classList.add("carta-seleccionada");
+
+  const partidaActual = idPartida;
+
   if (jugador === "Uno") {
     jugadorUno.push(carta);
-    console.log("Jugador Uno jugó " + carta);
-    console.log(jugadorUno);
-    tablero.style.display = "none";
-    tableroDos.style.display = "flex";
-    turnoActual = "Dos";
+
+    setTimeout(function () {
+      if (partidaActual !== idPartida) {
+        return;
+      }
+
+      tablero.style.display = "none";
+      tableroDos.style.display = "flex";
+      turnoActual = "Dos";
+      procesandoRonda = false;
+    }, 2000);
   } else {
     jugadorDos.push(carta);
-    console.log("Jugador Dos jugó " + carta);
-    console.log(jugadorDos);
-    tableroDos.style.display = "none";
-    tablero.style.display = "flex";
-    turnoActual = "Uno";
-    resolverRonda(jugadorUno.length - 1);
+
+    setTimeout(function () {
+      if (partidaActual !== idPartida) {
+        return;
+      }
+
+      tableroDos.style.display = "none";
+      tablero.style.display = "flex";
+      turnoActual = "Uno";
+
+      resolverRonda(jugadorUno.length - 1, partidaActual);
+    }, 2000);
   }
 }
 
-// Función que compara las dos cartas de esa ronda y muestra el resultado
-function resolverRonda(i) {
+// Compara las cartas de ambos jugadores y muestra el resultado.
+function resolverRonda(i, partidaActual) {
   const cartaA = jugadorUno[i];
   const cartaB = jugadorDos[i];
   let resultado;
@@ -127,68 +157,113 @@ function resolverRonda(i) {
     resultado = "Empate: los dos jugaron " + cartaA;
   } else if (cartaA === "piedra" && cartaB === "tijera") {
     contadorJugadorUno++;
-    resultado = "Gano la ronda " + pleyerUno + " : piedra rompe tijera";
+    resultado = "Ganó la ronda " + pleyerUno + ": piedra rompe tijera";
   } else if (cartaA === "papel" && cartaB === "piedra") {
     contadorJugadorUno++;
-    resultado = "Gano la ronda " + pleyerUno + ": papel envuelve piedra";
+    resultado = "Ganó la ronda " + pleyerUno + ": papel envuelve piedra";
   } else if (cartaA === "tijera" && cartaB === "papel") {
     contadorJugadorUno++;
-    resultado = "Gano la ronda " + pleyerUno + " : tijera corta papel";
+    resultado = "Ganó la ronda " + pleyerUno + ": tijera corta papel";
   } else {
     contadorJugadorDos++;
     resultado =
-      "Gano la ronda " + pleyerDos + " : " + cartaB + " le gana a " + cartaA;
+      "Ganó la ronda " + pleyerDos + ": " + cartaB + " le gana a " + cartaA;
   }
 
   console.log(resultado);
+
   resultadoUno.innerText = resultado;
   resultadoDos.innerText = resultado;
+
   puntaje.innerText = contadorJugadorUno + " vs " + contadorJugadorDos;
   puntajeDos.innerText = contadorJugadorUno + " vs " + contadorJugadorDos;
 
+  // Comprueba si alguien ganó la partida.
+  let ganadorPartida = "";
+
   if (contadorJugadorUno === 2) {
+    ganadorPartida = pleyerUno;
     juegoTerminado = true;
-    guardarPuntajes("rankingPiedraPapel", [
-      { alias: pleyerUno, puntaje: 10 },
-      { alias: pleyerDos, puntaje: 5 },
-    ]);
-    ganador.innerText = pleyerUno + " ganó la partida";
-    pantallaGanaste.style.display = "flex";
-    tablero.style.display = "none";
-    tableroDos.style.display = "none";
   } else if (contadorJugadorDos === 2) {
+    ganadorPartida = pleyerDos;
     juegoTerminado = true;
-    guardarPuntajes("rankingPiedraPapel", [
-      { alias: pleyerDos, puntaje: 10 },
-      { alias: pleyerUno, puntaje: 5 },
-    ]);
-    ganador.innerText = pleyerDos + " ganó la partida";
-    pantallaGanaste.style.display = "flex";
-    tablero.style.display = "none";
-    tableroDos.style.display = "none";
   }
+
+  // El resultado queda visible durante 2 segundos.
+  setTimeout(function () {
+    if (partidaActual !== idPartida) {
+      return;
+    }
+
+    // Si alguien ganó, guardamos los puntajes y mostramos el final.
+    if (ganadorPartida !== "") {
+      if (ganadorPartida === pleyerUno) {
+        guardarPuntajes("rankingPiedraPapel", [
+          { alias: pleyerUno, puntaje: 10 },
+          { alias: pleyerDos, puntaje: 5 },
+        ]);
+      } else {
+        guardarPuntajes("rankingPiedraPapel", [
+          { alias: pleyerDos, puntaje: 10 },
+          { alias: pleyerUno, puntaje: 5 },
+        ]);
+      }
+
+      ganador.innerText = ganadorPartida + " ganó la partida";
+      pantallaGanaste.style.display = "flex";
+      tablero.style.display = "none";
+      tableroDos.style.display = "none";
+      return;
+    }
+
+    // Si todavía no terminó, preparamos la siguiente ronda.
+    limpiarCartasSeleccionadas();
+
+    resultadoUno.innerText = "";
+    resultadoDos.innerText = "";
+
+    turnoUno.innerText = pleyerUno + " elige una carta";
+    turnoDos.innerText = pleyerDos + " elige una carta";
+
+    procesandoRonda = false;
+  }, 2000);
 }
 
-// botones de cartas primer jugador
+// Quita el borde de todas las cartas.
+function limpiarCartasSeleccionadas() {
+  bntPapel.classList.remove("carta-seleccionada");
+  bntRoca.classList.remove("carta-seleccionada");
+  bntTijera.classList.remove("carta-seleccionada");
+
+  bntPapelDos.classList.remove("carta-seleccionada");
+  bntRocaDos.classList.remove("carta-seleccionada");
+  bntTijeraDos.classList.remove("carta-seleccionada");
+}
+
+// Botones de cartas del primer jugador
 bntPapel.addEventListener("click", function () {
-  validador("Uno", "papel");
-});
-bntRoca.addEventListener("click", function () {
-  validador("Uno", "piedra");
-});
-bntTijera.addEventListener("click", function () {
-  validador("Uno", "tijera");
+  validador("Uno", "papel", bntPapel);
 });
 
-// botones segundo jugador
+bntRoca.addEventListener("click", function () {
+  validador("Uno", "piedra", bntRoca);
+});
+
+bntTijera.addEventListener("click", function () {
+  validador("Uno", "tijera", bntTijera);
+});
+
+// Botones de cartas del segundo jugador
 bntPapelDos.addEventListener("click", function () {
-  validador("Dos", "papel");
+  validador("Dos", "papel", bntPapelDos);
 });
+
 bntRocaDos.addEventListener("click", function () {
-  validador("Dos", "piedra");
+  validador("Dos", "piedra", bntRocaDos);
 });
+
 bntTijeraDos.addEventListener("click", function () {
-  validador("Dos", "tijera");
+  validador("Dos", "tijera", bntTijeraDos);
 });
 
 bntInicio.addEventListener("click", () => {
@@ -201,17 +276,27 @@ bntInicio.addEventListener("click", () => {
 });
 
 function reinicio() {
+  // Invalida los temporizadores de la partida anterior.
+  idPartida++;
+
   jugadorUno = [];
   jugadorDos = [];
   contadorJugadorUno = 0;
   contadorJugadorDos = 0;
+
   juegoTerminado = false;
+  procesandoRonda = false;
   turnoActual = "Uno";
+
+  limpiarCartasSeleccionadas();
+
   puntaje.innerText = "0 vs 0";
   puntajeDos.innerText = "0 vs 0";
+
   resultadoUno.innerText = "";
   resultadoDos.innerText = "";
   ganador.innerText = "";
+
   turnoUno.innerText = "";
   turnoDos.innerText = "";
 }
