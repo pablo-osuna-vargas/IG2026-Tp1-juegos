@@ -8,6 +8,8 @@
 
 Sitio web de 3 juegos interactivos los cuales usan cartas **(Tríada)**, dados **(Cadencia)** y preguntas mediante el uso de una API **(Crescendo)**.
 
+## Origen del nombre
+
 > Se eligió "Ludoterna" como el nombre del proyecto para unificar el sitio y su contenido bajo un mismo nombre. El nombre fue creado a partir de las palabras:
 >
 > - Ludoteca -> Centro de recreo donde se guardan juegos y juguetes para su uso y préstamo.
@@ -37,11 +39,11 @@ Versión del popular juego "Piedra, papel o tijera".
 
 ### CADENCIA (Juego de dados):
 
-> Se eligió el nombre **"Cadencia"** porque es un término musical que hace referencia a una sucesión o progresión de sonidos y acordes. Este concepto se relaciona con la dinámica del juego, en el que los turnos se suceden y cada jugador debe tomar decisiones estratégicas entre atacar o sumar puntos. Además, el límite de 60 segundos aporta un ritmo constante a la partida, reforzando la relación entre el nombre elegido y la temática musical del sitio.
+> Se eligió el nombre **"Cadencia"** porque es un término musical que hace referencia a una sucesión o progresión de sonidos y acordes. Este concepto se relaciona con la dinámica del juego, en el que los turnos se suceden y cada jugador debe tomar decisiones estratégicas entre atacar o sumar puntos. Además, el límite de 120 segundos aporta un ritmo constante a la partida, reforzando la relación entre el nombre elegido y la temática musical del sitio.
 
 #### PROCESO:
 
-1. Cada partida tiene un límite de 60 segundos. Ambos jugadores comienzan con 30 de vida y 0 puntos. Al comenzar la partida se genera un número prohibido entre 2 y 12. Si el resultado de la suma de los dados coincide con ese número, se pierde el turno.
+1. Cada partida tiene un límite de 120 segundos. Ambos jugadores comienzan con 30 de vida y 0 puntos. Al comenzar la partida se genera un número prohibido entre 2 y 12. Si el resultado de la suma de los dados coincide con ese número, se pierde el turno.
 2. En cada turno se tiran dos dados de 1 a 6 y se suma su resultado. Si los dados son iguales, se obtiene un bonus de +2.
 3. El jugador puede elegir entre **Atacar**, para restar el resultado a la vida del oponente, o **Sumar**, para agregarlo a sus puntos.
 4. La partida termina cuando uno de los jugadores llega a 0 de vida, alcanza exactamente 30 puntos o se acaba el tiempo. Si se acaba el tiempo, ambos jugadores pierden.
@@ -125,7 +127,7 @@ Juego de preguntas y respuestas Verdadero o Falso sobre música internacional en
 
 - Lanzamiento de dos dados por turno y elección entre atacar al oponente o sumar puntos.
 - Bonificación por obtener dados iguales y pérdida del turno al obtener el número prohibido.
-- Límite de tiempo de 60 segundos y condiciones de victoria según los puntos acumulados o la vida del oponente.
+- Límite de tiempo de 120 segundos y condiciones de victoria según los puntos acumulados o la vida del oponente.
 
 **Crescendo**
 
@@ -201,6 +203,23 @@ Se utilizaron GitHub Copilot, Claude y ChatGPT como herramientas de asistencia d
 
 > Un gran inconveniente fue intentar usar inicialmente la API "MusicBrainz" que si bien es específica para música rock internacional, los endpoints a los que pedíamos datos nos resultaron muy complejos de leer para capturar los valores precisos dentro de cada objeto devuelto para crear dinámicamente las preguntas de la Trivia. La mayoría de las veces nos arrojaban datos "genre" o "empty" al capturar valores de "name" o de "releases". Intentamos filtrar de manera general con "music" pero el resultado fue el contrario al esperado volviéndose demasiado extenso cada array dentro de los "results" (fechas de lanzamiento de álbum se mezclaban con fechas de grabaciones; nombres de álbumes se mezclaban con nombres de artistas y casos por el estilo). Idealmente nos hubiera gustado hacer uso de esta API y lograr una captura más precisa pero decidimos enfocarnos en resolver la funcionalidad del programa para cumplir con los requisitos del tp.
 
+## Mejoras del recuperatorio
+
+A partir de la devolución del TP N.º 1, se realizaron las siguientes mejoras:
+
+- Se unificó la estética general del sitio y se dio a los tres juegos
+  una estructura de pantallas consistente.
+- En Tríada, se destacó la carta elegida, se mejoró la distinción de
+  turnos y se corrigió el tratamiento de los alias.
+- En Cadencia, se reorganizó el tablero, se implementó el modo para
+  dos jugadores humanos, se incorporó el guardado de puntajes y se
+  añadieron controles para evitar acciones repetidas.
+- En Crescendo, se reorganizó el feedback, se mejoró el sistema de
+  respuestas y se corrigió el manejo de alias.
+- Se centralizó el guardado de puntajes mediante `ranking.js`.
+- Se completó la página de rankings con los tres juegos y mensajes
+  para rankings vacíos.
+
 ### (IMPLEMENTACIÓN) Unificación del guardado de puntajes:
 
 - Se creó el archivo `ranking.js` con la función reutilizable `guardarPuntajes()`, para centralizar el guardado de puntajes de los tres juegos.
@@ -209,6 +228,13 @@ Se utilizaron GitHub Copilot, Claude y ChatGPT como herramientas de asistencia d
 - Se conservaron las claves `rankingPiedraPapel`, `rankingDados` y `rankingTrivia`, por lo que no fue necesario modificar `puntajes.js`.
 - Se mantuvo la comparación de alias sin distinguir mayúsculas y minúsculas, evitando que un mismo jugador aparezca con registros separados.
 - Se eliminaron las funciones y declaraciones de rankings que dejaron de ser necesarias en los archivos individuales.
+
+### (IMPLEMENTACIÓN) Control de acciones mediante temporizadores:
+
+- Se incorporaron temporizadores en `cartas.js`, `dados.js` y `preguntas.js` para controlar los tiempos de espera entre acciones y evitar que los jugadores interactúen antes de que finalicen los procesos de cada turno.
+- Se limitaron las acciones durante los intervalos de espera para prevenir ejecuciones repetidas, clics múltiples y posibles inconsistencias en el estado de las partidas.
+- Se coordinaron los cambios de turno y las actualizaciones de la interfaz con los temporizadores, respetando el flujo de juego de cada uno de los tres juegos.
+- Se añadieron estilos CSS para representar visualmente los botones deshabilitados durante los períodos de bloqueo de acciones.
 
 > CORRECCIONES A PARTIR DEL 17/10 HECHAS SOLAMENTE POR ÁNGEL CABRAL PARA EL RECUPERATORIO DEL TP N°1
 

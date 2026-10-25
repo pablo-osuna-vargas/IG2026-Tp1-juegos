@@ -297,6 +297,7 @@ btnAtras.addEventListener("click", () => {
 
 btnJugar.addEventListener("click", async () => {
   aliasJugador1 = prompt("Jugador 1, ingresá tu alias:");
+  let numeroAliasAlternativo = 1;
 
   if (aliasJugador1 === null || aliasJugador1.trim() === "") {
     aliasJugador1 = "Jugador 1";
@@ -316,8 +317,6 @@ btnJugar.addEventListener("click", async () => {
   } else {
     aliasJugador2 = aliasJugador2.trim();
   }
-
-  let numeroAliasAlternativo = 1;
 
   while (aliasJugador1.toLowerCase() === aliasJugador2.toLowerCase()) {
     alert("Los jugadores no pueden tener el mismo alias.");
